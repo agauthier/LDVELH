@@ -1,0 +1,191 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/default_dialog_top_bottom_margin"
+    android:layout_marginTop="@dimen/default_dialog_top_bottom_margin"
+    android:background="@drawable/dialog_paper_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pencil_border_small"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/ldvelhTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:text="@string/df03_yaztromo_magic_shop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" >
+
+            <TextView
+                style="@style/ldvelhListItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_padding"
+                android:text="@string/gold" />
+
+            <TextView
+                android:id="@+id/remainingCurrency"
+                style="@style/ldvelhListItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_padding" />
+
+            <TextView
+                style="@style/ldvelhListItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_padding"
+                android:text="@string/slash_symbol" />
+
+            <TextView
+                android:id="@+id/maxCurrency"
+                style="@style/ldvelhListItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_padding" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/pencil_border_small"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:id="@+id/magicItems"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_healing_potion"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_plant_control_potion"
+                custom:price="2" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_tranquility_potion"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_insect_control_potion"
+                custom:price="2" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_antipoison_potion"
+                custom:price="2" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_holy_water"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_light_ring"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_jumping_boots"
+                custom:price="2" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_magical_rope"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_catching_net"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_strength_bracer"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_throwing_glove"
+                custom:price="2" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_probing_stick"
+                custom:price="2" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_garlic"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_concentration_headband"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_fire_pills"
+                custom:price="3" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df03_magic_item_nose_filter"
+                custom:price="3" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pencil_border_small" >
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_button_selector"
+            android:text="@string/ok" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,365 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pencil_border"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <com.home.ldvelh.ui.widget.SpreadedGridLayout
+        android:id="@+id/spellGrid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="4"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="4"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="4"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_04"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="4"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_05"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="4"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_06"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="4"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_07"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_08"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_21" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_09"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_08" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_12" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_10" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_09" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_22" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_15" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_06" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_26" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_27" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_07" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_16" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="2"
+            custom:ingredient="" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_03" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_18" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_23" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_34"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_24" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_25" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_28" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_05" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_19" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_17" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_02" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_14" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_04" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_20" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_20" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_01" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_46"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_13" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_47"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="1"
+            custom:ingredient="@string/so_ingredient_11" />
+
+        <com.home.ldvelh.ui.widget.SOSpellButton
+            custom:name="@string/so_spell_48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:cost="7"
+            custom:ingredient="" />
+    </com.home.ldvelh.ui.widget.SpreadedGridLayout>
+
+    <Button
+        android:id="@+id/ingredientsButton"
+        style="@style/ldvelhTitles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="@dimen/default_margin"
+        android:background="@drawable/small_button_selector"
+        android:padding="@dimen/default_padding"
+        android:text="@string/so_ingredients" >
+    </Button>
+
+</LinearLayout>

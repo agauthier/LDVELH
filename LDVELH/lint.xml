@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <issue id="IconDensities" severity="ignore" />
+    <issue id="Overdraw" severity="ignore" />
+    <issue id="RtlSymmetry" severity="ignore" />
+    <issue id="UseSparseArrays" severity="ignore" />
+</lint>

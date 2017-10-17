@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pencil_border"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/ldvelhSmallTitles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cc_favorable" />
+
+        <TextView
+            style="@style/ldvelhSmallTitles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cc_neutral" />
+
+        <TextView
+            style="@style/ldvelhSmallTitles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cc_unfavorable" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/divider_brown_opaque"
+        android:orientation="horizontal" />
+
+    <com.home.ldvelh.ui.widget.list.CCGodList
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        custom:listPropertyName="CC_GOD_LIST"
+        custom:newConsumableItemVisible="false"
+        custom:newItemVisible="false"
+        custom:rowLayout="list_item_cc_god" />
+
+</LinearLayout>

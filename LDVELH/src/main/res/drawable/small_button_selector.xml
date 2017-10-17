@@ -1,0 +1,9 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:constantSize="true">
+
+    <item android:drawable="@drawable/btn_bg_small" android:state_focused="true" android:state_pressed="false"/>
+    <item android:drawable="@drawable/small_button_pressed" android:state_focused="true" android:state_pressed="true"/>
+    <item android:drawable="@drawable/small_button_pressed" android:state_focused="false" android:state_pressed="true"/>
+    <item android:drawable="@drawable/small_button_disabled" android:state_focused="false" android:state_enabled="false"/>
+    <item android:drawable="@drawable/btn_bg_small"/>
+
+</selector>

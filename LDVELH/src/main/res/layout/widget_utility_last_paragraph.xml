@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_bg_medium"
+    android:contentDescription="@string/lorem_ipsum"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/ldvelhSmallestTitles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minLines="2"
+        android:padding="@dimen/default_padding"
+        android:text="@string/lastParagraph" />
+
+    <EditText
+        android:id="@+id/lastParagraph"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:hint=""
+        android:inputType="number"
+        android:lines="1" />
+
+</LinearLayout>

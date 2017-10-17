@@ -1,0 +1,38 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.home.ldvelh"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@drawable/ic_ldvelh"
+        android:label="@string/app_name"
+        android:supportsRtl="false"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+        <activity
+            android:name="com.home.ldvelh.ui.activity.GamebookPickerActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.home.ldvelh.ui.activity.CCAdventureActivity"
+            android:label="@string/title_activity_adventure"
+            android:parentActivityName="com.home.ldvelh.ui.activity.GamebookPickerActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.home.ldvelh.ui.activity.DFAdventureActivity"
+            android:label="@string/title_activity_adventure"
+            android:parentActivityName="com.home.ldvelh.ui.activity.GamebookPickerActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.home.ldvelh.ui.activity.DF04AdventureActivity"
+            android:label="@string/title_activity_adventure"
+            android:parentActivityName="com.home.ldvelh.ui.activity.GamebookPickerActivity"
+            android:windowSoftInputMode="stateHidden" />
+    </application>
+
+</manifest>

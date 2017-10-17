@@ -1,0 +1,35 @@
+<resources>
+
+    <declare-styleable name="CustomNumberPickerOptions">
+        <attr name="vertical" format="boolean" />
+        <attr name="scaleFactor" format="float" />
+        <attr name="allowLongPress" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="CustomListOptions">
+        <attr name="listPropertyName" format="string" />
+        <attr name="rowLayout" format="string" />
+        <attr name="newItemVisible" format="boolean" />
+        <attr name="newConsumableItemVisible" format="boolean" />
+        <attr name="newItemCaption" format="string" />
+        <attr name="newConsumableItemCaption" format="string" />
+        <attr name="storeClass" format="string" />
+    </declare-styleable>
+    <declare-styleable name="ShopPickerItemOptions">
+        <attr name="itemName" format="string" />
+        <attr name="price" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="CrewMemberOptions">
+        <attr name="crewMemberProperty" format="string" />
+    </declare-styleable>
+    <declare-styleable name="CCAttributeOptions">
+        <attr name="attributeName" format="string" />
+        <attr name="propertyName" format="string" />
+        <attr name="withPicker" format="boolean" />
+        </declare-styleable>
+    <declare-styleable name="SOSpellButtonOptions">
+        <attr name="name" format="string" />
+        <attr name="cost" format="integer" />
+        <attr name="ingredient" format="string" />
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_paper_background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/question"
+        style="@style/ldvelhTitles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:gravity="center_horizontal"
+        android:background="@drawable/pencil_border_small" />
+
+    <LinearLayout
+        android:id="@+id/choiceButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

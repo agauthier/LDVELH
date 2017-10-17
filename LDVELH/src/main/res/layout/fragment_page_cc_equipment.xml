@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pencil_border"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3" />
+
+        <TextView
+            style="@style/ldvelhSmall"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cc_strength" />
+
+        <TextView
+            style="@style/ldvelhSmall"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cc_protection" />
+
+        <TextView
+            style="@style/ldvelhSmall"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/cc_equipped" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/divider_brown_opaque"
+        android:orientation="horizontal" />
+
+    <com.home.ldvelh.ui.widget.list.CCEquipmentList
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        custom:listPropertyName="CC_EQUIPMENT_LIST"
+        custom:newConsumableItemVisible="false"
+        custom:newItemVisible="false"
+        custom:rowLayout="list_item_cc_equipment"
+        custom:storeClass="com.home.ldvelh.ui.dialog.CCEquipmentEditor" />
+
+</LinearLayout>

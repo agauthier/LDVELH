@@ -1,0 +1,137 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/default_dialog_top_bottom_margin"
+    android:layout_marginTop="@dimen/default_dialog_top_bottom_margin"
+    android:background="@drawable/dialog_paper_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pencil_border_small" >
+
+        <TextView
+            style="@style/ldvelhTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:text="@string/magic_label" />
+
+        <TextView
+            android:id="@+id/remainingCurrency"
+            style="@style/ldvelhTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/default_padding" />
+
+        <TextView
+            style="@style/ldvelhTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:text="@string/slash_symbol" />
+
+        <TextView
+            android:id="@+id/maxCurrency"
+            style="@style/ldvelhTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/default_padding" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/pencil_border_small"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:id="@+id/spells"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:id="@+id/df02SpellLuck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_luck" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_copy" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:id="@+id/df02SpellStamina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_stamina" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_weakness" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_fire" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_strength" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:id="@+id/df02SpellSkill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_skill" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_illusion" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_levitation" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_idiotsgold" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_protection" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/df02_spell_telepathy" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pencil_border_small" >
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_button_selector"
+            android:text="@string/ok" />
+    </LinearLayout>
+
+</LinearLayout>

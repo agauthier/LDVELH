@@ -1,0 +1,35 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:gravity="center_vertical" >
+
+    <ImageButton
+        android:id="@+id/customPickerPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/small_button_selector"
+        android:contentDescription="@string/lorem_ipsum"
+        android:src="@drawable/btn_plus_small" />
+
+    <TextView
+        android:id="@+id/customPickerValue"
+        style="@style/ldvelhTitles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customPickerPlus"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
+
+    <ImageButton
+        android:id="@+id/customPickerMinus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/customPickerValue"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/small_button_selector"
+        android:contentDescription="@string/lorem_ipsum"
+        android:src="@drawable/btn_minus_small" />
+
+</merge>

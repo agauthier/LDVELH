@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- LDVELH Defaults -->
+    <dimen name="default_activity_margin">16dp</dimen>
+    <dimen name="default_dialog_top_bottom_margin">100dp</dimen>
+    <dimen name="default_margin">4dp</dimen>
+    <dimen name="default_padding">4dp</dimen>
+
+    <!-- Other values -->
+    <dimen name="small_button_text">10sp</dimen>
+    
+</resources>

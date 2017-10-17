@@ -1,0 +1,15 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/paper_background"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:id="@+id/gamebook_picker_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/default_activity_margin" >
+    </LinearLayout>
+
+</ScrollView>

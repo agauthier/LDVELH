@@ -1,0 +1,56 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme.AppCompat.Light.NoActionBar.FullScreen" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="ldvelhLargeTitles">
+        <item name="android:textSize">26sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="ldvelhTitles">
+        <item name="android:textSize">22sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="ldvelhSmallTitles">
+        <item name="android:textSize">20sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="ldvelhSmallestTitles">
+        <item name="android:textSize">18sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="ldvelhListItems">
+        <item name="android:textSize">18sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="ldvelhSmall">
+        <item name="android:textSize">14sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="ldvelhVerySmall">
+        <item name="android:textSize">10sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <style name="ldvelhSmallest">
+        <item name="android:textSize">6sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+</resources>

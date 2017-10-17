@@ -1,0 +1,40 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pencil_border"
+    android:orientation="vertical" >
+
+    <com.home.ldvelh.ui.widget.map.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom|right"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/fitMapToCanvas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding"
+            android:background="@drawable/small_button_selector"
+            android:contentDescription="@string/lorem_ipsum"
+            android:src="@drawable/fit_to_view" />
+
+        <ImageButton
+            android:id="@+id/deleteNode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding"
+            android:background="@drawable/small_button_selector"
+            android:contentDescription="@string/lorem_ipsum"
+            android:src="@drawable/delete_node" />
+    </LinearLayout>
+
+</FrameLayout>

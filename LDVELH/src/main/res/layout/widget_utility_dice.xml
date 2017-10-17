@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/diceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/utility_button_selector"
+        android:contentDescription="@string/lorem_ipsum"
+        android:elevation="1dp" />
+
+    <ImageView
+        android:id="@+id/firstDieImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/lorem_ipsum"
+        android:elevation="30dp" 
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:src="@drawable/die6" />
+
+    <ImageView
+        android:id="@+id/secondDieImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/lorem_ipsum"
+        android:elevation="30dp"
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:src="@drawable/die6"
+        android:visibility="invisible" />
+
+</RelativeLayout>

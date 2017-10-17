@@ -1,0 +1,191 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/default_dialog_top_bottom_margin"
+    android:layout_marginTop="@dimen/default_dialog_top_bottom_margin"
+    android:background="@drawable/dialog_paper_background"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pencil_border_small"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/ldvelhTitles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:text="@string/so_ingredients" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/pencil_border_small"
+        android:scrollbarStyle="outsideOverlay" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_01" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_02" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_03" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_04" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_05" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_06" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_07" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_08" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_09" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_10" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_11" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_12" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_13" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_14" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_15" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_16" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_17" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_18" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_19" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_20" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_21" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_22" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_23" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_24" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_25" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_26" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_27" />
+
+            <com.home.ldvelh.ui.dialog.ShopPickerItem
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:itemName="@string/so_ingredient_28" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pencil_border_small" >
+
+        <Button
+            android:id="@+id/okButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_button_selector"
+            android:text="@string/ok" />
+    </LinearLayout>
+
+</LinearLayout>
