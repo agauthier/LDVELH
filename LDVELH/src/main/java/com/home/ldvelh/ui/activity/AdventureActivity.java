@@ -39,10 +39,12 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
         } else {
             config = (AdventureConfig) savedInstanceState.get(AdventureConfig.ADVENTURE_CONFIG);
         }
-        config.loadGame();
-        setContentView(config.getLayoutResId());
-        setBookTitle(config.getTitleResId());
-        initPages(config.getPages());
+        if (config != null) {
+            config.loadGame();
+            setContentView(config.getLayoutResId());
+            setBookTitle(config.getTitleResId());
+            initPages(config.getPages());
+        }
         showStartupDialogs();
     }
 

@@ -1,7 +1,5 @@
 package com.home.ldvelh.model.character;
 
-import java.util.Observable;
-
 import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.model.Die;
 import com.home.ldvelh.model.Property;
@@ -16,24 +14,30 @@ import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.model.value.ListValueHolder;
 import com.home.ldvelh.ui.activity.AdventureActivity;
 
+import java.util.Observable;
+
 public class CCCharacter extends Character {
     private static final long serialVersionUID = -7699595433223555416L;
 
     public enum Condition {
         UNSCATHED {
-            @Override public Condition worsen() {
+            @Override
+            public Condition worsen() {
                 return WOUNDED;
             }
         }, WOUNDED {
-            @Override public Condition worsen() {
+            @Override
+            public Condition worsen() {
                 return BADLY_WOUNDED;
             }
         }, BADLY_WOUNDED {
-            @Override public Condition worsen() {
+            @Override
+            public Condition worsen() {
                 return DEAD;
             }
         }, DEAD {
-            @Override public Condition worsen() {
+            @Override
+            public Condition worsen() {
                 return DEAD;
             }
         };
@@ -43,51 +47,73 @@ public class CCCharacter extends Character {
 
     public enum ZeusInvocation {
         RESUSCITATE {
-            @Override public boolean canPerform(CCCharacter character) {
+            @Override
+            public boolean canPerform(CCCharacter character) {
                 return !character.shameGreaterThanHonor();
             }
 
-            @Override public void perform(CCCharacter character) {
+            @Override
+            public boolean perform(CCCharacter character) {
                 if (character.honor.getValue() == 0) {
                     recoverFromZeroHonor(character);
                 } else {
                     character.shame.addWithFeedback(-character.shame.getValue());
                     character.honor.addWithFeedback(-character.honor.getValue() + 1);
                 }
+                return true;
             }
         }, GAIN_RANDOM_HONOR {
-            @Override public boolean canPerform(CCCharacter character) {
+            @Override
+            public boolean canPerform(CCCharacter character) {
                 return character.honor.getValue() > 0;
             }
 
-            @Override public void perform(CCCharacter character) {
+            @Override
+            public boolean perform(CCCharacter character) {
                 character.honor.addWithFeedback(Die.SIX_FACES.roll());
+                return true;
             }
         }, REGAIN_HONOR_POINTS {
-            @Override public boolean canPerform(CCCharacter character) {
+            @Override
+            public boolean canPerform(CCCharacter character) {
                 return character.honor.getValue() == 0;
             }
 
-            @Override public void perform(CCCharacter character) {
+            @Override
+            public boolean perform(CCCharacter character) {
                 recoverFromZeroHonor(character);
+                return true;
             }
         }, ALL_GODS_NEUTRAL {
-            @Override public boolean canPerform(CCCharacter character) {
+            @Override
+            public boolean canPerform(CCCharacter character) {
                 return true;
             }
 
-            @Override public void perform(CCCharacter character) {
+            @Override
+            public boolean perform(CCCharacter character) {
                 ListValueHolder<CCGod> godsList = Property.CC_GOD_LIST.get();
                 for (CCGod god : godsList) {
                     god.setAttitude(Attitude.NEUTRAL);
                 }
                 godsList.touch();
+                return true;
+            }
+        }, CANCEL {
+            @Override
+            public boolean canPerform(CCCharacter character) {
+                return true;
+            }
+
+            @Override
+            public boolean perform(CCCharacter character) {
+                return false;
             }
         };
 
         public abstract boolean canPerform(CCCharacter character);
 
-        public abstract void perform(CCCharacter character);
+        public abstract boolean perform(CCCharacter character);
 
         void recoverFromZeroHonor(CCCharacter character) {
             character.honor.deleteObserver(character);
@@ -123,28 +149,32 @@ public class CCCharacter extends Character {
         God.populateList(gods);
     }
 
-    @Override public void update(Observable observable, Object data) {
+    @Override
+    public void update(Observable observable, Object data) {
         if (observable == honor && honor.getValue() == 0 && honor.getMax() != 0) {
             honor.addToMax(-honor.getMax());
         }
         super.update(observable, data);
     }
 
-    @Override public void addLifeObserver(AdventureActivity activity) {
+    @Override
+    public void addLifeObserver(AdventureActivity activity) {
         honor.addObserver(this);
         shame.addObserver(this);
         condition.addObserver(this);
         addObserver(activity);
     }
 
-    @Override public void deleteLifeObserver(AdventureActivity activity) {
+    @Override
+    public void deleteLifeObserver(AdventureActivity activity) {
         deleteObserver(activity);
         honor.deleteObserver(this);
         shame.deleteObserver(this);
         condition.deleteObserver(this);
     }
 
-    @Override public void killWithoutUpdate() {
+    @Override
+    public void killWithoutUpdate() {
         honor.deleteObservers();
         shame.deleteObservers();
         condition.deleteObservers();
@@ -153,15 +183,18 @@ public class CCCharacter extends Character {
         condition.setValue(Condition.DEAD);
     }
 
-    @Override public boolean isDead() {
+    @Override
+    public boolean isDead() {
         return condition.is(Condition.DEAD) || shameGreaterThanHonor();
     }
 
-    @Override public CombatStrategy getCombatStrategy() {
+    @Override
+    public CombatStrategy getCombatStrategy() {
         return null;
     }
 
-    @Override public void initCharacterValues() {
+    @Override
+    public void initCharacterValues() {
         super.initCharacterValues();
         CharacterValues.put(Property.STRENGTH, strength);
         CharacterValues.put(Property.PROTECTION, protection);
@@ -175,14 +208,18 @@ public class CCCharacter extends Character {
         CharacterValues.put(Property.TUTELARY_GOD, tutelaryGod);
     }
 
-    @Override public void startFromPreviousBook() {
+    @Override
+    public void startFromPreviousBook() {
         super.startFromPreviousBook();
         zeusInvoked.unset();
     }
 
-    public void invokeZeus(ZeusInvocation invocation) {
-        invocation.perform(this);
-        zeusInvoked.set();
+    public boolean invokeZeus(ZeusInvocation invocation) {
+        if (invocation.perform(this)) {
+            zeusInvoked.set();
+            return true;
+        }
+        return false;
     }
 
     public boolean isZeusInvoked() {

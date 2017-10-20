@@ -127,6 +127,7 @@ public abstract class Store<T extends ListItem> extends AdventureDialog implemen
 
 	private List<ShopPickerItem> getAllShopItems() {
 		if (shopItems.isEmpty()) {
+			//noinspection ConstantConditions
 			shopItems.addAll(getShopItemsInView((ViewGroup) getWindow().getDecorView()));
 		}
 		return shopItems;

@@ -46,6 +46,7 @@ public class ItemAndQuantity {
 
 	private boolean isInteger(String s) {
 		try {
+			//noinspection ResultOfMethodCallIgnored
 			Integer.parseInt(s);
 		} catch (NumberFormatException e) {
 			return false;

@@ -10,7 +10,8 @@ public class CharacterValues {
 
     private static final Map<Property<ValueHolder<?>>, ValueHolder<?>> propertyValues = new HashMap<>();
 
-    @SuppressWarnings("unchecked") public static <T extends ValueHolder<?>> T get(Property<T> prop) {
+    @SuppressWarnings({"unchecked", "SuspiciousMethodCalls"})
+    public static <T extends ValueHolder<?>> T get(Property<T> prop) {
         return (T) propertyValues.get(prop);
     }
 

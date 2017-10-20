@@ -130,6 +130,7 @@ public class AdventureConfig implements Serializable {
 	public <T extends AdventureDialog> List<Class<T>> getUnfulfilledDialogs() {
 		List<Class<T>> unfulfilledDialogs = new ArrayList<>();
 		for (Class<? extends AdventureDialog> dialogClass : dialogs) {
+			//noinspection SuspiciousMethodCalls
 			if (!Property.CHARACTER.get().getFulfilledDialogs().contains(dialogClass)) {
 				@SuppressWarnings("unchecked") final Class<T> dialogClassCast = (Class<T>) dialogClass;
 				unfulfilledDialogs.add(dialogClassCast);
