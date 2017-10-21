@@ -58,6 +58,9 @@ public enum FreeAreaInflaterSO implements FreeAreaInflater, Observer {
                 button.setEnabled(false);
             }
         }));
+        choices.add(new Choice(R.string.cancel, new Runnable() {
+            @Override public void run() {}
+        }));
         return new Pair<>(R.string.so_invoke_libra, choices);
     }
 }
