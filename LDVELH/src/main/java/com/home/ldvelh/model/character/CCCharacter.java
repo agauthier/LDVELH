@@ -214,6 +214,7 @@ public class CCCharacter extends Character {
         zeusInvoked.unset();
     }
 
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean invokeZeus(ZeusInvocation invocation) {
         if (invocation.perform(this)) {
             zeusInvoked.set();

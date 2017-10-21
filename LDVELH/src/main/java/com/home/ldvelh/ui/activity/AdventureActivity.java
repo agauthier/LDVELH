@@ -43,9 +43,8 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
             config.loadGame();
             setContentView(config.getLayoutResId());
             setBookTitle(config.getTitleResId());
-            initPages(config.getPages());
+            showStartupDialogs();
         }
-        showStartupDialogs();
     }
 
     @Override protected void onResume() {
@@ -113,7 +112,9 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
     }
 
     private <T extends AdventureDialog> void showDialogs(final List<Class<T>> unfulfilledDialogs) {
-        if (!unfulfilledDialogs.isEmpty()) {
+        if (unfulfilledDialogs.isEmpty()) {
+            initPages(config.getPages());
+        } else {
             try {
                 final Class<T> dialogClass = unfulfilledDialogs.get(0);
                 final AdventureDialog dialog = dialogClass.getConstructor(Context.class, Object.class).newInstance(this, config.getDialogData(dialogClass));

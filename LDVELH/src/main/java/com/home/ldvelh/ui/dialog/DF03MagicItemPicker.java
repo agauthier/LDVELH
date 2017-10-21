@@ -10,8 +10,8 @@ import android.content.Context;
 
 public class DF03MagicItemPicker extends Store<SimpleItem> {
 
-	public DF03MagicItemPicker(Context context) {
-		super(context, null, R.layout.dialog_df03_magic_item_picker, Property.GOLD.get(), Property.MAGIC_ITEM_LIST.get());
+	public DF03MagicItemPicker(Context context, Object data) {
+		super(context, data, R.layout.dialog_df03_magic_item_picker, Property.GOLD.get(), Property.MAGIC_ITEM_LIST.get());
 	}
 
 	@Override public void onBackPressed() { /* Do nothing */ }

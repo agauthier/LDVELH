@@ -231,6 +231,9 @@
     <string name="df10_maxFearEquals">(Max = %s)</string>
 
     <!-- SO Strings -->
+    <string name="so_character_type_choice">Jouer en tant que</string>
+    <string name="so_character_type_fighter">Aventurier</string>
+    <string name="so_character_type_sorcerer">Sorcier</string>
     <string name="so_invoke_libra">Invoquer Libra</string>
     <string name="so_restore_initial_values">Retrouver Valeurs Initiales</string>
     <string name="so_flee_or_heal">Fuite ou Guérison</string>
