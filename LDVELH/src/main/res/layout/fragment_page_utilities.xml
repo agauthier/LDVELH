@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/utilities"
@@ -10,31 +10,37 @@
         android:layout_height="wrap_content"
         android:background="@drawable/pencil_border"
         android:gravity="center_horizontal"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <com.home.ldvelh.ui.widget.utility.LastParagraph
             android:id="@+id/lastParagraphUtility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_activity_margin" />
+            android:padding="@dimen/default_padding"/>
 
         <com.home.ldvelh.ui.widget.utility.Dice
             android:id="@+id/diceUtility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_activity_margin" />
+            android:padding="@dimen/default_padding"/>
 
         <com.home.ldvelh.ui.widget.utility.LuckCheck
             android:id="@+id/luckCheckUtility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_activity_margin" />
+            android:padding="@dimen/default_padding"/>
 
         <com.home.ldvelh.ui.widget.utility.Zeus
             android:id="@+id/zeusUtility"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_activity_margin" />
+            android:padding="@dimen/default_padding"/>
+
+        <com.home.ldvelh.ui.widget.utility.Libra
+            android:id="@+id/libraUtility"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"/>
     </LinearLayout>
 
     <LinearLayout
@@ -42,19 +48,19 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@drawable/pencil_border"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <TextView
             style="@style/ldvelhTitles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/notes" />
+            android:text="@string/notes"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/divider_brown_opaque"
-            android:orientation="horizontal" />
+            android:orientation="horizontal"/>
 
         <com.home.ldvelh.ui.widget.list.NoteList
             android:layout_width="match_parent"
@@ -63,7 +69,7 @@
             custom:newConsumableItemVisible="false"
             custom:newItemCaption="@string/add_new_note"
             custom:newItemVisible="true"
-            custom:rowLayout="list_item_note" />
+            custom:rowLayout="list_item_note"/>
     </LinearLayout>
 
 </LinearLayout>

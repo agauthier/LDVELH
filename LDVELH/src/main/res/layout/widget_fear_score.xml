@@ -4,36 +4,37 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_vertical"
     android:clipChildren="false"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <TextView
         style="@style/ldvelhTitles"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
+        android:layout_weight="1"
+        android:gravity="center"
         android:text="@string/df10_fear" />
 
     <TextView
         android:id="@+id/maxFear"
         style="@style/ldvelhSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
+        android:layout_weight="1"
         android:text="@string/lorem_ipsum" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:clipChildren="false"
-        android:gravity="center" >
+        android:gravity="center">
 
         <com.home.ldvelh.ui.widget.CustomNumberPicker
             android:id="@+id/numberPickerFear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipChildren="false"
-            custom:scaleFactor="1.2"
             custom:vertical="false" />
     </LinearLayout>
 

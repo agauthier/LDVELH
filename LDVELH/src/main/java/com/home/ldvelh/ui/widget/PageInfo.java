@@ -2,6 +2,7 @@ package com.home.ldvelh.ui.widget;
 
 import android.support.v4.app.Fragment;
 
+import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
 
 import java.io.Serializable;
@@ -12,7 +13,18 @@ public class PageInfo<T extends Fragment> implements Serializable {
     private static final long serialVersionUID = 8282251537023818566L;
 
     public enum Tag {
-        ALLOW_DROP, UTIL_LAST_PARAGRAPH, UTIL_DICE, UTIL_LUCK_CHECK, UTIL_ZEUS
+        ALLOW_DROP(null),
+        UTIL_LAST_PARAGRAPH(R.id.lastParagraphUtility),
+        UTIL_DICE(R.id.diceUtility),
+        UTIL_LUCK_CHECK(R.id.luckCheckUtility),
+        UTIL_ZEUS(R.id.zeusUtility),
+        UTIL_LIBRA(R.id.libraUtility);
+
+        private final Object data;
+
+        Tag(Object data) { this.data = data; }
+
+        public Object getData() { return data; }
     }
 
     private final int titleResId;

@@ -72,6 +72,9 @@ public abstract class Property<T extends ValueHolder<?>> {
     // DF10
     public static final Property<IntValueHolder> FEAR = new Property<IntValueHolder>("FEAR") {};
 
+    // SO
+    public static final Property<IntValueHolder> MEALS = new Property<IntValueHolder>("MEALS") {};
+
     private final String name;
 
     private Property(String name) {

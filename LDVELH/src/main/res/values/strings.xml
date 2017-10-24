@@ -17,7 +17,6 @@
     <string name="back_pressed">Vous avez appuyé sur Retour</string>
     <string name="default_initialization">Par défaut</string>
     <string name="load_game_from_previous_book">Charger à partir du livre précédent</string>
-    <string name="resume_play">Continuer la partie</string>
     <string name="restart_adventure">Recommencer l\'aventure</string>
     <string name="play_other_book">Jouer un autre livre</string>
     <string name="quit">Quitter</string>

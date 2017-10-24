@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipChildren="false"
-    android:orientation="horizontal" >
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
 
     <TextView
         style="@style/ldvelhTitles"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding"
+        android:layout_weight="1"
+        android:gravity="center"
         android:text="@string/df02_magic" />
 
     <LinearLayout
@@ -17,14 +19,13 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:clipChildren="false"
-        android:gravity="center" >
+        android:gravity="center">
 
         <com.home.ldvelh.ui.widget.CustomNumberPicker
             android:id="@+id/numberPickerMagic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipChildren="false"
-            custom:scaleFactor="1.2"
             custom:vertical="false" />
     </LinearLayout>
 

@@ -353,7 +353,7 @@ public abstract class BookConfig {
         config.addCustomCharacterValues(Utils.getString(R.string.set_gold), 20);
         config.addCustomCharacterValues(Utils.getString(R.string.add_item), Utils.getString(R.string.food), 2);
         config.addDialog(SOCharacterTypePicker.class, config);
-        config.addPage(R.string.tab_title_utilities, UtilitiesPage.class, getDFUtilitiesConfig());
+        config.addPage(R.string.tab_title_utilities, UtilitiesPage.class, getSOUtilitiesConfig());
         config.addPage(R.string.tab_title_combat, DFCombatPage.class);
         config.addPage(R.string.tab_title_items, ItemsPage.class);
         config.addPage(R.string.tab_title_magic, SOSpellsPage.class);
@@ -375,6 +375,15 @@ public abstract class BookConfig {
         config.add(Tag.UTIL_LAST_PARAGRAPH);
         config.add(Tag.UTIL_DICE);
         config.add(Tag.UTIL_LUCK_CHECK);
+        return config;
+    }
+
+    private static Set<Tag> getSOUtilitiesConfig() {
+        Set<Tag> config = new HashSet<>();
+        config.add(Tag.UTIL_LAST_PARAGRAPH);
+        config.add(Tag.UTIL_DICE);
+        config.add(Tag.UTIL_LUCK_CHECK);
+        config.add(Tag.UTIL_LIBRA);
         return config;
     }
 }

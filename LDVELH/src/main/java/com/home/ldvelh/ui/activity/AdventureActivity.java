@@ -32,7 +32,8 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
 
     AdventureConfig config;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
             config = (AdventureConfig) getIntent().getExtras().get(AdventureConfig.ADVENTURE_CONFIG);
@@ -47,37 +48,44 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
         }
     }
 
-    @Override protected void onResume() {
+    @Override
+    protected void onResume() {
         super.onResume();
         Property.CHARACTER.get().addLifeObserver(this);
         GameSaver.start(config);
     }
 
-    @Override protected void onPause() {
+    @Override
+    protected void onPause() {
         super.onPause();
         GameSaver.stop();
         Property.CHARACTER.get().deleteObserver(this);
     }
 
-    @Override protected void onSaveInstanceState(Bundle outState) {
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
         AdventureDialog.dismissCurrentDialog();
         outState.putSerializable(AdventureConfig.ADVENTURE_CONFIG, config);
         super.onSaveInstanceState(outState);
     }
 
-    @Override public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
         MultipleChoiceDialog backPressedDialog = new MultipleChoiceDialog(this) {
-            @Override protected Pair<Integer, List<Choice>> getChoices() {
+            @Override
+            protected Pair<Integer, List<Choice>> getChoices() {
                 return getEndingChoices(R.string.back_pressed, true);
             }
         };
         backPressedDialog.show();
     }
 
-    @Override public void update(Observable observable, Object data) {
+    @Override
+    public void update(Observable observable, Object data) {
         if (((Character) observable).isDead()) {
             MultipleChoiceDialog characterDeadDialog = new MultipleChoiceDialog(this) {
-                @Override protected Pair<Integer, List<Choice>> getChoices() {
+                @Override
+                protected Pair<Integer, List<Choice>> getChoices() {
                     return getEndingChoices(R.string.character_dead, false);
                 }
             };
@@ -97,7 +105,8 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
             final PagesAdapter pagesAdapter = new PagesAdapter(getSupportFragmentManager(), pages);
             viewPager.setAdapter(pagesAdapter);
             viewPager.addOnPageChangeListener(new SimpleOnPageChangeListener() {
-                @Override public void onPageSelected(int position) {
+                @Override
+                public void onPageSelected(int position) {
                     super.onPageSelected(position);
                     PagesAdapter.setSelectedPage(position);
                     notifyObservers();
@@ -119,7 +128,8 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
                 final Class<T> dialogClass = unfulfilledDialogs.get(0);
                 final AdventureDialog dialog = dialogClass.getConstructor(Context.class, Object.class).newInstance(this, config.getDialogData(dialogClass));
                 dialog.setOnDismissListener(new OnDismissListener() {
-                    @Override public void onDismiss(DialogInterface dialogInterface) {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
                         List<Class<T>> remainingDialogs = new ArrayList<>(unfulfilledDialogs);
                         if (dialog.isFulfilled()) {
                             Property.CHARACTER.get().fulfillDialog(dialogClass);
@@ -138,13 +148,9 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
     private Pair<Integer, List<Choice>> getEndingChoices(int questionResId, boolean resumeOptionAvailable) {
         List<Choice> choices = new ArrayList<>();
         final AdventureActivity activity = this;
-        if (resumeOptionAvailable) {
-            choices.add(new Choice(R.string.resume_play, new Runnable() {
-                @Override public void run() {}
-            }));
-        }
         choices.add(new Choice(R.string.restart_adventure, new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 Property.CHARACTER.get().killWithoutUpdate();
                 removeActivity(activity);
                 finish();
@@ -152,12 +158,14 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
             }
         }));
         choices.add(new Choice(R.string.play_other_book, new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 finish();
             }
         }));
         choices.add(new Choice(R.string.quit, new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 finish();
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
@@ -165,6 +173,12 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
                 startActivity(intent);
             }
         }));
+        if (resumeOptionAvailable) {
+            choices.add(new Choice(R.string.cancel, new Runnable() {
+                @Override
+                public void run() {}
+            }));
+        }
         return new Pair<>(questionResId, choices);
     }
 }
