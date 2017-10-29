@@ -28,10 +28,10 @@ public class CCAttribute extends LinearLayout implements Observer {
     @SuppressWarnings("ConstantConditions")
     public CCAttribute(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CCAttributeOptions, 0, 0);
-        name = array.getString(R.styleable.CCAttributeOptions_attributeName);
-        value = (IntValueHolder) Property.getPropertyByName(array.getString(R.styleable.CCAttributeOptions_propertyName)).get();
-        withPicker = array.getBoolean(R.styleable.CCAttributeOptions_withPicker, Boolean.TRUE);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CCAttribute, 0, 0);
+        name = array.getString(R.styleable.CCAttribute_attributeName);
+        value = (IntValueHolder) Property.getPropertyByName(array.getString(R.styleable.CCAttribute_propertyName)).get();
+        withPicker = array.getBoolean(R.styleable.CCAttribute_withPicker, Boolean.TRUE);
         array.recycle();
         LayoutInflater.from(context).inflate(R.layout.widget_cc_attribute, this);
         initLayout();

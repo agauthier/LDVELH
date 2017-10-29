@@ -78,7 +78,7 @@ public class CCEquipment extends Item {
 		return equipped;
 	}
 
-	private void setEquipped(boolean equipped) {
+	public void setEquipped(boolean equipped) {
 		this.equipped = equipped;
 	}
 

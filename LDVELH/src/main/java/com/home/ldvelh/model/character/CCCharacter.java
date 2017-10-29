@@ -8,6 +8,7 @@ import com.home.ldvelh.model.item.CCEquipment;
 import com.home.ldvelh.model.item.CCGod;
 import com.home.ldvelh.model.item.CCGod.Attitude;
 import com.home.ldvelh.model.item.CCGod.God;
+import com.home.ldvelh.model.item.ItemAndQuantity;
 import com.home.ldvelh.model.value.BooleanValueHolder;
 import com.home.ldvelh.model.value.EnumValueHolder;
 import com.home.ldvelh.model.value.IntValueHolder;
@@ -221,6 +222,15 @@ public class CCCharacter extends Character {
             return true;
         }
         return false;
+    }
+
+    @SuppressWarnings("unused")
+    public void addEquipment(String name, Integer quantity, Integer strength, Integer protection) {
+        ItemAndQuantity itemAndQty = new ItemAndQuantity(name, quantity);
+        CCEquipment newEquipment = Property.CC_EQUIPMENT_LIST.get().add(itemAndQty);
+        newEquipment.setStrength(strength);
+        newEquipment.setProtection(protection);
+        newEquipment.setEquipped(true);
     }
 
     public boolean isZeusInvoked() {

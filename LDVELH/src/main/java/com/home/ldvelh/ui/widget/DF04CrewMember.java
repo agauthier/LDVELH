@@ -32,8 +32,8 @@ public class DF04CrewMember extends LinearLayout implements Observer {
     public DF04CrewMember(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.widget_crew_member, this);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CrewMemberOptions, 0, 0);
-        final String propertyName = array.getString(R.styleable.CrewMemberOptions_crewMemberProperty);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.DF04CrewMember, 0, 0);
+        final String propertyName = array.getString(R.styleable.DF04CrewMember_crewMemberProperty);
         crewMember = Property.getPropertyByName(propertyName);
         array.recycle();
     }

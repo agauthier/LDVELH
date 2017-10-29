@@ -45,14 +45,14 @@ public abstract class CustomList<T extends ListItem> extends ObservableLinearLay
 
     public CustomList(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomListOptions, 0, 0);
-        this.listPropertyName = array.getString(R.styleable.CustomListOptions_listPropertyName);
-        this.rowLayout = array.getString(R.styleable.CustomListOptions_rowLayout);
-        this.newItemVisible = Boolean.valueOf(array.getString(R.styleable.CustomListOptions_newItemVisible));
-        this.newConsumableItemVisible = Boolean.valueOf(array.getString(R.styleable.CustomListOptions_newConsumableItemVisible));
-        this.newItemCaption = array.getString(R.styleable.CustomListOptions_newItemCaption);
-        this.newConsumableItemCaption = array.getString(R.styleable.CustomListOptions_newConsumableItemCaption);
-        this.storeClass = Utils.getClass(array.getString(R.styleable.CustomListOptions_storeClass));
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomList, 0, 0);
+        this.listPropertyName = array.getString(R.styleable.CustomList_listPropertyName);
+        this.rowLayout = array.getString(R.styleable.CustomList_rowLayout);
+        this.newItemVisible = Boolean.valueOf(array.getString(R.styleable.CustomList_newItemVisible));
+        this.newConsumableItemVisible = Boolean.valueOf(array.getString(R.styleable.CustomList_newConsumableItemVisible));
+        this.newItemCaption = array.getString(R.styleable.CustomList_newItemCaption);
+        this.newConsumableItemCaption = array.getString(R.styleable.CustomList_newConsumableItemCaption);
+        this.storeClass = Utils.getClass(array.getString(R.styleable.CustomList_storeClass));
         array.recycle();
         LayoutInflater.from(context).inflate(R.layout.widget_list_custom_list, this, true);
     }

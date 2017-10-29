@@ -134,8 +134,10 @@
     <string name="cc_badly_wounded">Grièvement Blessé</string>
     <string name="cc_dead">Mort</string>
     <string name="cc_aethras_jewel">Bijou d\'Aéthra</string>
-    <string name="cc_tutelary_god">Dieu Tutélaire</string>
+    <string name="cc_protector_god">Protecteur</string>
     <string name="cc_equipped">Équipé</string>
+    <string name="cc_club">Massue</string>
+    <string name="cc_add_equipment">addEquipment</string>
     <string name="cc_aphrodite">Aphrodite</string>
     <string name="cc_apollon">Apollon</string>
     <string name="cc_ares">Arès</string>

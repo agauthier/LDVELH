@@ -1,5 +1,6 @@
 package com.home.ldvelh.ui.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Handler;
@@ -52,11 +53,11 @@ public class CustomNumberPicker extends RelativeLayout implements Observer {
 
     public CustomNumberPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomNumberPickerOptions, 0, 0);
-        boolean vertical = array.getBoolean(R.styleable.CustomNumberPickerOptions_vertical, true);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomNumberPicker, 0, 0);
+        boolean vertical = array.getBoolean(R.styleable.CustomNumberPicker_vertical, true);
         orientation = (vertical) ? Orientation.VERTICAL : Orientation.HORIZONTAL;
-        scaleFactor = array.getFloat(R.styleable.CustomNumberPickerOptions_scaleFactor, 1.0f);
-        allowLongPress = (array.getBoolean(R.styleable.CustomNumberPickerOptions_allowLongPress, DEFAULT_ALLOW_LONG_PRESS));
+        scaleFactor = array.getFloat(R.styleable.CustomNumberPicker_scaleFactor, 1.0f);
+        allowLongPress = (array.getBoolean(R.styleable.CustomNumberPicker_allowLongPress, DEFAULT_ALLOW_LONG_PRESS));
         nbDigits = allowLongPress ? LONG_PRESS_NB_DIGITS : DEFAULT_NB_DIGITS;
         inflateLayout(context);
         array.recycle();
@@ -125,6 +126,7 @@ public class CustomNumberPicker extends RelativeLayout implements Observer {
         ((TextView) findViewById(R.id.customPickerValue)).setWidth(nbDigits * DIGIT_WIDTH);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void configureButton(int buttonResId, final int clickAdd, final int longClickAdd) {
         ImageButton button = findViewById(buttonResId);
         button.setEnabled(isButtonEnabled(buttonResId));

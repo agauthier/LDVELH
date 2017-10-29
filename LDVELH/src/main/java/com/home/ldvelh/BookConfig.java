@@ -100,6 +100,7 @@ public abstract class BookConfig {
             public AdventureConfig createAdventureConfig() {
                 AdventureConfig config = new AdventureConfig(R.string.cc_01, R.string.cc_01_title, CCAdventureActivity.class, CCCharacter.class, R.layout.activity_adventure_cc);
                 config.addCustomCharacterValues(Utils.getString(R.string.add_note), Utils.getString(R.string.cc_aethras_jewel));
+                config.addCustomCharacterValues(Utils.getString(R.string.cc_add_equipment), Utils.getString(R.string.cc_club), 1, 1, 0);
                 config.addDialog(CCTutelaryGodPicker.class);
                 config.addPage(R.string.tab_title_utilities, UtilitiesPage.class, getCCUtilitiesConfig());
                 config.addPage(R.string.tab_title_gods, CCGodsPage.class);

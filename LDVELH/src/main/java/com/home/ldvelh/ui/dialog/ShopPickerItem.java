@@ -26,10 +26,10 @@ public class ShopPickerItem extends LinearLayout {
     public ShopPickerItem(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.dialog_shop_picker_item, this);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ShopPickerItemOptions, 0, 0);
-        itemName = array.getString(R.styleable.ShopPickerItemOptions_itemName);
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ShopPickerItem, 0, 0);
+        itemName = array.getString(R.styleable.ShopPickerItem_itemName);
         ((TextView) findViewById(R.id.itemName)).setText(itemName);
-        price = array.getInt(R.styleable.ShopPickerItemOptions_price, DEFAULT_PRICE);
+        price = array.getInt(R.styleable.ShopPickerItem_price, DEFAULT_PRICE);
         if (price != DEFAULT_PRICE) {
             ((TextView) findViewById(R.id.price)).setText(String.format(Utils.getString(R.string.gold_amount), price));
         }

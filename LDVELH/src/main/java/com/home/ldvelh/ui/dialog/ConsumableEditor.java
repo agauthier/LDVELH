@@ -156,12 +156,12 @@ public class ConsumableEditor extends AdventureDialog {
 	}
 
 	private String getEffects() {
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		boolean firstEffect = true;
 		for (Effect effect : effects) {
-			result += (!firstEffect ? "\n" : "") + effect.toString();
+			result.append(!firstEffect ? "\n" : "").append(effect.toString());
 			firstEffect = false;
 		}
-		return result;
+		return result.toString();
 	}
 }

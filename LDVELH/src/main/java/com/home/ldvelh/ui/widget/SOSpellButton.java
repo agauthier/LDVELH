@@ -35,10 +35,10 @@ public class SOSpellButton extends LinearLayout {
 	public SOSpellButton(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		LayoutInflater.from(context).inflate(R.layout.widget_so_spell_button, this);
-		TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SOSpellButtonOptions, 0, 0);
-		name = array.getString(R.styleable.SOSpellButtonOptions_name);
-		cost = array.getInt(R.styleable.SOSpellButtonOptions_cost, 0);
-		ingredient = array.getString(R.styleable.SOSpellButtonOptions_ingredient);
+		TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SOSpellButton, 0, 0);
+		name = array.getString(R.styleable.SOSpellButton_name);
+		cost = array.getInt(R.styleable.SOSpellButton_cost, 0);
+		ingredient = array.getString(R.styleable.SOSpellButton_ingredient);
 		array.recycle();
 		initButton();
 	}

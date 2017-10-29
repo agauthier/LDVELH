@@ -1,7 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <lint>
     <issue id="IconDensities" severity="ignore" />
     <issue id="Overdraw" severity="ignore" />
     <issue id="RtlSymmetry" severity="ignore" />
+    <issue id="UnusedResources">
+        <ignore path="src/main/res/drawable-xhdpi/tn_cc01.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_cc02.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_cc03.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df01.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df02.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df03.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df04.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df05.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df06.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df07.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df08.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df09.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df10.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_df11.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_qg01.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_qg02.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_qg03.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_qg04.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_qg05.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_qg06.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_qg07.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_qg08.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_so01.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_so02.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_so03.jpg" />
+        <ignore path="src/main/res/drawable-xhdpi/tn_so04.jpg" />
+    </issue>
     <issue id="UseSparseArrays" severity="ignore" />
 </lint>

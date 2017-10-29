@@ -1,5 +1,6 @@
 package com.home.ldvelh.ui.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.support.v7.widget.AppCompatSeekBar;
@@ -46,6 +47,7 @@ public class VerticalSeekBar extends AppCompatSeekBar {
 		super.onDraw(c);
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override public boolean onTouchEvent(MotionEvent event) {
 		if (!isEnabled()) {
 			return false;

@@ -35,8 +35,6 @@ public class CombatRow extends Item {
 	private final List<Fighter> goodguys = new ArrayList<>();
 	private final List<Fighter> monsters = new ArrayList<>();
 
-	private CombatRow() {}
-
 	private <T extends ListItem> CombatRow(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<T> list) {
 		super(itemAndQty, effects, data, list);
 	}
