@@ -25,12 +25,12 @@ public class CombatCore {
 		fighterGrid.clear();
 		DFEditableFighter.resetNbFighters();
 		for (Fighter fighter : Property.CHARACTER.get().getFighters()) {
-			addFighter(fighter, Team.GOODGUYS);
+			addFighter(fighter);
 		}
 	}
 
-	static void addEditableFighter(Team team) {
-		addFighter(new DFEditableFighter(team), team);
+	static void addEditableFighter(DFEditableFighter fighter) {
+		addFighter(fighter);
 	}
 
 	static boolean canMoveUp() {
@@ -176,8 +176,8 @@ public class CombatCore {
 		Property.FIGHTER_GRID.get().touch();
 	}
 
-	private static void addFighter(Fighter fighter, Team team) {
-		CombatRow combatRow = getNewCombatRow(team);
+	private static void addFighter(Fighter fighter) {
+		CombatRow combatRow = getNewCombatRow(fighter.getTeam());
 		FighterObserver.add(fighter);
 		combatRow.addMemberToEnd(fighter);
 		touch();

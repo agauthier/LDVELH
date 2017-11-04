@@ -95,7 +95,7 @@ public abstract class CustomList<T extends ListItem> extends ObservableLinearLay
 
     private void initListAndAdapter(ListValueHolder<T> list, int rowLayoutResId) {
         this.list = list;
-        arrayAdapter = new RowArrayAdapter<>(getContext(), rowLayoutResId, list);
+        arrayAdapter = new RowArrayAdapter<>(getContext(), rowLayoutResId, list.getValue());
         ListView itemList = findViewById(R.id.list);
         itemList.setAdapter(arrayAdapter);
     }
@@ -194,8 +194,10 @@ public abstract class CustomList<T extends ListItem> extends ObservableLinearLay
 
     private void hideKeyboard(final EditText editText) {
         InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-        editText.clearFocus();
+        if (inputMethodManager != null) {
+            inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            editText.clearFocus();
+        }
     }
 
     private void promptForEffects(String itemName) {

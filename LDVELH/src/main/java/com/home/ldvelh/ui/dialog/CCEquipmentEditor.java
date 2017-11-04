@@ -21,8 +21,8 @@ import org.apache.commons.lang3.StringUtils;
 public class CCEquipmentEditor extends Store<CCEquipment> {
 
 	private String equipmentName = StringUtils.EMPTY;
-	private final IntValueHolder strength = new IntValueHolder(0, Constants.BIG_POSITIVE, 0);
-	private final IntValueHolder protection = new IntValueHolder(0, Constants.BIG_POSITIVE, 0);
+	private final IntValueHolder strength = new IntValueHolder(Constants.BIG_NEGATIVE, Constants.BIG_POSITIVE, 0);
+	private final IntValueHolder protection = new IntValueHolder(Constants.BIG_NEGATIVE, Constants.BIG_POSITIVE, 0);
 
 	public CCEquipmentEditor(Context context) {
 		this(context, null);

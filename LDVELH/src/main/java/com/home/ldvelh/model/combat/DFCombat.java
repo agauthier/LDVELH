@@ -3,7 +3,7 @@ package com.home.ldvelh.model.combat;
 import com.home.ldvelh.model.combat.CombatRow.Team;
 
 public class DFCombat {
-	
+
 	public void init() {
 		CombatCore.init();
 	}
@@ -13,7 +13,7 @@ public class DFCombat {
 	}
 
 	public void addEditableFighter(Team team) {
-		CombatCore.addEditableFighter(team);
+		CombatCore.addEditableFighter(new DFEditableFighter(team));
 	}
 
 	public void moveUp() {
@@ -23,7 +23,7 @@ public class DFCombat {
 	public void moveDown() {
 		CombatCore.moveDown();
 	}
-	
+
 	public void escape() {
 		CombatCore.escape();
 	}

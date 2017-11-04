@@ -1,8 +1,5 @@
 package com.home.ldvelh.ui.inflater;
 
-import com.home.ldvelh.model.item.ListItem;
-import com.home.ldvelh.model.value.ListValueHolder;
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -10,12 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.home.ldvelh.model.item.ListItem;
+
+import java.util.List;
+
 public class RowArrayAdapter<T extends ListItem> extends ArrayAdapter<T> {
 
     private final int layoutResId;
 
-    public RowArrayAdapter(Context context, int layoutResId, ListValueHolder<T> list) {
-        super(context, layoutResId, list.getValue());
+    public RowArrayAdapter(Context context, int layoutResId, List<T> list) {
+        super(context, layoutResId, list);
         this.layoutResId = layoutResId;
     }
 

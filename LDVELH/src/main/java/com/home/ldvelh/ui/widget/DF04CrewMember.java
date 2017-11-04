@@ -86,7 +86,7 @@ public class DF04CrewMember extends LinearLayout implements Observer {
                 ClipData.Item item = new ClipData.Item(crewMember.getName());
                 ClipData clipData = new ClipData(crewMember.getName(), new String[]{ClipDescription.MIMETYPE_TEXT_PLAIN}, item);
                 DragShadowBuilder dragShadow = new DragShadowBuilder(getThis());
-                startDragAndDrop(clipData, dragShadow, null, 0);
+                startDrag(clipData, dragShadow, null, 0);
                 return false;
             }
         });
