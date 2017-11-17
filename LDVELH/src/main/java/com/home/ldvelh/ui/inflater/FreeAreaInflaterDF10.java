@@ -1,14 +1,14 @@
 package com.home.ldvelh.ui.inflater;
 
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
 import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.activity.AdventureActivity;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
-
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 public enum FreeAreaInflaterDF10 implements FreeAreaInflater {
 	INSTANCE;

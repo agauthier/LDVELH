@@ -124,28 +124,11 @@ public class MapView extends View {
 		setOnTouchListener(null);
         requestFocus();
         InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        //noinspection ConstantConditions
         imm.showSoftInput(this, InputMethodManager.SHOW_FORCED);
     }
 
-    public void hideKeyboard() {
-        initOnTouchListener();
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getWindowToken(), 0);
-    }
-
-    private void getPointerPositions(MotionEvent event) {
-        switch (event.getPointerCount()) {
-            case 2:
-                p1.set(Math.min(event.getX(0), event.getX(1)), Math.min(event.getY(0), event.getY(1)));
-                p2.set(Math.max(event.getX(0), event.getX(1)), Math.max(event.getY(0), event.getY(1)));
-                break;
-            default:
-                p1.set(event.getX(0), event.getY(0));
-                break;
-        }
-    }
-
-    private void initOnTouchListener() {
+    void initOnTouchListener() {
         setOnTouchListener(new OnTouchListener() {
             @Override public boolean onTouch(final View view, MotionEvent event) {
                 getParent().requestDisallowInterceptTouchEvent(true);
@@ -186,5 +169,17 @@ public class MapView extends View {
                 }
             }
         });
+    }
+
+    private void getPointerPositions(MotionEvent event) {
+        switch (event.getPointerCount()) {
+            case 2:
+                p1.set(Math.min(event.getX(0), event.getX(1)), Math.min(event.getY(0), event.getY(1)));
+                p2.set(Math.max(event.getX(0), event.getX(1)), Math.max(event.getY(0), event.getY(1)));
+                break;
+            default:
+                p1.set(event.getX(0), event.getY(0));
+                break;
+        }
     }
 }

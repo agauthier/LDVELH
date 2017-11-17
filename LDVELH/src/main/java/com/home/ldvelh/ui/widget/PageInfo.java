@@ -2,37 +2,21 @@ package com.home.ldvelh.ui.widget;
 
 import android.support.v4.app.Fragment;
 
-import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class PageInfo<T extends Fragment> implements Serializable {
-    private static final long serialVersionUID = 8282251537023818566L;
-
-    public enum Tag {
-        ALLOW_DROP(null),
-        UTIL_LAST_PARAGRAPH(R.id.lastParagraphUtility),
-        UTIL_DICE(R.id.diceUtility),
-        UTIL_LUCK_CHECK(R.id.luckCheckUtility),
-        UTIL_ZEUS(R.id.zeusUtility),
-        UTIL_LIBRA(R.id.libraUtility);
-
-        private final Object data;
-
-        Tag(Object data) { this.data = data; }
-
-        public Object getData() { return data; }
-    }
+    private static final long serialVersionUID = 6372350735737692242L;
 
     private final int titleResId;
     private final Class<T> pageClass;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Collection<PageTag> tags = new ArrayList<>();
     private boolean enabled;
 
-    public PageInfo(int titleResId, Class<T> pageClass, Set<Tag> tags) {
+    public PageInfo(int titleResId, Class<T> pageClass, Collection<PageTag> tags) {
         this.titleResId = titleResId;
         this.pageClass = pageClass;
         this.tags.addAll(tags);
@@ -47,8 +31,14 @@ public class PageInfo<T extends Fragment> implements Serializable {
         return pageClass;
     }
 
-    public Set<Tag> getTags() {
-        return tags;
+    public Collection<PageTag> getTags(PageTag.TagType type) {
+        Collection<PageTag> tagsOfType = new ArrayList<>();
+        for (PageTag tag : tags) {
+            if (tag.getType() == type) {
+                tagsOfType.add(tag);
+            }
+        }
+        return tagsOfType;
     }
 
     public String getTitle() {

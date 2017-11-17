@@ -1,62 +1,48 @@
 package com.home.ldvelh.model.combat;
 
+import android.widget.ImageButton;
+
 import com.home.ldvelh.model.combat.CombatRow.Team;
 
 public class DFCombat {
 
-	public void init() {
-		CombatCore.init();
-	}
+    public void init() {
+        CombatCore.init();
+    }
 
-	public void reset() {
-		CombatCore.reset();
-	}
+    public void reset() {
+        CombatCore.reset();
+    }
 
-	public void addEditableFighter(Team team) {
-		CombatCore.addEditableFighter(new DFEditableFighter(team));
-	}
+    public void addNewFighter(Fighter fighter, Team team) {
+        CombatCore.addNewFighter(fighter, team);
+    }
 
-	public void moveUp() {
-		CombatCore.moveUp();
-	}
+    @SuppressWarnings("unused")
+    public boolean canAssault() {
+        return CombatCore.canAssault();
+    }
 
-	public void moveDown() {
-		CombatCore.moveDown();
-	}
+    @SuppressWarnings("unused")
+    public void assault(ImageButton button) {
+        CombatCore.assault();
+    }
 
-	public void escape() {
-		CombatCore.escape();
-	}
+    @SuppressWarnings("unused")
+    public boolean canEscape() {
+        return CombatCore.canEscape();
+    }
 
-	public void assault() {
-		CombatCore.assault();
-	}
+    @SuppressWarnings("unused")
+    public void escape(ImageButton button) {
+        CombatCore.escape();
+    }
 
-	public boolean canMoveUp() {
-		return CombatCore.canMoveUp();
-	}
+    public void addAllObservers() {
+        CombatCore.addAllObservers();
+    }
 
-	public boolean canMoveDown() {
-		return CombatCore.canMoveDown();
-	}
-
-	public boolean canReset() {
-		return CombatCore.canReset();
-	}
-
-	public boolean canEscape() {
-		return CombatCore.canEscape();
-	}
-
-	public boolean canAssault() {
-		return CombatCore.canAssault();
-	}
-
-	public void addAllObservers() {
-		CombatCore.addAllObservers();
-	}
-
-	public void removeAllObservers() {
-		CombatCore.removeAllObservers();
-	}
+    public void removeAllObservers() {
+        CombatCore.removeAllObservers();
+    }
 }

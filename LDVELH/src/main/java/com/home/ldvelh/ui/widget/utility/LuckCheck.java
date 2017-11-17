@@ -1,19 +1,18 @@
 package com.home.ldvelh.ui.widget.utility;
 
-import com.home.ldvelh.R;
-import com.home.ldvelh.commons.Constants;
-import com.home.ldvelh.model.Die;
-import com.home.ldvelh.model.Property;
-
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
-public class LuckCheck extends LinearLayout implements UtilityView {
+import com.home.ldvelh.R;
+import com.home.ldvelh.commons.Constants;
+import com.home.ldvelh.model.Die;
+import com.home.ldvelh.model.Property;
+
+public class LuckCheck extends UtilityView {
 
 	public LuckCheck(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -21,6 +20,7 @@ public class LuckCheck extends LinearLayout implements UtilityView {
 	}
 
 	@Override public void initLayout() {
+		super.initLayout();
 		ImageButton button = findViewById(R.id.luckCheckButton);
 		button.setOnClickListener(new OnClickListener() {
 			@Override public void onClick(View view) {

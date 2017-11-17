@@ -6,11 +6,10 @@ import android.view.ViewGroup;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.model.Property;
-import com.home.ldvelh.model.combat.CombatRow.Team;
 import com.home.ldvelh.model.value.DF04AssetValueHolder;
 import com.home.ldvelh.model.value.IntValueHolder;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
 
 public class DF04CrewMemberFighter extends Fighter {
     private static final long serialVersionUID = 8890901301578812379L;
@@ -18,7 +17,7 @@ public class DF04CrewMemberFighter extends Fighter {
     private final DF04AssetValueHolder crewMember;
 
     public DF04CrewMemberFighter(Property<DF04AssetValueHolder> property) {
-        super(Team.GOODGUYS);
+        super();
         this.crewMember = property.get();
     }
 
@@ -26,6 +25,9 @@ public class DF04CrewMemberFighter extends Fighter {
     public String getName() {
         return crewMember.getName();
     }
+
+    @Override
+    public void setName(String name) {}
 
     @Override
     public IntValueHolder getSkill() {
@@ -44,8 +46,8 @@ public class DF04CrewMemberFighter extends Fighter {
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup root) {
-        View newView = inflater.inflate(R.layout.list_item_combat_goodguy, root, false);
-        initView(newView);
+        View newView = inflater.inflate(R.layout.list_item_combat_character, root, false);
+        initView(newView, true);
         CustomNumberPicker bonusPicker = newView.findViewById(R.id.numberPickerBonus);
         bonusPicker.init(crewMember.getBonus(), WatchType.VALUE);
         return newView;

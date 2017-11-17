@@ -3,6 +3,7 @@ package com.home.ldvelh;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,7 +24,7 @@ import com.home.ldvelh.ui.dialog.NewCharacterConfirmation;
 import com.home.ldvelh.ui.inflater.FreeAreaInflater;
 import com.home.ldvelh.ui.inflater.FreeAreaInflaterDefault;
 import com.home.ldvelh.ui.widget.PageInfo;
-import com.home.ldvelh.ui.widget.PageInfo.Tag;
+import com.home.ldvelh.ui.widget.PageTag;
 
 import android.content.Context;
 import android.content.Intent;
@@ -63,6 +64,7 @@ public class AdventureConfig implements Serializable {
 
     public static final String ADVENTURE_CONFIG = "com.home.ldvelh.AdventureConfig";
     private static final String MAP_FILE_SUFFIX = "_map";
+    private static final int END_OF_LIST = -1;
 
     private static final Handler handler = new Handler();
 
@@ -111,11 +113,29 @@ public class AdventureConfig implements Serializable {
     }
 
     <T extends Fragment> void addPage(int pageTitleResId, Class<T> pageClass) {
-        addPage(pageTitleResId, pageClass, Collections.<Tag>emptySet());
+        addPage(pageTitleResId, pageClass, Collections.<PageTag>emptySet());
     }
 
-    <T extends Fragment> void addPage(int pageTitleResId, Class<T> pageClass, Set<Tag> tags) {
-        this.pages.add(new PageInfo<>(pageTitleResId, pageClass, tags));
+    <T extends Fragment> void addPage(int pageTitleResId, Class<T> pageClass, Collection<PageTag> tags) {
+        insertPage(END_OF_LIST, pageTitleResId, pageClass, tags);
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    <T extends Fragment> void insertPage(int nextPageTitleResId, int pageTitleResId, Class<T> pageClass) {
+        insertPage(nextPageTitleResId, pageTitleResId, pageClass, Collections.<PageTag>emptySet());
+    }
+
+    private <T extends Fragment> void insertPage(int nextPageTitleResId, int pageTitleResId, Class<T> pageClass, Collection<PageTag> tags) {
+        if (nextPageTitleResId == END_OF_LIST) {
+            pages.add(new PageInfo<>(pageTitleResId, pageClass, tags));
+        } else {
+            for (int i = 0; i < pages.size(); i++) {
+                if (pages.get(i).getTitleResId() == nextPageTitleResId) {
+                    pages.add(i, new PageInfo<>(pageTitleResId, pageClass, tags));
+                    break;
+                }
+            }
+        }
     }
 
     public <T extends Fragment> void enablePage(Class<T> pageClass, boolean enabled) {

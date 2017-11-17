@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
 import com.home.ldvelh.model.value.IntValueHolder;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
 
 import java.util.Observer;
 

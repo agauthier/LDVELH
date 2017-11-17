@@ -5,12 +5,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.home.ldvelh.ui.widget.PageInfo;
-import com.home.ldvelh.ui.widget.PageInfo.Tag;
+import com.home.ldvelh.ui.widget.PageTag;
+import com.home.ldvelh.ui.widget.PageTag.TagType;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import static com.home.ldvelh.ui.widget.PageInfo.Tag.ALLOW_DROP;
+import static com.home.ldvelh.ui.widget.PageTag.ALLOW_DROP;
+import static com.home.ldvelh.ui.widget.PageTag.TagType.SIMPLE;
 
 public class PagesAdapter extends FragmentPagerAdapter {
 
@@ -49,14 +52,14 @@ public class PagesAdapter extends FragmentPagerAdapter {
         selectedPageTitleResId = pageInfos.get(position).getTitleResId();
     }
 
-    public static boolean selectedPageHasTag() {
-        return pageHasTag(selectedPageTitleResId, ALLOW_DROP);
+    public static boolean selectedPageAllowsDrop() {
+        return getPageTags(selectedPageTitleResId, SIMPLE).contains(ALLOW_DROP);
     }
 
-    static boolean pageHasTag(int titleResId, Tag tag) {
+    static Collection<PageTag> getPageTags(int titleResId, TagType type) {
         for (PageInfo<? extends Fragment> pageInfo : pageInfos) {
             if (pageInfo.getTitleResId() == titleResId) {
-                return pageInfo.getTags().contains(tag);
+                return pageInfo.getTags(type);
             }
         }
         throw new IllegalStateException();

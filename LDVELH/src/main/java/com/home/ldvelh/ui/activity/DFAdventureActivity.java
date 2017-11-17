@@ -5,8 +5,8 @@ import android.view.ViewGroup;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
 
 public class DFAdventureActivity extends AdventureActivity {
 

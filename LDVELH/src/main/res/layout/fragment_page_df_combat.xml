@@ -1,141 +1,105 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/pencil_border"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            style="@style/ldvelhTitles"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/your_team" />
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/addGoodguyButton"
+                android:id="@+id/addLeftFighterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/small_button_selector"
                 android:contentDescription="@string/lorem_ipsum"
                 android:src="@drawable/btn_plus_medium" />
+
+            <TextView
+                style="@style/ldvelhTitles"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/your_team"
+                tools:ignore="NestedWeights" />
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/divider_brown_opaque"
-            android:orientation="horizontal" />
-
-        <TextView
-            style="@style/ldvelhLargeTitles"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:paddingEnd="@dimen/default_padding"
-            android:paddingStart="@dimen/default_padding"
-            android:text="@string/enemies" />
+            android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal" >
+            <TextView
+                style="@style/ldvelhTitles"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/enemies"
+                tools:ignore="NestedWeights" />
 
             <ImageButton
-                android:id="@+id/addMonsterButton"
+                android:id="@+id/addRightFighterButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/small_button_selector"
                 android:contentDescription="@string/lorem_ipsum"
                 android:src="@drawable/btn_plus_medium" />
         </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/divider_brown_opaque"
-        android:orientation="horizontal" />
 
     <com.home.ldvelh.ui.widget.list.CombatRowList
         android:id="@+id/combatList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:divider="@null"
         custom:listPropertyName="FIGHTER_GRID"
         custom:newConsumableItemVisible="false"
         custom:newItemVisible="false"
         custom:rowLayout="list_item_combat_row" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:orientation="horizontal" >
+        android:gravity="center_vertical"
+        android:baselineAligned="false">
 
-        <ImageButton
-            android:id="@+id/upButton"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/fighterDropArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/skull"
+                android:contentDescription="@string/lorem_ipsum" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/combatButtons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
             android:layout_weight="1"
-            android:background="@drawable/small_button_selector"
-            android:contentDescription="@string/lorem_ipsum"
-            android:src="@drawable/up_arrow_large" />
-
-        <ImageButton
-            android:id="@+id/downButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
-            android:layout_weight="1"
-            android:background="@drawable/small_button_selector"
-            android:contentDescription="@string/lorem_ipsum"
-            android:src="@drawable/down_arrow_large" />
-
-        <ImageButton
-            android:id="@+id/reset"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
-            android:layout_weight="1"
-            android:background="@drawable/small_button_selector"
-            android:contentDescription="@string/lorem_ipsum"
-            android:src="@drawable/reset_large" />
-
-        <ImageButton
-            android:id="@+id/escape"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
-            android:layout_weight="1"
-            android:background="@drawable/small_button_selector"
-            android:contentDescription="@string/lorem_ipsum"
-            android:src="@drawable/escape_large" />
-
-        <ImageButton
-            android:id="@+id/assault"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_padding"
-            android:layout_weight="1"
-            android:background="@drawable/small_button_selector"
-            android:contentDescription="@string/lorem_ipsum"
-            android:src="@drawable/assault_large" />
+            android:gravity="right"
+            android:orientation="horizontal">
+        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

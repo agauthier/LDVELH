@@ -16,20 +16,13 @@ import android.widget.TextView;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.model.value.IntValueHolder;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.widget.DamageAnimView.Direction;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class CustomNumberPicker extends RelativeLayout implements Observer {
-
-    public enum WatchType {
-        MIN, MAX, VALUE
-    }
-
-    private enum Orientation {
-        VERTICAL, HORIZONTAL
-    }
 
     private static final boolean DEFAULT_ALLOW_LONG_PRESS = false;
     private static final int DEFAULT_NB_DIGITS = 2;

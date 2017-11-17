@@ -28,16 +28,16 @@ public enum DFCombatStrategy implements CombatStrategy {
     }
 
     private void rowAssault(CombatRow row, Map<Fighter, Integer> fighterDamage) {
-        for (int i = 0; i < row.getGoodguys().size(); i++) {
-            for (int j = 0; j < row.getMonsters().size(); j++) {
-                Fighter goodguy = row.getGoodguys().get(i);
-                Fighter monster = row.getMonsters().get(j);
-                int goodguyAttackForce = goodguy.getSkill().getValue() + Die.SIX_FACES.roll(2) + goodguy.getBonus().getValue();
-                int monsterAttackForce = monster.getSkill().getValue() + Die.SIX_FACES.roll(2) + monster.getBonus().getValue();
-                if (goodguyAttackForce > monsterAttackForce && j == 0) {
-                    addFighterDamage(fighterDamage, monster);
-                } else if (monsterAttackForce > goodguyAttackForce && i == 0) {
-                    addFighterDamage(fighterDamage, goodguy);
+        for (int i = 0; i < row.getTeamLeft().size(); i++) {
+            for (int j = 0; j < row.getTeamRight().size(); j++) {
+                Fighter leftFighter = row.getTeamLeft().get(i);
+                Fighter rightFighter = row.getTeamRight().get(j);
+                int leftFighterAttackForce = leftFighter.getSkill().getValue() + Die.SIX_FACES.roll(2) + leftFighter.getBonus().getValue();
+                int rightFighterAttackForce = rightFighter.getSkill().getValue() + Die.SIX_FACES.roll(2) + rightFighter.getBonus().getValue();
+                if (leftFighterAttackForce > rightFighterAttackForce && j == 0) {
+                    addFighterDamage(fighterDamage, rightFighter);
+                } else if (rightFighterAttackForce > leftFighterAttackForce && i == 0) {
+                    addFighterDamage(fighterDamage, leftFighter);
                 }
             }
         }

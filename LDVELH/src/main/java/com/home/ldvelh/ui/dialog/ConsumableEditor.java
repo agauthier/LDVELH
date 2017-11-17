@@ -150,7 +150,7 @@ public class ConsumableEditor extends AdventureDialog {
 		cancelButton.setOnClickListener(new View.OnClickListener() {
 			@Override public void onClick(View v) {
 				effects.clear();
-				dismiss();
+				cancelCurrentDialog();
 			}
 		});
 	}

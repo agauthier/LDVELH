@@ -1,5 +1,9 @@
 <resources>
 
+    <declare-styleable name="AnimatedNumber">
+        <attr name="nbDigits" format="integer" />
+        <attr name="animOrientation" format="string" />
+    </declare-styleable>
     <declare-styleable name="CustomNumberPicker">
         <attr name="vertical" format="boolean" />
         <attr name="scaleFactor" format="float" />

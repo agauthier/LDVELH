@@ -1,15 +1,5 @@
 package com.home.ldvelh.ui.widget;
 
-import java.util.Observable;
-import java.util.Observer;
-
-import com.home.ldvelh.R;
-import com.home.ldvelh.commons.Utils;
-import com.home.ldvelh.model.Property;
-import com.home.ldvelh.model.character.CCCharacter;
-import com.home.ldvelh.model.value.IntValueHolder;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -18,6 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.home.ldvelh.R;
+import com.home.ldvelh.commons.Utils;
+import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.character.CCCharacter;
+import com.home.ldvelh.model.value.IntValueHolder;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
+
+import java.util.Observable;
+import java.util.Observer;
 
 public class CCAttribute extends LinearLayout implements Observer {
 

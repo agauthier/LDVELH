@@ -1,13 +1,11 @@
 package com.home.ldvelh.ui.widget.utility;
 
-import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.ALL_GODS_NEUTRAL;
-import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.CANCEL;
-import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.GAIN_RANDOM_HONOR;
-import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.REGAIN_HONOR_POINTS;
-import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.RESUSCITATE;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.model.Property;
@@ -16,15 +14,16 @@ import com.home.ldvelh.model.character.CCCharacter.ZeusInvocation;
 import com.home.ldvelh.ui.dialog.MultipleChoiceDialog;
 import com.home.ldvelh.ui.dialog.MultipleChoiceDialog.Choice;
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.util.Pair;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Zeus extends LinearLayout implements UtilityView {
+import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.ALL_GODS_NEUTRAL;
+import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.CANCEL;
+import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.GAIN_RANDOM_HONOR;
+import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.REGAIN_HONOR_POINTS;
+import static com.home.ldvelh.model.character.CCCharacter.ZeusInvocation.RESUSCITATE;
+
+public class Zeus extends UtilityView {
 
     public Zeus(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -33,6 +32,7 @@ public class Zeus extends LinearLayout implements UtilityView {
 
     @Override
     public void initLayout() {
+        super.initLayout();
         final ImageButton button = findViewById(R.id.zeusButton);
         button.setEnabled(!((CCCharacter) Property.CHARACTER.get()).isZeusInvoked());
         button.setOnClickListener(new OnClickListener() {

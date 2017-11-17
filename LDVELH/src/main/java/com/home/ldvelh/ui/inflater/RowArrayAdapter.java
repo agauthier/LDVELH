@@ -25,6 +25,7 @@ public class RowArrayAdapter<T extends ListItem> extends ArrayAdapter<T> {
     public View getView(final int position, View row, @NonNull ViewGroup parent) {
         if (row == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            //noinspection ConstantConditions
             row = inflater.inflate(layoutResId, parent, false);
         }
         //noinspection ConstantConditions

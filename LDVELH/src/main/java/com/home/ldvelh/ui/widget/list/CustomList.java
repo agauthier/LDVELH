@@ -1,10 +1,16 @@
 package com.home.ldvelh.ui.widget.list;
 
-import java.lang.reflect.Constructor;
-import java.util.Observable;
-import java.util.Observer;
-
-import org.apache.commons.lang3.StringUtils;
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
@@ -17,18 +23,11 @@ import com.home.ldvelh.ui.dialog.Store;
 import com.home.ldvelh.ui.inflater.RowArrayAdapter;
 import com.home.ldvelh.ui.widget.ObservableLinearLayout;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.util.AttributeSet;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
+import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.Constructor;
+import java.util.Observable;
+import java.util.Observer;
 
 public abstract class CustomList<T extends ListItem> extends ObservableLinearLayout implements Observer {
 
@@ -146,7 +145,7 @@ public abstract class CustomList<T extends ListItem> extends ObservableLinearLay
                                         editText.setText("");
                                         list.add(new ItemAndQuantity(itemName));
                                     }
-                                    hideKeyboard(editText);
+                                    Utils.hideKeyboard(editText);
                                     return true;
                                 default:
                                     break;
@@ -179,7 +178,7 @@ public abstract class CustomList<T extends ListItem> extends ObservableLinearLay
                                         editText.setText("");
                                         promptForEffects(itemName);
                                     }
-                                    hideKeyboard(editText);
+                                    Utils.hideKeyboard(editText);
                                     return true;
                                 default:
                                     break;
@@ -189,14 +188,6 @@ public abstract class CustomList<T extends ListItem> extends ObservableLinearLay
                     }
                 });
             }
-        }
-    }
-
-    private void hideKeyboard(final EditText editText) {
-        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (inputMethodManager != null) {
-            inputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
-            editText.clearFocus();
         }
     }
 

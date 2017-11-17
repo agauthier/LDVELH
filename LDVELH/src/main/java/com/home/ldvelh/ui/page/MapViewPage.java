@@ -8,6 +8,7 @@ import com.home.ldvelh.model.Property;
 import com.home.ldvelh.ui.widget.map.MapOps;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import android.widget.ImageButton;
 public class MapViewPage extends Fragment implements Observer {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_page_mapview, container, false);
     }
 

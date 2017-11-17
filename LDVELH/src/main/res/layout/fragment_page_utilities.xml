@@ -11,36 +11,6 @@
         android:background="@drawable/pencil_border"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
-
-        <com.home.ldvelh.ui.widget.utility.LastParagraph
-            android:id="@+id/lastParagraphUtility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"/>
-
-        <com.home.ldvelh.ui.widget.utility.Dice
-            android:id="@+id/diceUtility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"/>
-
-        <com.home.ldvelh.ui.widget.utility.LuckCheck
-            android:id="@+id/luckCheckUtility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"/>
-
-        <com.home.ldvelh.ui.widget.utility.Zeus
-            android:id="@+id/zeusUtility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"/>
-
-        <com.home.ldvelh.ui.widget.utility.Libra
-            android:id="@+id/libraUtility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"/>
     </LinearLayout>
 
     <LinearLayout

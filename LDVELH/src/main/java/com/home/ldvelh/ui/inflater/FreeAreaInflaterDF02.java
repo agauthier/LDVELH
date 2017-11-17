@@ -1,17 +1,17 @@
 package com.home.ldvelh.ui.inflater;
 
-import java.util.Observable;
-import java.util.Observer;
+import android.view.ViewGroup;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.value.IntValueHolder;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.activity.AdventureActivity;
 import com.home.ldvelh.ui.dialog.DF02SpellPicker;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
 
-import android.view.ViewGroup;
+import java.util.Observable;
+import java.util.Observer;
 
 public enum FreeAreaInflaterDF02 implements FreeAreaInflater, Observer {
 	INSTANCE;
@@ -28,7 +28,7 @@ public enum FreeAreaInflaterDF02 implements FreeAreaInflater, Observer {
 	@Override public void resume() {
 		Property.MAGIC.get().addObserver(this);
 	}
-	
+
 	@Override public void pause() {
 		Property.MAGIC.get().deleteObserver(this);
 	}

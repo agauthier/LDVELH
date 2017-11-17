@@ -1,7 +1,6 @@
 package com.home.ldvelh.ui.widget;
 
 import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -13,14 +12,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.home.ldvelh.R;
+import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.commons.Utils;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.value.DF04AssetValueHolder;
 import com.home.ldvelh.model.value.IntValueHolder;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.activity.AbstractGameActivity;
 import com.home.ldvelh.ui.activity.DF04AdventureActivity;
 import com.home.ldvelh.ui.page.PagesAdapter;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -79,13 +79,12 @@ public class DF04CrewMember extends LinearLayout implements Observer {
     }
 
     private void updateDragAndDrop() {
-        boolean pageAllowsDrop = PagesAdapter.selectedPageHasTag();
-        boolean dragAndDropActive = pageAllowsDrop && crewMember.get().canBeDragged();
+        boolean dragAndDropActive = PagesAdapter.selectedPageAllowsDrop() && crewMember.get().canBeDragged();
         setOnLongClickListener(!dragAndDropActive ? null : new OnLongClickListener() {
             @Override public boolean onLongClick(View v) {
                 ClipData.Item item = new ClipData.Item(crewMember.getName());
-                ClipData clipData = new ClipData(crewMember.getName(), new String[]{ClipDescription.MIMETYPE_TEXT_PLAIN}, item);
-                DragShadowBuilder dragShadow = new DragShadowBuilder(getThis());
+                ClipData clipData = new ClipData(crewMember.getName(), new String[]{Constants.MIMETYPE_DF04CREWMEMBER}, item);
+                DragShadowBuilder dragShadow = new DragShadowBuilder(v);
                 startDrag(clipData, dragShadow, null, 0);
                 return false;
             }
@@ -100,9 +99,5 @@ public class DF04CrewMember extends LinearLayout implements Observer {
         TextView textView = findViewById(R.id.crewMemberName);
         textView.setText(crewMember.get().getName());
         textView.setTextColor(crewMember.get().canBeDragged() ? Color.BLACK : Color.GRAY);
-    }
-
-    private DF04CrewMember getThis() {
-        return this;
     }
 }

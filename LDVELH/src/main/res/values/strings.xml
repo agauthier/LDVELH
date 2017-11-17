@@ -30,10 +30,6 @@
     <string name="max_luck">Chance de départ</string>
     <string name="gold">Or</string>
     <string name="food">Repas</string>
-    <string name="set_gold">setGold</string>
-    <string name="add_item">addItem</string>
-    <string name="add_note">addNote</string>
-    <string name="add_consumable_food">addConsumableFood</string>
     <string name="gold_amount">%1$s po</string>
 
     <!-- Tabs -->
@@ -47,6 +43,7 @@
     <string name="tab_title_map">Carte</string>
     <string name="tab_title_spells">Formules magiques</string>
     <string name="tab_title_utilities">Outils</string>
+    <string name="fighter_name">Nom du combattant</string>
     <string name="add_new_item">Nouvel Item</string>
     <string name="add_new_consumable_item">Nouvel Item Consommable</string>
     <string name="add_new_note">Nouvelle Note</string>
@@ -137,7 +134,6 @@
     <string name="cc_protector_god">Protecteur</string>
     <string name="cc_equipped">Équipé</string>
     <string name="cc_club">Massue</string>
-    <string name="cc_add_equipment">addEquipment</string>
     <string name="cc_aphrodite">Aphrodite</string>
     <string name="cc_apollon">Apollon</string>
     <string name="cc_ares">Arès</string>

@@ -6,7 +6,6 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.model.Property;
@@ -17,7 +16,7 @@ import com.home.ldvelh.ui.dialog.MultipleChoiceDialog.Choice;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Libra extends LinearLayout implements UtilityView {
+public class Libra extends UtilityView {
 
     public Libra(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -26,6 +25,7 @@ public class Libra extends LinearLayout implements UtilityView {
 
     @Override
     public void initLayout() {
+        super.initLayout();
         final ImageButton button = findViewById(R.id.libraButton);
         button.setEnabled(!((SOCharacter) Property.CHARACTER.get()).isLibraInvoked());
         button.setOnClickListener(new OnClickListener() {

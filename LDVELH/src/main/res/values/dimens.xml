@@ -7,6 +7,8 @@
     <dimen name="default_padding">4dp</dimen>
 
     <!-- Other values -->
+    <dimen name="small_margin">2dp</dimen>
+    <dimen name="small_padding">2dp</dimen>
     <dimen name="small_button_text">10sp</dimen>
-    
+
 </resources>

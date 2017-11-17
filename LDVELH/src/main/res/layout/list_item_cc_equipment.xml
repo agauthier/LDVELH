@@ -31,7 +31,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center" >
+        android:gravity="center">
 
         <CheckBox
             android:id="@+id/equipped"
@@ -43,12 +43,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="right|center_vertical" >
+        android:gravity="right|center_vertical">
 
         <ImageButton
             android:id="@+id/remove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding"
             android:background="@drawable/small_button_selector"
             android:contentDescription="@string/lorem_ipsum"
             android:src="@drawable/btn_minus_medium" />

@@ -1,47 +1,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/dialog_paper_background"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/pencil_border_small"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/equipmentName"
+            android:id="@+id/itemName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/cc_equipment_name_caption"
             android:inputType="textCapSentences|textAutoCorrect"
-            android:lines="1" />
+            android:lines="1"
+            tools:ignore="LabelFor" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/pencil_border_small"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/firstValueName"
                 style="@style/ldvelhListItems"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="@dimen/default_padding"
-                android:text="@string/cc_strength" />
+                android:padding="@dimen/default_padding" />
 
             <com.home.ldvelh.ui.widget.CustomNumberPicker
-                android:id="@+id/numberPickerStrength"
+                android:id="@+id/numberPickerFirstValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clipChildren="false"
@@ -52,18 +53,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/secondValueName"
                 style="@style/ldvelhListItems"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:padding="@dimen/default_padding"
-                android:text="@string/cc_protection" />
+                android:padding="@dimen/default_padding" />
 
             <com.home.ldvelh.ui.widget.CustomNumberPicker
-                android:id="@+id/numberPickerProtection"
+                android:id="@+id/numberPickerSecondValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clipChildren="false"
@@ -75,14 +76,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/pencil_border_small"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:layout_weight="1"
+            android:background="@drawable/small_button_selector"
+            android:text="@string/cancel"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/okButton"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:layout_weight="1"
             android:background="@drawable/small_button_selector"
-            android:text="@string/ok" />
+            android:text="@string/ok"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>

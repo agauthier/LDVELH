@@ -3,11 +3,11 @@
     android:id="@+id/fighterLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/fighter_selector"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:gravity="center_vertical"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:padding="@dimen/small_padding">
 
     <TextView
         android:id="@+id/fighterName"
@@ -24,7 +24,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingEnd="@dimen/default_padding"
-        android:paddingStart="@dimen/default_padding" >
+        android:paddingStart="@dimen/default_padding">
 
         <TextView
             style="@style/ldvelhVerySmall"

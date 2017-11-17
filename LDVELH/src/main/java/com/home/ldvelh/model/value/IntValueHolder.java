@@ -3,6 +3,10 @@ package com.home.ldvelh.model.value;
 public class IntValueHolder extends ValueHolder<Integer> {
 	private static final long serialVersionUID = -3149159279803812821L;
 
+	public enum WatchType {
+		MIN, MAX, VALUE
+	}
+
 	private int min;
 	private int max;
 	private int minDiff;

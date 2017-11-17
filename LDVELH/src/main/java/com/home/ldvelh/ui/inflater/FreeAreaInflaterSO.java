@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import com.home.ldvelh.R;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.character.SOCharacter;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.activity.AdventureActivity;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
 
@@ -21,7 +22,7 @@ public enum FreeAreaInflaterSO implements FreeAreaInflater, Observer {
     public void inflate(final AdventureActivity activity, ViewGroup freeArea) {
         View view = activity.getLayoutInflater().inflate(R.layout.widget_so_meals, freeArea);
         CustomNumberPicker mealPicker = activity.findViewById(R.id.numberPickerMeal);
-        mealPicker.init(Property.MEALS.get(), CustomNumberPicker.WatchType.VALUE);
+        mealPicker.init(Property.MEALS.get(), WatchType.VALUE);
         initButtons(view);
     }
 

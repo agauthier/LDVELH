@@ -4,6 +4,7 @@ import com.home.ldvelh.R;
 import com.home.ldvelh.ui.dialog.SOIngredientPicker;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,7 @@ import android.widget.Button;
 public class SOSpellsPage extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_page_so_spells, container, false);
     }
 

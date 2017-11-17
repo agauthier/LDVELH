@@ -1,5 +1,7 @@
 package com.home.ldvelh.model.combat;
 
+import android.widget.ImageButton;
+
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.character.DF04Character;
 import com.home.ldvelh.model.combat.CombatRow.Team;
@@ -7,11 +9,11 @@ import com.home.ldvelh.model.combat.CombatRow.Team;
 public class DF04Combat extends DFCombat {
 
     @Override
-    public void addEditableFighter(Team team) {
+    public void addNewFighter(Fighter fighter, Team team) {
         if (((DF04Character) Property.CHARACTER.get()).isInSpaceFight()) {
-            CombatCore.addEditableFighter(new DF04ShipFighter(team));
+            CombatCore.addNewFighter(new DF04ShipFighter(), team);
         } else {
-            super.addEditableFighter(team);
+            super.addNewFighter(fighter, team);
         }
     }
 
@@ -20,7 +22,7 @@ public class DF04Combat extends DFCombat {
         if (((DF04Character) Property.CHARACTER.get()).isInSpaceFight()) {
             if (Property.FIGHTER_GRID.get().size() == 1) {
                 CombatRow row = Property.FIGHTER_GRID.get().get(0);
-                if (row.hasExactlyOneMember(Team.GOODGUYS) && row.hasExactlyOneMember(Team.MONSTERS)) {
+                if (row.hasExactlyOneMember(Team.LEFT) && row.hasExactlyOneMember(Team.RIGHT)) {
                     return true;
                 }
             }
@@ -30,16 +32,26 @@ public class DF04Combat extends DFCombat {
         }
     }
 
+    @SuppressWarnings("unused")
     public boolean canLeavePlanet() {
-        return !((DF04Character) Property.CHARACTER.get()).isInSpaceFight() && CombatCore.getAllMonsters().size() == 0;
+        return !((DF04Character) Property.CHARACTER.get()).isInSpaceFight() && CombatCore.getAllRightFighters().size() == 0;
     }
 
-    public void leavePlanet() {
+    @SuppressWarnings("unused")
+    public void leavePlanet(ImageButton button) {
         ((DF04Character) Property.CHARACTER.get()).leavePlanet();
         CombatCore.reset();
     }
 
+    @SuppressWarnings("unused")
     public boolean canUsePhaser() {
         return !((DF04Character) Property.CHARACTER.get()).isInSpaceFight();
+    }
+
+    @SuppressWarnings("unused")
+    public void togglePhaserState(ImageButton button) {
+        final DF04Character character = (DF04Character) Property.CHARACTER.get();
+        character.togglePhaserState();
+        button.setImageResource(character.getPhaserState().getResId());
     }
 }

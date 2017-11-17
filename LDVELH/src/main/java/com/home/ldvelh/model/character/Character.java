@@ -46,10 +46,6 @@ public abstract class Character extends ValueHolder<Character> {
 
     public abstract CombatStrategy getCombatStrategy();
 
-    @SuppressWarnings("unused") public void addItem(String name, Integer quantity) {
-        Property.ITEM_LIST.get().add(new ItemAndQuantity(name, quantity));
-    }
-
     @SuppressWarnings("unused") public void addNote(String name) {
         Property.NOTE_LIST.get().add(new ItemAndQuantity(name));
     }

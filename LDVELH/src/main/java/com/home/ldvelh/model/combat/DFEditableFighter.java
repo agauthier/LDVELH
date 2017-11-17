@@ -6,27 +6,25 @@ import android.view.ViewGroup;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Constants;
-import com.home.ldvelh.model.combat.CombatRow.Team;
 import com.home.ldvelh.model.value.IntValueHolder;
-import com.home.ldvelh.ui.widget.CustomNumberPicker;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
+import com.home.ldvelh.ui.widget.AnimatedNumber;
 
-class DFEditableFighter extends Fighter {
+import org.apache.commons.lang3.StringUtils;
+
+public class DFEditableFighter extends Fighter {
     private static final long serialVersionUID = 5612175650712298670L;
 
     private static final int DEFAULT_SKILL = 5;
     private static final int DEFAULT_STAMINA = 5;
 
-    private final String name;
+    private String name = StringUtils.EMPTY;
     private final IntValueHolder skill;
     private final IntValueHolder stamina;
     private final IntValueHolder bonus;
 
-    private static int nbFighters = 0;
-
-    DFEditableFighter(Team team) {
-        super(team);
-        this.name = "#" + (++nbFighters);
+    public DFEditableFighter() {
+        super();
         this.skill = new IntValueHolder(0, Constants.BIG_POSITIVE, DEFAULT_SKILL);
         this.stamina = new IntValueHolder(0, Constants.BIG_POSITIVE, DEFAULT_STAMINA);
         this.bonus = new IntValueHolder(Constants.BIG_NEGATIVE, Constants.BIG_POSITIVE, 0);
@@ -35,6 +33,11 @@ class DFEditableFighter extends Fighter {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -55,20 +58,14 @@ class DFEditableFighter extends Fighter {
     @Override
     public View createView(LayoutInflater inflater, ViewGroup root) {
         View newView = inflater.inflate(R.layout.list_item_combat_fighter, root, false);
-        initView(newView);
-        CustomNumberPicker skillPicker = newView.findViewById(R.id.numberPickerSkill);
-        skillPicker.init(skill, WatchType.VALUE);
-        CustomNumberPicker staminaPicker = newView.findViewById(R.id.numberPickerStamina);
-        staminaPicker.init(stamina, WatchType.VALUE);
+        initView(newView, false);
+        AnimatedNumber animSkill = newView.findViewById(R.id.animatedNumberSkill);
+        animSkill.init(skill, WatchType.VALUE);
+        AnimatedNumber animStamina = newView.findViewById(R.id.animatedNumberStamina);
+        animStamina.init(stamina, WatchType.VALUE);
         return newView;
     }
 
     @Override
-    public boolean isEditable() {
-        return true;
-    }
-
-    static void resetNbFighters() {
-        nbFighters = 0;
-    }
+    public void kill() {}
 }

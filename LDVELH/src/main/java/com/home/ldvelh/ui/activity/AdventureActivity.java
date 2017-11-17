@@ -36,6 +36,7 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
+            //noinspection ConstantConditions
             config = (AdventureConfig) getIntent().getExtras().get(AdventureConfig.ADVENTURE_CONFIG);
         } else {
             config = (AdventureConfig) savedInstanceState.get(AdventureConfig.ADVENTURE_CONFIG);
@@ -64,7 +65,7 @@ public abstract class AdventureActivity extends AbstractGameActivity implements 
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        AdventureDialog.dismissCurrentDialog();
+        AdventureDialog.cancelCurrentDialog();
         outState.putSerializable(AdventureConfig.ADVENTURE_CONFIG, config);
         super.onSaveInstanceState(outState);
     }

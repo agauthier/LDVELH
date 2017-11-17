@@ -2,7 +2,7 @@ package com.home.ldvelh.ui.widget;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.model.value.IntValueHolder;
-import com.home.ldvelh.ui.widget.CustomNumberPicker.WatchType;
+import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 
 import android.content.Context;
 import android.util.AttributeSet;

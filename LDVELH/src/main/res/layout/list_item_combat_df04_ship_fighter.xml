@@ -30,10 +30,10 @@
             style="@style/ldvelhVerySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/skill" />
+            android:text="@string/df04_shipAttackForce" />
 
         <com.home.ldvelh.ui.widget.AnimatedNumber
-            android:id="@+id/animatedNumberSkill"
+            android:id="@+id/animatedNumberAttackForce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             custom:animOrientation="horizontal"
@@ -54,10 +54,10 @@
             style="@style/ldvelhVerySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/stamina" />
+            android:text="@string/df04_shipShields" />
 
         <com.home.ldvelh.ui.widget.AnimatedNumber
-            android:id="@+id/animatedNumberStamina"
+            android:id="@+id/animatedNumberShields"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             custom:animOrientation="horizontal"
