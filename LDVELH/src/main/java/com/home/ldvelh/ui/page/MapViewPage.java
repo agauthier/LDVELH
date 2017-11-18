@@ -1,12 +1,5 @@
 package com.home.ldvelh.ui.page;
 
-import java.util.Observable;
-import java.util.Observer;
-
-import com.home.ldvelh.R;
-import com.home.ldvelh.model.Property;
-import com.home.ldvelh.ui.widget.map.MapOps;
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -15,6 +8,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+
+import com.home.ldvelh.R;
+import com.home.ldvelh.commons.Utils;
+import com.home.ldvelh.model.Property;
+import com.home.ldvelh.ui.widget.map.MapOps;
+
+import java.util.Observable;
+import java.util.Observer;
 
 public class MapViewPage extends Fragment implements Observer {
 
@@ -26,7 +27,7 @@ public class MapViewPage extends Fragment implements Observer {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initButtons();
+        initComponents();
     }
 
     @Override
@@ -43,17 +44,19 @@ public class MapViewPage extends Fragment implements Observer {
 
     @Override
     public void update(Observable observable, Object data) {
-        initButtons();
+        initComponents();
     }
 
     @SuppressWarnings("ConstantConditions")
-    private void initButtons() {
+    private void initComponents() {
         ImageButton fitMapToCanvasButton = getView().findViewById(R.id.fitMapToCanvas);
         fitMapToCanvasButton.setEnabled(MapOps.canFitMapToCanvas());
         fitMapToCanvasButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                MapOps.fitMapToCanvas(getActivity().findViewById(R.id.mapView));
+                if (!Utils.isKeyboardShowing()) {
+                    MapOps.fitMapToCanvas(getActivity().findViewById(R.id.mapView));
+                }
             }
         });
         ImageButton deleteNodeButton = getView().findViewById(R.id.deleteNode);
@@ -61,7 +64,9 @@ public class MapViewPage extends Fragment implements Observer {
         deleteNodeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                MapOps.deleteNode(getActivity().findViewById(R.id.mapView));
+                if (!Utils.isKeyboardShowing()) {
+                    MapOps.deleteNode(getActivity().findViewById(R.id.mapView));
+                }
             }
         });
     }

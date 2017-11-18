@@ -1,18 +1,5 @@
 package com.home.ldvelh.ui.widget.map;
 
-import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.LIFT_FINGER;
-import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.LONG_TOUCH_NODE;
-import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.MOVE_ONE_FINGER;
-import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.MOVE_TWO_FINGERS;
-import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.START_LIFT_FINGER;
-import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.TOUCH_FREESPACE;
-import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.TOUCH_NODE;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import com.home.ldvelh.model.Property;
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PointF;
@@ -25,15 +12,44 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
-import android.view.inputmethod.InputMethodManager;
+
+import com.home.ldvelh.commons.Utils;
+import com.home.ldvelh.model.Property;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.LIFT_FINGER;
+import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.LONG_TOUCH_NODE;
+import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.MOVE_ONE_FINGER;
+import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.MOVE_TWO_FINGERS;
+import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.START_LIFT_FINGER;
+import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.TOUCH_FREESPACE;
+import static com.home.ldvelh.ui.widget.map.MapView.TouchState.MotionAction.TOUCH_NODE;
 
 public class MapView extends View {
 
     enum TouchState {
-        NO_TOUCH, TOUCHED_NO_NODE, TOUCHED_NODE, PANNING, START_ZOOMING, ZOOMING, NEW_NODE, START_DRAGGING, DRAGGING, TOGGLING_SELECTION, CONNECTING;
+        NO_TOUCH,
+        TOUCHED_NO_NODE,
+        TOUCHED_NODE,
+        PANNING,
+        START_ZOOMING,
+        ZOOMING,
+        NEW_NODE,
+        START_DRAGGING,
+        DRAGGING,
+        TOGGLING_SELECTION,
+        CONNECTING;
 
         enum MotionAction {
-            TOUCH_FREESPACE, TOUCH_NODE, LONG_TOUCH_NODE, MOVE_ONE_FINGER, MOVE_TWO_FINGERS, START_LIFT_FINGER, LIFT_FINGER
+            TOUCH_FREESPACE,
+            TOUCH_NODE,
+            LONG_TOUCH_NODE,
+            MOVE_ONE_FINGER,
+            MOVE_TWO_FINGERS,
+            START_LIFT_FINGER,
+            LIFT_FINGER
         }
 
         private static final Map<Pair<TouchState, MotionAction>, TouchState> m = new HashMap<>();
@@ -74,12 +90,14 @@ public class MapView extends View {
         initOnTouchListener();
     }
 
-    @Override public boolean performClick() {
+    @Override
+    public boolean performClick() {
         super.performClick();
         return true;
     }
 
-    @Override protected void onDraw(Canvas canvas) {
+    @Override
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (!Property.MAP.get().getValue().hasDrawnOnce()) {
             if (MapOps.canFitMapToCanvas()) {
@@ -92,18 +110,21 @@ public class MapView extends View {
         Property.MAP.get().getValue().draw(canvas);
     }
 
-    @Override public boolean onCheckIsTextEditor() {
+    @Override
+    public boolean onCheckIsTextEditor() {
         return true;
     }
 
-    @Override public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
+    @Override
+    public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
         outAttrs.actionLabel = null;
         outAttrs.inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS;
         outAttrs.imeOptions = EditorInfo.IME_ACTION_DONE;
         return new MapViewInputConnection(this);
     }
 
-    @Override public void invalidate() {
+    @Override
+    public void invalidate() {
         super.invalidate();
         Property.MAP.get().getValue().notifyObservers();
     }
@@ -120,17 +141,16 @@ public class MapView extends View {
         MapOps.clearInvalidNodes();
     }
 
-	public void showKeyboard() {
-		setOnTouchListener(null);
+    public void showKeyboard() {
+        setOnTouchListener(null);
         requestFocus();
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        //noinspection ConstantConditions
-        imm.showSoftInput(this, InputMethodManager.SHOW_FORCED);
+        Utils.show(this);
     }
 
     void initOnTouchListener() {
         setOnTouchListener(new OnTouchListener() {
-            @Override public boolean onTouch(final View view, MotionEvent event) {
+            @Override
+            public boolean onTouch(final View view, MotionEvent event) {
                 getParent().requestDisallowInterceptTouchEvent(true);
                 getPointerPositions(event);
                 final MapView mapView = (MapView) view;
@@ -139,7 +159,8 @@ public class MapView extends View {
                         if (Property.MAP.get().getValue().findNode(p1) != null) {
                             MapOps.perform(TouchState.nextState(TOUCH_NODE), mapView);
                             longPressRunnable = new Runnable() {
-                                @Override public void run() {
+                                @Override
+                                public void run() {
                                     MapOps.perform(TouchState.nextState(LONG_TOUCH_NODE), mapView);
                                     handler.removeCallbacks(this);
                                 }

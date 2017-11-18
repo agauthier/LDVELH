@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 
 public class Utils {
 
+    private static boolean keyboardShowing = false;
+
     public static <T> Class<T> getClass(String className) {
         if (className != null) {
             try {
@@ -51,11 +53,23 @@ public class Utils {
         fos.close();
     }
 
+    public static void show(View view) {
+        keyboardShowing = true;
+        InputMethodManager imm = (InputMethodManager) AbstractGameActivity.getCurrentActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        //noinspection ConstantConditions
+        imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
+    }
+
     public static void hideKeyboard(View attachedView) {
         InputMethodManager inputMethodManager = (InputMethodManager) AbstractGameActivity.getCurrentActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {
             inputMethodManager.hideSoftInputFromWindow(attachedView.getWindowToken(), 0);
             attachedView.clearFocus();
         }
+        keyboardShowing = false;
+    }
+
+    public static boolean isKeyboardShowing() {
+        return keyboardShowing;
     }
 }
