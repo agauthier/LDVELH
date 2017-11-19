@@ -3,6 +3,8 @@ package com.home.ldvelh.model.character;
 import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.model.Die;
 import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.combat.CCCharacterFighter;
+import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.model.combat.strategy.CombatStrategy;
 import com.home.ldvelh.model.item.CCEquipment;
 import com.home.ldvelh.model.item.CCGod;
@@ -15,6 +17,8 @@ import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.model.value.ListValueHolder;
 import com.home.ldvelh.ui.activity.AdventureActivity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 public class CCCharacter extends Character {
@@ -192,6 +196,13 @@ public class CCCharacter extends Character {
     @Override
     public CombatStrategy getCombatStrategy() {
         return null;
+    }
+
+    @Override
+    public List<Fighter> getFighters() {
+        List<Fighter> fighters = new ArrayList<>();
+        fighters.add(new CCCharacterFighter());
+        return fighters;
     }
 
     @Override

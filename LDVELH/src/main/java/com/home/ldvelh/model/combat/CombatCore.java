@@ -74,7 +74,7 @@ public class CombatCore {
 
     static boolean canEscape() {
         for (CombatRow row : Property.FIGHTER_GRID.get()) {
-            if (row.hasMembers(Team.RIGHT)) {
+            if (row.hasMembers(Team.LEFT) && row.hasMembers(Team.RIGHT)) {
                 return true;
             }
         }

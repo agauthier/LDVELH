@@ -1,55 +1,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/pencil_border_small"
     android:gravity="center_vertical"
-    android:orientation="vertical" >
+    android:orientation="horizontal">
 
     <TextView
-        style="@style/ldvelhSmallTitles"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_weight="1"
+        android:background="#00ff00"
         android:gravity="center"
-        android:text="@string/cc_wounds" />
+        android:text="@string/cc_unscathed"
+        android:textSize="@dimen/small_button_text" />
 
-    <LinearLayout
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_weight="1"
+        android:background="#ffff00"
+        android:gravity="center"
+        android:text="@string/cc_wounded"
+        android:textSize="@dimen/small_button_text" />
+
+    <TextView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:layout_margin="@dimen/small_margin"
+        android:layout_weight="1"
+        android:background="#ff0000"
+        android:gravity="center"
+        android:text="@string/cc_badly_wounded"
+        android:textSize="@dimen/small_button_text" />
 
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/cc_unscathed"
-            android:textSize="@dimen/small_button_text" />
-
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/cc_wounded"
-            android:textSize="@dimen/small_button_text" />
-
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/cc_badly_wounded"
-            android:textSize="@dimen/small_button_text" />
-
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/cc_dead"
-            android:textSize="@dimen/small_button_text" />
-    </LinearLayout>
-
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/small_margin"
+        android:layout_weight="1"
+        android:background="#000000"
+        android:gravity="center"
+        android:text="@string/cc_dead"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/small_button_text" />
 </LinearLayout>

@@ -15,9 +15,9 @@ import android.widget.LinearLayout.LayoutParams;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Constants;
+import com.home.ldvelh.model.combat.Combat;
 import com.home.ldvelh.model.combat.CombatCore;
 import com.home.ldvelh.model.combat.CombatRow.Team;
-import com.home.ldvelh.model.combat.DFCombat;
 import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.ui.dialog.DFFighterEditor;
 import com.home.ldvelh.ui.widget.PageTag;
@@ -26,37 +26,36 @@ import com.home.ldvelh.ui.widget.list.CombatRowList;
 import java.util.Observable;
 import java.util.Observer;
 
-import static com.home.ldvelh.commons.Constants.METHOD_ASSAULT;
-import static com.home.ldvelh.commons.Constants.METHOD_ASSAULT_ENABLED;
-import static com.home.ldvelh.commons.Constants.METHOD_ESCAPE;
-import static com.home.ldvelh.commons.Constants.METHOD_ESCAPE_ENABLED;
+import static com.home.ldvelh.commons.Constants.METHOD_CHECK_PREFIX;
+import static com.home.ldvelh.commons.Constants.METHOD_COMBAT_BUTTON_ASSAULT;
+import static com.home.ldvelh.commons.Constants.METHOD_COMBAT_BUTTON_ESCAPE;
 import static com.home.ldvelh.ui.widget.PageTag.TagType.COMBAT_BUTTON;
 
-public class DFCombatPage extends Fragment implements Observer {
+public class CombatPage extends Fragment implements Observer {
 
     static class CombatButtonData {
 
         private final int imageResId;
-        private final String checkEnabledMethod;
-        private final String onClickMethod;
+        private final String operationName;
 
-        CombatButtonData(int imageResId, String checkEnabledMethod, String onClickMethod) {
+        CombatButtonData(int imageResId, String operationName) {
             this.imageResId = imageResId;
-            this.checkEnabledMethod = checkEnabledMethod;
-            this.onClickMethod = onClickMethod;
+            this.operationName = operationName;
         }
 
         int getImageResId() { return imageResId; }
 
-        String getCheckEnabledMethod() { return checkEnabledMethod; }
+        String getOperationName() { return operationName; }
 
-        String getOnClickMethod() { return onClickMethod; }
+        String getCheckOperationName() {
+            return METHOD_CHECK_PREFIX + operationName.substring(0, 1).toUpperCase() + operationName.substring(1, operationName.length());
+        }
     }
 
-    public static final CombatButtonData ASSAULT_BUTTON_DATA = new CombatButtonData(R.drawable.assault, METHOD_ASSAULT_ENABLED, METHOD_ASSAULT);
-    public static final CombatButtonData ESCAPE_BUTTON_DATA = new CombatButtonData(R.drawable.escape, METHOD_ESCAPE_ENABLED, METHOD_ESCAPE);
+    public static final CombatButtonData ASSAULT_BUTTON_DATA = new CombatButtonData(R.drawable.assault, METHOD_COMBAT_BUTTON_ASSAULT);
+    public static final CombatButtonData ESCAPE_BUTTON_DATA = new CombatButtonData(R.drawable.escape, METHOD_COMBAT_BUTTON_ESCAPE);
 
-    DFCombat combat;
+    Combat combat;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -91,13 +90,13 @@ public class DFCombatPage extends Fragment implements Observer {
     public void update(Observable observable, Object data) {
         for (PageTag tag : PagesAdapter.getPageTags(R.string.tab_title_combat, COMBAT_BUTTON)) {
             CombatButtonData buttonData = (CombatButtonData) tag.getData();
-            @SuppressWarnings("ConstantConditions") ImageButton button = getView().findViewWithTag(buttonData.getOnClickMethod());
-            button.setEnabled((Boolean) call(buttonData.getCheckEnabledMethod()));
+            @SuppressWarnings("ConstantConditions") ImageButton button = getView().findViewWithTag(buttonData.getOperationName());
+            button.setEnabled((Boolean) call(buttonData.getCheckOperationName()));
         }
     }
 
     void initCombat() {
-        combat = new DFCombat();
+        combat = new Combat();
         combat.init();
     }
 
@@ -170,18 +169,18 @@ public class DFCombatPage extends Fragment implements Observer {
 
     private ImageButton createButton(final CombatButtonData data) {
         final ImageButton button = new ImageButton(getContext());
-        button.setTag(data.getOnClickMethod());
+        button.setTag(data.getOperationName());
         LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         int margin = getResources().getDimensionPixelSize(R.dimen.default_margin);
         layoutParams.setMargins(margin, margin, margin, margin);
         button.setLayoutParams(layoutParams);
         button.setBackgroundResource(R.drawable.small_button_selector);
         button.setImageResource(data.getImageResId());
-        button.setEnabled((Boolean) call(data.getCheckEnabledMethod()));
+        button.setEnabled((Boolean) call(data.getCheckOperationName()));
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                call(data.getOnClickMethod(), button);
+                call(data.getOperationName(), button);
             }
         });
         return button;

@@ -1,11 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/lib/android.support.v7.app"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/paper_background"
     android:orientation="vertical"
-    android:padding="@dimen/default_activity_margin" >
+    android:padding="@dimen/default_activity_margin">
 
     <TextView
         android:id="@+id/bookTitle"
@@ -18,12 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/pencil_border_small"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <com.home.ldvelh.ui.widget.CCAttribute
                     android:layout_width="match_parent"
@@ -54,7 +55,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/pencil_border_small"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <com.home.ldvelh.ui.widget.CCAttribute
                     android:layout_width="match_parent"
@@ -75,7 +76,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/pencil_border_small"
                 android:gravity="center"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <com.home.ldvelh.ui.widget.CCAttribute
                     android:layout_width="match_parent"
@@ -95,25 +96,40 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <com.home.ldvelh.ui.widget.CCWounds
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+                android:orientation="horizontal"
+                tools:ignore="DisableBaselineAlignment">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/pencil_border"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/ldvelhSmallTitles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/cc_wounds" />
+
+                    <com.home.ldvelh.ui.widget.CCWounds
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/pencil_border_small"
                     android:gravity="center_horizontal"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         style="@style/ldvelhSmallTitles"
@@ -139,7 +155,7 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/pages"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent">
             </android.support.v4.view.ViewPager>
         </LinearLayout>
     </LinearLayout>

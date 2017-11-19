@@ -118,6 +118,7 @@
     <string name="so_04_title">La Couronne des Rois</string>
 
     <!-- CC Strings -->
+    <string name="cc_character">Althéos</string>
     <string name="cc_strength">Force</string>
     <string name="cc_protection">Protection</string>
     <string name="cc_honor">Honneur</string>
@@ -128,7 +129,7 @@
     <string name="cc_wounds">Blessures</string>
     <string name="cc_unscathed">Indemne</string>
     <string name="cc_wounded">Blessé</string>
-    <string name="cc_badly_wounded">Grièvement Blessé</string>
+    <string name="cc_badly_wounded">Grièvement\nBlessé</string>
     <string name="cc_dead">Mort</string>
     <string name="cc_aethras_jewel">Bijou d\'Aéthra</string>
     <string name="cc_protector_god">Protecteur</string>

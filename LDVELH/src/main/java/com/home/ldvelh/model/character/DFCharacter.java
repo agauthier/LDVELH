@@ -3,6 +3,8 @@ package com.home.ldvelh.model.character;
 import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.model.Die;
 import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.combat.DFCharacterFighter;
+import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.model.combat.strategy.CombatStrategy;
 import com.home.ldvelh.model.combat.strategy.DFCombatStrategy;
 import com.home.ldvelh.model.item.Effect;
@@ -11,7 +13,9 @@ import com.home.ldvelh.model.item.ItemAndQuantity;
 import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.ui.activity.AdventureActivity;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class DFCharacter extends Character {
     private static final long serialVersionUID = 3561520215039491885L;
@@ -56,6 +60,13 @@ public class DFCharacter extends Character {
 
     @Override public CombatStrategy getCombatStrategy() {
         return DFCombatStrategy.INSTANCE;
+    }
+
+    @Override
+    public List<Fighter> getFighters() {
+        List<Fighter> fighters = new ArrayList<>();
+        fighters.add(new DFCharacterFighter());
+        return fighters;
     }
 
     @SuppressWarnings("unused") public void setGold(Integer gold) {

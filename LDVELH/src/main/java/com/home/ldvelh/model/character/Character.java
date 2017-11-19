@@ -2,7 +2,6 @@ package com.home.ldvelh.model.character;
 
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.combat.CombatRow;
-import com.home.ldvelh.model.combat.DFCharacterFighter;
 import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.model.combat.strategy.CombatStrategy;
 import com.home.ldvelh.model.item.ItemAndQuantity;
@@ -38,7 +37,8 @@ public abstract class Character extends ValueHolder<Character> {
 
     public abstract void addLifeObserver(AdventureActivity activity);
 
-    @SuppressWarnings("unused") public abstract void deleteLifeObserver(AdventureActivity activity);
+    @SuppressWarnings("unused")
+    public abstract void deleteLifeObserver(AdventureActivity activity);
 
     public abstract void killWithoutUpdate();
 
@@ -46,7 +46,10 @@ public abstract class Character extends ValueHolder<Character> {
 
     public abstract CombatStrategy getCombatStrategy();
 
-    @SuppressWarnings("unused") public void addNote(String name) {
+    public abstract List<Fighter> getFighters();
+
+    @SuppressWarnings("unused")
+    public void addNote(String name) {
         Property.NOTE_LIST.get().add(new ItemAndQuantity(name));
     }
 
@@ -70,12 +73,6 @@ public abstract class Character extends ValueHolder<Character> {
             fulfilledDialogsCopy.add(dialogClassCast);
         }
         return fulfilledDialogsCopy;
-    }
-
-    public List<Fighter> getFighters() {
-        List<Fighter> fighters = new ArrayList<>();
-        fighters.add(new DFCharacterFighter());
-        return fighters;
     }
 
     public void startFromPreviousBook() {

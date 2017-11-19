@@ -15,12 +15,11 @@ public class Constants {
     public static final String METHOD_ADD_EQUIPMENT = "addEquipment";
     public static final String METHOD_ADD_CONSUMABLE_FOOD = "addConsumableFood";
     public static final String METHOD_ADD_NOTE = "addNote";
-    public static final String METHOD_ASSAULT_ENABLED = "canAssault";
-    public static final String METHOD_ASSAULT = "assault";
-    public static final String METHOD_ESCAPE_ENABLED = "canEscape";
-    public static final String METHOD_ESCAPE = "escape";
-    public static final String METHOD_LEAVE_PLANET_ENABLED = "canLeavePlanet";
-    public static final String METHOD_LEAVE_PLANET = "leavePlanet";
-    public static final String METHOD_PHASER_ENABLED = "canUsePhaser";
-    public static final String METHOD_PHASER = "togglePhaserState";
+    public static final String METHOD_CHECK_PREFIX = "can";
+    public static final String METHOD_COMBAT_BUTTON_ASSAULT = "assault";
+    public static final String METHOD_COMBAT_BUTTON_ESCAPE = "escape";
+    public static final String METHOD_COMBAT_BUTTON_LEAVE_PLANET = "leavePlanet";
+    public static final String METHOD_COMBAT_BUTTON_PHASER = "phaser";
+    public static final String METHOD_COMBAT_BUTTON_KILL = "kill";
+    public static final String METHOD_COMBAT_BUTTON_SURRENDER = "surrender";
 }

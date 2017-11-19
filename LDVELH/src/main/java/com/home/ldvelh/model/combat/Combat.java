@@ -4,7 +4,7 @@ import android.widget.ImageButton;
 
 import com.home.ldvelh.model.combat.CombatRow.Team;
 
-public class DFCombat {
+public class Combat {
 
     public void init() {
         CombatCore.init();

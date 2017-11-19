@@ -53,32 +53,38 @@ public class DF04Character extends Character {
         phaserState = DF04PhaserState.NONE;
     }
 
-    @Override public void addLifeObserver(AdventureActivity activity) {
+    @Override
+    public void addLifeObserver(AdventureActivity activity) {
         commander.getStamina().addObserver(this);
         ship.getStamina().addObserver(this);
         addObserver(activity);
     }
 
-    @Override public void deleteLifeObserver(AdventureActivity activity) {
+    @Override
+    public void deleteLifeObserver(AdventureActivity activity) {
         deleteObserver(activity);
         commander.getStamina().deleteObserver(this);
         ship.getStamina().deleteObserver(this);
     }
 
-    @Override public void killWithoutUpdate() {
+    @Override
+    public void killWithoutUpdate() {
         commander.getStamina().deleteObservers();
         commander.getStamina().add(Constants.BIG_NEGATIVE);
     }
 
-    @Override public boolean isDead() {
+    @Override
+    public boolean isDead() {
         return commander.getStamina().getValue() <= 0 || ship.getStamina().getValue() <= 0;
     }
 
-    @Override public CombatStrategy getCombatStrategy() {
+    @Override
+    public CombatStrategy getCombatStrategy() {
         return DF04CombatStrategy.INSTANCE;
     }
 
-    @Override public void initCharacterValues() {
+    @Override
+    public void initCharacterValues() {
         super.initCharacterValues();
         CharacterValues.put(Property.COMMANDER, commander);
         CharacterValues.put(Property.SCIENCE_OFFICER, scienceOfficer);
@@ -92,7 +98,8 @@ public class DF04Character extends Character {
         CharacterValues.put(Property.LUCK_PENALTY, luckPenalty);
     }
 
-    @Override public List<Fighter> getFighters() {
+    @Override
+    public List<Fighter> getFighters() {
         List<Fighter> fighters = new ArrayList<>();
         addFighter(fighters, Property.COMMANDER);
         addFighter(fighters, Property.SCIENCE_OFFICER);
