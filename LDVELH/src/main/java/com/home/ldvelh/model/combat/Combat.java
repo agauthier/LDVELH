@@ -14,12 +14,16 @@ public interface Combat {
 
     void addNewFighter(Fighter fighter, Team team);
 
+    @SuppressWarnings("unused")
     boolean canAssault();
 
+    @SuppressWarnings("unused")
     void assault(ImageButton button);
 
+    @SuppressWarnings("unused")
     boolean canEscape();
 
+    @SuppressWarnings("unused")
     void escape(ImageButton button);
 
     void addAllObservers();

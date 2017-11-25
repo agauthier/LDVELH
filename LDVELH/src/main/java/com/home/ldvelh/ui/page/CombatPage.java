@@ -16,7 +16,6 @@ import android.widget.LinearLayout.LayoutParams;
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.model.combat.Combat;
-import com.home.ldvelh.model.combat.DFCombat;
 import com.home.ldvelh.model.combat.CombatCore;
 import com.home.ldvelh.model.combat.CombatRow.Team;
 import com.home.ldvelh.model.combat.Fighter;
@@ -27,40 +26,17 @@ import com.home.ldvelh.ui.widget.list.CombatRowList;
 import java.util.Observable;
 import java.util.Observer;
 
-import static com.home.ldvelh.commons.Constants.METHOD_CHECK_PREFIX;
-import static com.home.ldvelh.commons.Constants.METHOD_COMBAT_BUTTON_ASSAULT;
-import static com.home.ldvelh.commons.Constants.METHOD_COMBAT_BUTTON_ESCAPE;
 import static com.home.ldvelh.ui.widget.PageTag.TagType.COMBAT_BUTTON;
 
-public class CombatPage extends Fragment implements Observer {
-
-    static class CombatButtonData {
-
-        private final int imageResId;
-        private final String operationName;
-
-        CombatButtonData(int imageResId, String operationName) {
-            this.imageResId = imageResId;
-            this.operationName = operationName;
-        }
-
-        int getImageResId() { return imageResId; }
-
-        String getOperationName() { return operationName; }
-
-        String getCheckOperationName() {
-            return METHOD_CHECK_PREFIX + operationName.substring(0, 1).toUpperCase() + operationName.substring(1, operationName.length());
-        }
-    }
-
-    public static final CombatButtonData ASSAULT_BUTTON_DATA = new CombatButtonData(R.drawable.assault, METHOD_COMBAT_BUTTON_ASSAULT);
-    public static final CombatButtonData ESCAPE_BUTTON_DATA = new CombatButtonData(R.drawable.escape, METHOD_COMBAT_BUTTON_ESCAPE);
+public abstract class CombatPage extends Fragment implements Observer {
 
     Combat combat;
 
+    protected abstract void initCombat();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_page_df_combat, container, false);
+        return inflater.inflate(R.layout.fragment_page_combat, container, false);
     }
 
     @Override
@@ -94,11 +70,6 @@ public class CombatPage extends Fragment implements Observer {
             @SuppressWarnings("ConstantConditions") ImageButton button = getView().findViewWithTag(buttonData.getOperationName());
             button.setEnabled((Boolean) call(buttonData.getCheckOperationName()));
         }
-    }
-
-    void initCombat() {
-        combat = new DFCombat();
-        combat.init();
     }
 
     private void initFighterDropArea() {

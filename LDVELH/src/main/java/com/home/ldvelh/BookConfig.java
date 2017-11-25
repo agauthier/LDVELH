@@ -25,12 +25,12 @@ import com.home.ldvelh.ui.inflater.FreeAreaInflaterSO;
 import com.home.ldvelh.ui.page.CCCombatPage;
 import com.home.ldvelh.ui.page.CCEquipmentPage;
 import com.home.ldvelh.ui.page.CCGodsPage;
-import com.home.ldvelh.ui.page.CombatPage;
 import com.home.ldvelh.ui.page.DF02SpellsPage;
 import com.home.ldvelh.ui.page.DF03MagicItemsPage;
 import com.home.ldvelh.ui.page.DF04CombatPage;
 import com.home.ldvelh.ui.page.DF04ItemsPage;
 import com.home.ldvelh.ui.page.DF08MagicStonesPage;
+import com.home.ldvelh.ui.page.DFCombatPage;
 import com.home.ldvelh.ui.page.ItemsPage;
 import com.home.ldvelh.ui.page.MapViewPage;
 import com.home.ldvelh.ui.page.SOSpellsPage;
@@ -326,7 +326,7 @@ public abstract class BookConfig {
     private static <T extends AdventureActivity, U extends Character> AdventureConfig commonDFConfig(int bookResId, int titleResId, Class<T> adventureClass, Class<U> characterClass) {
         AdventureConfig config = new AdventureConfig(bookResId, titleResId, adventureClass, characterClass, R.layout.activity_adventure);
         config.addPage(R.string.tab_title_utilities, UtilitiesPage.class, getDFUtilitiesConfig());
-        config.addPage(R.string.tab_title_combat, CombatPage.class, getDFCombatButtons());
+        config.addPage(R.string.tab_title_combat, DFCombatPage.class, getDFCombatButtons());
         config.addPage(R.string.tab_title_items, ItemsPage.class);
         config.addPage(R.string.tab_title_map, MapViewPage.class);
         return config;
@@ -337,7 +337,7 @@ public abstract class BookConfig {
         config.addCustomCharacterValues(METHOD_SET_GOLD, 20);
         config.addDialog(SOCharacterTypePicker.class, config);
         config.addPage(R.string.tab_title_utilities, UtilitiesPage.class, getSOUtilitiesConfig());
-        config.addPage(R.string.tab_title_combat, CombatPage.class, getDFCombatButtons());
+        config.addPage(R.string.tab_title_combat, DFCombatPage.class, getDFCombatButtons());
         config.addPage(R.string.tab_title_items, ItemsPage.class);
         config.addPage(R.string.tab_title_magic, SOSpellsPage.class);
         config.addPage(R.string.tab_title_map, MapViewPage.class);

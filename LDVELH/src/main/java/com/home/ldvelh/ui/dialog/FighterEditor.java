@@ -38,14 +38,14 @@ public class FighterEditor extends AdventureDialog {
 
     @Override
     public void dismiss() {
-        Utils.hideKeyboard(findViewById(R.id.fighterName));
+        Utils.hideKeyboard(findViewById(R.id.itemName));
         super.dismiss();
     }
 
     @Override
     void initView() {
         super.initView();
-        ((TextView) findViewById(R.id.fighterName)).setHint(R.string.fighter_name);
+        ((TextView) findViewById(R.id.itemName)).setHint(R.string.fighter_name);
         ((TextView) findViewById(R.id.value1Name)).setText(fighter.getEditableValue1NameResId());
         ((TextView) findViewById(R.id.value2Name)).setText(fighter.getEditableValue2NameResId());
         ((CustomNumberPicker) findViewById(R.id.numberPickerValue1)).init(fighter.getEditableValue1(), WatchType.VALUE);

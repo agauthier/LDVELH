@@ -43,7 +43,7 @@
     <string name="tab_title_map">Carte</string>
     <string name="tab_title_spells">Formules magiques</string>
     <string name="tab_title_utilities">Outils</string>
-    <string name="fighter_name">Nom</string>
+    <string name="fighter_name">Nom du combattant</string>
     <string name="add_new_item">Nouvel Item</string>
     <string name="add_new_consumable_item">Nouvel Item Consommable</string>
     <string name="add_new_note">Nouvelle Note</string>

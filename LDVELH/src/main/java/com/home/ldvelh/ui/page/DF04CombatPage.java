@@ -15,18 +15,13 @@ import com.home.ldvelh.model.character.DF04Character;
 import com.home.ldvelh.model.combat.DF04Combat;
 import com.home.ldvelh.model.value.DF04AssetValueHolder;
 
-import static com.home.ldvelh.commons.Constants.METHOD_COMBAT_BUTTON_LEAVE_PLANET;
-import static com.home.ldvelh.commons.Constants.METHOD_COMBAT_BUTTON_PHASER;
-
 public class DF04CombatPage extends CombatPage {
 
-    public static final CombatButtonData LEAVE_PLANET_BUTTON_DATA = new CombatButtonData(R.drawable.leave_planet, METHOD_COMBAT_BUTTON_LEAVE_PLANET);
-    public static final CombatButtonData PHASER_BUTTON_DATA = new CombatPage.CombatButtonData(R.drawable.phaser_none, METHOD_COMBAT_BUTTON_PHASER) {
-        @Override
-        int getImageResId() {
-            return ((DF04Character) Property.CHARACTER.get()).getPhaserState().getResId();
-        }
-    };
+    @Override
+    public void initCombat() {
+        combat = new DF04Combat();
+        combat.init();
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,12 +66,6 @@ public class DF04CombatPage extends CombatPage {
             }
         });
         return fragmentView;
-    }
-
-    @Override
-    void initCombat() {
-        combat = new DF04Combat();
-        combat.init();
     }
 
     private boolean dropAreaAccepts(DragEvent event) {
