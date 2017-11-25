@@ -6,14 +6,16 @@ import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.character.DF04Character;
 import com.home.ldvelh.model.combat.CombatRow.Team;
 
-public class DF04Combat extends Combat {
+public class DF04Combat extends DFCombat {
 
     @Override
-    public void addNewFighter(Fighter fighter, Team team) {
+    public <T extends EditableFighter> T createEditableFighter() {
         if (((DF04Character) Property.CHARACTER.get()).isInSpaceFight()) {
-            CombatCore.addNewFighter(new DF04ShipFighter(), team);
+            //noinspection unchecked
+            return (T) new DF04ShipFighter();
         } else {
-            super.addNewFighter(fighter, team);
+            //noinspection unchecked
+            return (T) new DFEditableFighter();
         }
     }
 

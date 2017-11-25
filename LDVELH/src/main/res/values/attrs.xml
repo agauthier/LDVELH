@@ -27,8 +27,9 @@
     </declare-styleable>
     <declare-styleable name="CCAttribute">
         <attr name="attributeName" format="string" />
-        <attr name="propertyName" format="string" />
+        <attr name="textStyle" format="reference" />
         <attr name="withPicker" format="boolean" />
+        <attr name="propertyName" format="string" />
         </declare-styleable>
     <declare-styleable name="SOSpellButton">
         <attr name="name" format="string" />

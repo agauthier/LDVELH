@@ -8,26 +8,22 @@ import android.widget.TextView;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Constants;
-import com.home.ldvelh.model.value.IntValueHolder;
+import com.home.ldvelh.commons.GameObservable;
 
 import java.io.Serializable;
 
 public abstract class Fighter implements Serializable {
-    private static final long serialVersionUID = -4242063330098427868L;
+    private static final long serialVersionUID = 6303373136051393415L;
 
     public abstract String getName();
 
-    public abstract void setName(String name);
+    public abstract GameObservable getLifeObservable();
 
-    public abstract IntValueHolder getSkill();
-
-    public abstract IntValueHolder getStamina();
-
-    public abstract IntValueHolder getBonus();
-
-    public abstract View createView(LayoutInflater inflater, ViewGroup root);
+    public abstract boolean isDead();
 
     public abstract void kill();
+
+    public abstract View createView(LayoutInflater inflater, ViewGroup root);
 
     void initView(final View view, final boolean isCharacter) {
         final TextView fighterNameView = view.findViewById(R.id.fighterName);

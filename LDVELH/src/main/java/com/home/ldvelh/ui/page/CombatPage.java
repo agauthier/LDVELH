@@ -16,10 +16,11 @@ import android.widget.LinearLayout.LayoutParams;
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.model.combat.Combat;
+import com.home.ldvelh.model.combat.DFCombat;
 import com.home.ldvelh.model.combat.CombatCore;
 import com.home.ldvelh.model.combat.CombatRow.Team;
 import com.home.ldvelh.model.combat.Fighter;
-import com.home.ldvelh.ui.dialog.DFFighterEditor;
+import com.home.ldvelh.ui.dialog.FighterEditor;
 import com.home.ldvelh.ui.widget.PageTag;
 import com.home.ldvelh.ui.widget.list.CombatRowList;
 
@@ -96,7 +97,7 @@ public class CombatPage extends Fragment implements Observer {
     }
 
     void initCombat() {
-        combat = new Combat();
+        combat = new DFCombat();
         combat.init();
     }
 
@@ -147,11 +148,11 @@ public class CombatPage extends Fragment implements Observer {
         getView().findViewById(buttonResId).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                final DFFighterEditor editor = new DFFighterEditor(getContext());
+                final FighterEditor editor = new FighterEditor(getContext(), combat.createEditableFighter());
                 editor.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface) {
-                        combat.addNewFighter(editor.getFighter(), team);
+                        combat.addNewFighter((Fighter) editor.getFighter(), team);
                     }
                 });
                 editor.show();

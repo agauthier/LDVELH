@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#77009900"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/small_padding">
+
+    <Button
+        android:id="@+id/testButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test" />
+
+    <TextView
+        android:id="@+id/fighterName"
+        style="@style/ldvelhListItems"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center|right"
+        android:orientation="horizontal">
+
+        <com.home.ldvelh.ui.widget.CCAttribute
+            android:id="@+id/strengthAttribute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:attributeName="@string/cc_strength"
+            custom:textStyle="@style/ldvelhSmall"
+            custom:withPicker="false" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_margin" />
+
+        <com.home.ldvelh.ui.widget.CCAttribute
+            android:id="@+id/protectionAttribute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            custom:attributeName="@string/cc_protection"
+            custom:textStyle="@style/ldvelhSmall"
+            custom:withPicker="false" />
+    </LinearLayout>
+</LinearLayout>

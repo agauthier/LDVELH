@@ -65,10 +65,10 @@ public class CCEquipmentEditor extends Store<CCEquipment> {
     public void initView() {
         super.initView();
         ((TextView) findViewById(R.id.itemName)).setHint(R.string.cc_equipment_name_caption);
-        ((TextView) findViewById(R.id.firstValueName)).setText(R.string.cc_strength);
-        ((TextView) findViewById(R.id.secondValueName)).setText(R.string.cc_protection);
-        ((CustomNumberPicker) findViewById(R.id.numberPickerFirstValue)).init(strength, WatchType.VALUE);
-        ((CustomNumberPicker) findViewById(R.id.numberPickerSecondValue)).init(protection, WatchType.VALUE);
+        ((TextView) findViewById(R.id.value1Name)).setText(R.string.cc_strength);
+        ((TextView) findViewById(R.id.value2Name)).setText(R.string.cc_protection);
+        ((CustomNumberPicker) findViewById(R.id.numberPickerValue1)).init(strength, WatchType.VALUE);
+        ((CustomNumberPicker) findViewById(R.id.numberPickerValue2)).init(protection, WatchType.VALUE);
     }
 
     private void initEquipmentNameTextEdit() {

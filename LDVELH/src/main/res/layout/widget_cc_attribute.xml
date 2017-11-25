@@ -1,13 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/attributeName"
-        style="@style/ldvelhTitles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -19,9 +18,7 @@
         custom:vertical="false" />
 
     <TextView
-        android:id="@+id/valueBonusTotal"
-        style="@style/ldvelhTitles"
+        android:id="@+id/valueAndBonus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 </LinearLayout>

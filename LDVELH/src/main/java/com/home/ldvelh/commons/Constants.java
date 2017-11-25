@@ -20,6 +20,7 @@ public class Constants {
     public static final String METHOD_COMBAT_BUTTON_ESCAPE = "escape";
     public static final String METHOD_COMBAT_BUTTON_LEAVE_PLANET = "leavePlanet";
     public static final String METHOD_COMBAT_BUTTON_PHASER = "phaser";
+    public static final String METHOD_COMBAT_BUTTON_HELP = "help";
     public static final String METHOD_COMBAT_BUTTON_KILL = "kill";
     public static final String METHOD_COMBAT_BUTTON_SURRENDER = "surrender";
 }

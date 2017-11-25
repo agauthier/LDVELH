@@ -5,41 +5,45 @@
     android:orientation="horizontal">
 
     <TextView
+        style="@style/ldvelhTitles"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/small_margin"
         android:layout_weight="1"
-        android:background="#00ff00"
+        android:background="#009900"
         android:gravity="center"
         android:text="@string/cc_unscathed"
         android:textSize="@dimen/small_button_text" />
 
     <TextView
+        style="@style/ldvelhTitles"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/small_margin"
         android:layout_weight="1"
-        android:background="#ffff00"
+        android:background="#cccc00"
         android:gravity="center"
         android:text="@string/cc_wounded"
         android:textSize="@dimen/small_button_text" />
 
     <TextView
+        style="@style/ldvelhTitles"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/small_margin"
         android:layout_weight="1"
-        android:background="#ff0000"
+        android:background="#cc3300"
         android:gravity="center"
         android:text="@string/cc_badly_wounded"
         android:textSize="@dimen/small_button_text" />
 
     <TextView
+        style="@style/ldvelhTitles"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/small_margin"
         android:layout_weight="1"
-        android:background="#000000"
+        android:background="#333333"
         android:gravity="center"
         android:text="@string/cc_dead"
         android:textColor="@android:color/white"

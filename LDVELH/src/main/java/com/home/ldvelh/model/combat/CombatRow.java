@@ -16,7 +16,7 @@ import com.home.ldvelh.model.value.ListValueHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CombatRow extends Item {
+public class CombatRow<T extends Fighter> extends Item {
     private static final long serialVersionUID = 2553340940340277284L;
 
     public enum Team {
@@ -37,19 +37,19 @@ public class CombatRow extends Item {
 
     private enum TeamState {INVISIBLE, VISIBLE, ACTIVATED}
 
-    private final List<Fighter> teamLeft = new ArrayList<>();
-    private final List<Fighter> teamRight = new ArrayList<>();
+    private final List<T> teamLeft = new ArrayList<>();
+    private final List<T> teamRight = new ArrayList<>();
 
     @SuppressWarnings("unused")
     private CombatRow() {}
 
-    private <T extends ListItem> CombatRow(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<T> list) {
+    private <U extends ListItem> CombatRow(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<U> list) {
         super(itemAndQty, effects, data, list);
     }
 
     @Override
-    public <T extends ListItem> T create(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<T> list) {
-        @SuppressWarnings("unchecked") T newItem = (T) new CombatRow(itemAndQty, effects, data, list);
+    public <U extends ListItem> U create(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<U> list) {
+        @SuppressWarnings("unchecked") U newItem = (U) new CombatRow(itemAndQty, effects, data, list);
         return newItem;
     }
 
@@ -80,11 +80,11 @@ public class CombatRow extends Item {
         return (teamLeft.size() == 0 && teamRight.size() == 0);
     }
 
-    public List<Fighter> getTeamLeft() {
+    public List<T> getTeamLeft() {
         return teamLeft;
     }
 
-    public List<Fighter> getTeamRight() {
+    public List<T> getTeamRight() {
         return teamRight;
     }
 
@@ -92,7 +92,7 @@ public class CombatRow extends Item {
         return hasMembers(Team.LEFT) && hasMembers(Team.RIGHT) && (hasExactlyOneMember(Team.LEFT) || hasExactlyOneMember(Team.RIGHT));
     }
 
-    public List<Fighter> getFighters(Team team) {
+    public List<T> getFighters(Team team) {
         if (team == Team.LEFT) {
             return teamLeft;
         } else {
@@ -100,7 +100,7 @@ public class CombatRow extends Item {
         }
     }
 
-    public Team getTeam(Fighter fighter) {
+    public Team getTeam(T fighter) {
         return getFighters(Team.LEFT).contains(fighter) ? Team.LEFT : getFighters(Team.RIGHT).contains(fighter) ? Team.RIGHT : null;
     }
 
@@ -109,14 +109,14 @@ public class CombatRow extends Item {
         teamRight.clear();
     }
 
-    void add(Fighter fighter, Team team) {
-        List<Fighter> fighters = getFighters(team);
+    void add(T fighter, Team team) {
+        List<T> fighters = getFighters(team);
         if (!fighters.contains(fighter)) {
             fighters.add(fighter);
         }
     }
 
-    void remove(Fighter fighter) {
+    void remove(T fighter) {
         teamLeft.remove(fighter);
         teamRight.remove(fighter);
     }
@@ -133,7 +133,7 @@ public class CombatRow extends Item {
         return !getFighters(team.facingTeam()).isEmpty();
     }
 
-    boolean hasFighter(Fighter fighter) {
+    boolean hasFighter(T fighter) {
         return teamLeft.contains(fighter) || teamRight.contains(fighter);
     }
 
@@ -146,7 +146,7 @@ public class CombatRow extends Item {
         }
     }
 
-    Team kill(Fighter fighter) {
+    Team kill(T fighter) {
         if (teamLeft.remove(fighter)) {
             return Team.LEFT;
         } else if (teamRight.remove(fighter)) {
@@ -155,13 +155,13 @@ public class CombatRow extends Item {
         return null;
     }
 
-    Fighter findFighterByName(String name) {
-        for (Fighter fighter : teamLeft) {
+    T findFighterByName(String name) {
+        for (T fighter : teamLeft) {
             if (fighter.getName().equals(name)) {
                 return fighter;
             }
         }
-        for (Fighter fighter : teamRight) {
+        for (T fighter : teamRight) {
             if (fighter.getName().equals(name)) {
                 return fighter;
             }
@@ -172,8 +172,8 @@ public class CombatRow extends Item {
     private void populateView(View row, final Team team) {
         ViewGroup teamViewGroup = row.findViewById(team == Team.LEFT ? R.id.teamLeftView : R.id.teamRightView);
         teamViewGroup.removeAllViews();
-        final List<Fighter> fighters = team == Team.LEFT ? teamLeft : teamRight;
-        for (Fighter fighter : fighters) {
+        final List<T> fighters = team == Team.LEFT ? teamLeft : teamRight;
+        for (T fighter : fighters) {
             teamViewGroup.addView(fighter.createView(((Activity) row.getContext()).getLayoutInflater(), teamViewGroup));
         }
         setTeamViewBorder(teamViewGroup, fighters.isEmpty() ? TeamState.INVISIBLE : TeamState.VISIBLE);
@@ -185,7 +185,7 @@ public class CombatRow extends Item {
                         case DragEvent.ACTION_DRAG_STARTED:
                             return true;
                         case DragEvent.ACTION_DROP:
-                            Fighter fighter = CombatCore.findFighterByName(event.getClipData().getItemAt(0).getText().toString());
+                            T fighter = CombatCore.findFighterByName(event.getClipData().getItemAt(0).getText().toString());
                             CombatCore.moveFighter(fighter, getThis(), team);
                             setTeamViewBorder(v, TeamState.VISIBLE);
                             return true;

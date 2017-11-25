@@ -6,6 +6,7 @@ import com.home.ldvelh.ui.widget.utility.Libra;
 import com.home.ldvelh.ui.widget.utility.LuckCheck;
 import com.home.ldvelh.ui.widget.utility.Zeus;
 
+import static com.home.ldvelh.ui.page.CCCombatPage.CC_HELP_BUTTON_DATA;
 import static com.home.ldvelh.ui.page.CCCombatPage.CC_KILL_BUTTON_DATA;
 import static com.home.ldvelh.ui.page.CCCombatPage.CC_SURRENDER_BUTTON_DATA;
 import static com.home.ldvelh.ui.page.DF04CombatPage.LEAVE_PLANET_BUTTON_DATA;
@@ -20,6 +21,7 @@ public enum PageTag {
     ALLOW_DROP(SIMPLE, null),
     COMBAT_BUTTON_ASSAULT(COMBAT_BUTTON, ASSAULT_BUTTON_DATA),
     COMBAT_BUTTON_ESCAPE(COMBAT_BUTTON, ESCAPE_BUTTON_DATA),
+    COMBAT_BUTTON_CC_HELP(COMBAT_BUTTON, CC_HELP_BUTTON_DATA),
     COMBAT_BUTTON_CC_KILL(COMBAT_BUTTON, CC_KILL_BUTTON_DATA),
     COMBAT_BUTTON_CC_SURRENDER(COMBAT_BUTTON, CC_SURRENDER_BUTTON_DATA),
     COMBAT_BUTTON_DF04_LEAVE_PLANET(COMBAT_BUTTON, LEAVE_PLANET_BUTTON_DATA),

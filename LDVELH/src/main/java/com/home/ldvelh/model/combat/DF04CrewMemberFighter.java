@@ -11,9 +11,9 @@ import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
 
-public class DF04CrewMemberFighter extends Fighter {
-    private static final long serialVersionUID = 8890901301578812379L;
-
+public class DF04CrewMemberFighter extends DFFighter {
+    private static final long serialVersionUID = 110038866774285909L;
+    
     private final DF04AssetValueHolder crewMember;
 
     public DF04CrewMemberFighter(Property<DF04AssetValueHolder> property) {
@@ -27,7 +27,20 @@ public class DF04CrewMemberFighter extends Fighter {
     }
 
     @Override
-    public void setName(String name) {}
+    public void kill() {
+        if (!crewMember.isCommander()) {
+            crewMember.kill();
+        }
+    }
+
+    @Override
+    public View createView(LayoutInflater inflater, ViewGroup root) {
+        View newView = inflater.inflate(R.layout.list_item_combat_character, root, false);
+        initView(newView, true);
+        CustomNumberPicker bonusPicker = newView.findViewById(R.id.numberPickerBonus);
+        bonusPicker.init(crewMember.getBonus(), WatchType.VALUE);
+        return newView;
+    }
 
     @Override
     public IntValueHolder getSkill() {
@@ -42,21 +55,5 @@ public class DF04CrewMemberFighter extends Fighter {
     @Override
     public IntValueHolder getBonus() {
         return crewMember.getBonus();
-    }
-
-    @Override
-    public View createView(LayoutInflater inflater, ViewGroup root) {
-        View newView = inflater.inflate(R.layout.list_item_combat_character, root, false);
-        initView(newView, true);
-        CustomNumberPicker bonusPicker = newView.findViewById(R.id.numberPickerBonus);
-        bonusPicker.init(crewMember.getBonus(), WatchType.VALUE);
-        return newView;
-    }
-
-    @Override
-    public void kill() {
-        if (!crewMember.isCommander()) {
-            crewMember.kill();
-        }
     }
 }

@@ -12,20 +12,20 @@ import android.widget.TextView;
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
 import com.home.ldvelh.model.combat.CombatCore;
-import com.home.ldvelh.model.combat.DFEditableFighter;
-import com.home.ldvelh.model.combat.Fighter;
+import com.home.ldvelh.model.combat.EditableFighter;
 import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class DFFighterEditor extends AdventureDialog {
+public class FighterEditor extends AdventureDialog {
 
     private String fighterName = StringUtils.EMPTY;
-    private final Fighter fighter = new DFEditableFighter();
+    private final EditableFighter fighter;
 
-    public DFFighterEditor(Context context) {
+    public FighterEditor(Context context, EditableFighter fighter) {
         super(context, null);
+        this.fighter = fighter;
     }
 
     @Override
@@ -38,30 +38,31 @@ public class DFFighterEditor extends AdventureDialog {
 
     @Override
     public void dismiss() {
-        Utils.hideKeyboard(findViewById(R.id.itemName));
+        Utils.hideKeyboard(findViewById(R.id.fighterName));
         super.dismiss();
     }
 
-    public Fighter getFighter() {
-        return fighter;
-    }
-
+    @Override
     void initView() {
         super.initView();
-        ((TextView) findViewById(R.id.itemName)).setHint(R.string.fighter_name);
-        ((TextView) findViewById(R.id.firstValueName)).setText(R.string.skill);
-        ((TextView) findViewById(R.id.secondValueName)).setText(R.string.stamina);
-        ((CustomNumberPicker) findViewById(R.id.numberPickerFirstValue)).init(fighter.getSkill(), WatchType.VALUE);
-        ((CustomNumberPicker) findViewById(R.id.numberPickerSecondValue)).init(fighter.getStamina(), WatchType.VALUE);
+        ((TextView) findViewById(R.id.fighterName)).setHint(R.string.fighter_name);
+        ((TextView) findViewById(R.id.value1Name)).setText(fighter.getEditableValue1NameResId());
+        ((TextView) findViewById(R.id.value2Name)).setText(fighter.getEditableValue2NameResId());
+        ((CustomNumberPicker) findViewById(R.id.numberPickerValue1)).init(fighter.getEditableValue1(), WatchType.VALUE);
+        ((CustomNumberPicker) findViewById(R.id.numberPickerValue2)).init(fighter.getEditableValue2(), WatchType.VALUE);
         Button okButton = findViewById(R.id.okButton);
         okButton.setEnabled(false);
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fighter.setName(fighterName);
+                fighter.setEditableName(fighterName);
                 dismiss();
             }
         });
+    }
+
+    public EditableFighter getFighter() {
+        return fighter;
     }
 
     private void initFighterNameTextEdit() {

@@ -4,6 +4,7 @@ import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.model.Die;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.combat.CCCharacterFighter;
+import com.home.ldvelh.model.combat.CCCondition;
 import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.model.combat.strategy.CombatStrategy;
 import com.home.ldvelh.model.item.CCEquipment;
@@ -21,34 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import static com.home.ldvelh.model.combat.CCCondition.DEAD;
+import static com.home.ldvelh.model.combat.CCCondition.UNSCATHED;
+
 public class CCCharacter extends Character {
-    private static final long serialVersionUID = -7699595433223555416L;
-
-    public enum Condition {
-        UNSCATHED {
-            @Override
-            public Condition worsen() {
-                return WOUNDED;
-            }
-        }, WOUNDED {
-            @Override
-            public Condition worsen() {
-                return BADLY_WOUNDED;
-            }
-        }, BADLY_WOUNDED {
-            @Override
-            public Condition worsen() {
-                return DEAD;
-            }
-        }, DEAD {
-            @Override
-            public Condition worsen() {
-                return DEAD;
-            }
-        };
-
-        public abstract Condition worsen();
-    }
+    private static final long serialVersionUID = -8802801187643769352L;
 
     public enum ZeusInvocation {
         RESUSCITATE {
@@ -134,7 +112,7 @@ public class CCCharacter extends Character {
     private final IntValueHolder shame;
     private final IntValueHolder endurance;
     private final IntValueHolder intelligence;
-    private final EnumValueHolder<Condition> condition;
+    private final EnumValueHolder<CCCondition> condition;
     private final ListValueHolder<CCEquipment> equipment;
     private final ListValueHolder<CCGod> gods;
     private final EnumValueHolder<God> tutelaryGod;
@@ -147,7 +125,7 @@ public class CCCharacter extends Character {
         shame = new IntValueHolder(0, Constants.BIG_POSITIVE, 0);
         endurance = new IntValueHolder(0, Constants.BIG_POSITIVE, 0);
         intelligence = new IntValueHolder(0, Constants.BIG_POSITIVE, 0);
-        condition = new EnumValueHolder<>(Condition.UNSCATHED);
+        condition = new EnumValueHolder<>(UNSCATHED);
         equipment = new ListValueHolder<>(CCEquipment.class);
         gods = new ListValueHolder<>(CCGod.class);
         tutelaryGod = new EnumValueHolder<>(God.NO_GOD);
@@ -185,12 +163,12 @@ public class CCCharacter extends Character {
         condition.deleteObservers();
         honor.setValue(0);
         shame.setValue(1);
-        condition.setValue(Condition.DEAD);
+        condition.setValue(DEAD);
     }
 
     @Override
     public boolean isDead() {
-        return condition.is(Condition.DEAD) || shameGreaterThanHonor();
+        return condition.is(DEAD) || shameGreaterThanHonor();
     }
 
     @Override

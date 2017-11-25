@@ -11,8 +11,8 @@ import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.model.value.IntValueHolder.WatchType;
 import com.home.ldvelh.ui.widget.CustomNumberPicker;
 
-public class DFCharacterFighter extends Fighter {
-    private static final long serialVersionUID = 6689551278167471663L;
+public class DFCharacterFighter extends DFFighter {
+    private static final long serialVersionUID = -1550777227820137355L;
 
     public DFCharacterFighter() {
         super();
@@ -24,7 +24,13 @@ public class DFCharacterFighter extends Fighter {
     }
 
     @Override
-    public void setName(String name) {}
+    public View createView(LayoutInflater inflater, ViewGroup root) {
+        View newView = inflater.inflate(R.layout.list_item_combat_character, root, false);
+        initView(newView, true);
+        CustomNumberPicker bonusPicker = newView.findViewById(R.id.numberPickerBonus);
+        bonusPicker.init(Property.ATTACK_BONUS.get(), WatchType.VALUE);
+        return newView;
+    }
 
     @Override
     public IntValueHolder getSkill() {
@@ -40,16 +46,4 @@ public class DFCharacterFighter extends Fighter {
     public IntValueHolder getBonus() {
         return Property.ATTACK_BONUS.get();
     }
-
-    @Override
-    public View createView(LayoutInflater inflater, ViewGroup root) {
-        View newView = inflater.inflate(R.layout.list_item_combat_character, root, false);
-        initView(newView, true);
-        CustomNumberPicker bonusPicker = newView.findViewById(R.id.numberPickerBonus);
-        bonusPicker.init(Property.ATTACK_BONUS.get(), WatchType.VALUE);
-        return newView;
-    }
-
-    @Override
-    public void kill() {}
 }

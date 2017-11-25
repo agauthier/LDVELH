@@ -1,10 +1,8 @@
 package com.home.ldvelh.model;
 
-import java.lang.reflect.Field;
-
-import com.home.ldvelh.model.character.CCCharacter.Condition;
 import com.home.ldvelh.model.character.Character;
 import com.home.ldvelh.model.character.CharacterValues;
+import com.home.ldvelh.model.combat.CCCondition;
 import com.home.ldvelh.model.combat.CombatRow;
 import com.home.ldvelh.model.item.CCEquipment;
 import com.home.ldvelh.model.item.CCGod;
@@ -19,6 +17,8 @@ import com.home.ldvelh.model.value.ListValueHolder;
 import com.home.ldvelh.model.value.MapValueHolder;
 import com.home.ldvelh.model.value.StringValueHolder;
 import com.home.ldvelh.model.value.ValueHolder;
+
+import java.lang.reflect.Field;
 
 public abstract class Property<T extends ValueHolder<?>> {
 
@@ -45,7 +45,7 @@ public abstract class Property<T extends ValueHolder<?>> {
     public static final Property<IntValueHolder> SHAME = new Property<IntValueHolder>("SHAME") {};
     public static final Property<IntValueHolder> ENDURANCE = new Property<IntValueHolder>("ENDURANCE") {};
     public static final Property<IntValueHolder> INTELLIGENCE = new Property<IntValueHolder>("INTELLIGENCE") {};
-    public static final Property<EnumValueHolder<Condition>> CONDITION = new Property<EnumValueHolder<Condition>>("CONDITION") {};
+    public static final Property<EnumValueHolder<CCCondition>> CONDITION = new Property<EnumValueHolder<CCCondition>>("CONDITION") {};
     public static final Property<EnumValueHolder<God>> TUTELARY_GOD = new Property<EnumValueHolder<God>>("TUTELARY_GOD") {};
 
     // DF

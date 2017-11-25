@@ -46,8 +46,8 @@ public class CCEquipment extends Item {
 
 	@Override public void initView(View row) {
 		super.initView(row);
-		initTextView(row, R.id.strength, strength);
-		initTextView(row, R.id.protection, protection);
+		initTextView(row, R.id.strengthAttribute, strength);
+		initTextView(row, R.id.protectionAttribute, protection);
 		setRemoveButtonOnClickListener(row);
 		setEquippedCheckboxOnCheckedListener(row);
 	}

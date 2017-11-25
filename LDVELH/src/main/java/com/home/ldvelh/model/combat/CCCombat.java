@@ -2,11 +2,21 @@ package com.home.ldvelh.model.combat;
 
 import android.widget.ImageButton;
 
-import com.home.ldvelh.model.combat.CombatRow.Team;
+public class CCCombat extends DFCombat {
 
-public class CCCombat extends Combat {
+    @Override
+    public <T extends EditableFighter> T createEditableFighter() {
+        //noinspection unchecked
+        return (T) new CCEditableFighter();
+    }
 
-    public void addNewFighter(Fighter fighter, Team team) {}
+    @SuppressWarnings("unused")
+    public boolean canHelp() {
+        return false;
+    }
+
+    @SuppressWarnings("unused")
+    public void help(ImageButton button) {}
 
     @SuppressWarnings("unused")
     public boolean canKill() {

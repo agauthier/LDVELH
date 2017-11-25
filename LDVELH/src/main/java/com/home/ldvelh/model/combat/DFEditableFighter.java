@@ -12,22 +12,24 @@ import com.home.ldvelh.ui.widget.AnimatedNumber;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class DFEditableFighter extends Fighter {
-    private static final long serialVersionUID = 5612175650712298670L;
+import static com.home.ldvelh.commons.Constants.BIG_POSITIVE;
+
+public class DFEditableFighter extends DFFighter implements EditableFighter {
+    private static final long serialVersionUID = 6958589658922976433L;
 
     private static final int DEFAULT_SKILL = 5;
     private static final int DEFAULT_STAMINA = 5;
 
-    private String name = StringUtils.EMPTY;
     private final IntValueHolder skill;
     private final IntValueHolder stamina;
     private final IntValueHolder bonus;
+    private String name = StringUtils.EMPTY;
 
-    public DFEditableFighter() {
+    DFEditableFighter() {
         super();
-        this.skill = new IntValueHolder(0, Constants.BIG_POSITIVE, DEFAULT_SKILL);
-        this.stamina = new IntValueHolder(0, Constants.BIG_POSITIVE, DEFAULT_STAMINA);
-        this.bonus = new IntValueHolder(Constants.BIG_NEGATIVE, Constants.BIG_POSITIVE, 0);
+        this.skill = new IntValueHolder(0, BIG_POSITIVE, DEFAULT_SKILL);
+        this.stamina = new IntValueHolder(0, BIG_POSITIVE, DEFAULT_STAMINA);
+        this.bonus = new IntValueHolder(Constants.BIG_NEGATIVE, BIG_POSITIVE, 0);
     }
 
     @Override
@@ -36,8 +38,14 @@ public class DFEditableFighter extends Fighter {
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
+    public View createView(LayoutInflater inflater, ViewGroup root) {
+        View newView = inflater.inflate(R.layout.list_item_combat_fighter, root, false);
+        initView(newView, false);
+        AnimatedNumber animSkill = newView.findViewById(R.id.animatedNumberSkill);
+        animSkill.init(getSkill(), WatchType.VALUE);
+        AnimatedNumber animStamina = newView.findViewById(R.id.animatedNumberStamina);
+        animStamina.init(getStamina(), WatchType.VALUE);
+        return newView;
     }
 
     @Override
@@ -56,16 +64,27 @@ public class DFEditableFighter extends Fighter {
     }
 
     @Override
-    public View createView(LayoutInflater inflater, ViewGroup root) {
-        View newView = inflater.inflate(R.layout.list_item_combat_fighter, root, false);
-        initView(newView, false);
-        AnimatedNumber animSkill = newView.findViewById(R.id.animatedNumberSkill);
-        animSkill.init(skill, WatchType.VALUE);
-        AnimatedNumber animStamina = newView.findViewById(R.id.animatedNumberStamina);
-        animStamina.init(stamina, WatchType.VALUE);
-        return newView;
+    public void setEditableName(String name) {
+        this.name = name;
     }
 
     @Override
-    public void kill() {}
+    public int getEditableValue1NameResId() {
+        return R.string.skill;
+    }
+
+    @Override
+    public IntValueHolder getEditableValue1() {
+        return getSkill();
+    }
+
+    @Override
+    public int getEditableValue2NameResId() {
+        return R.string.stamina;
+    }
+
+    @Override
+    public IntValueHolder getEditableValue2() {
+        return getStamina();
+    }
 }

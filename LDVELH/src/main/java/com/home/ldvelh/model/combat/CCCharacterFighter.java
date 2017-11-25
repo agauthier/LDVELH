@@ -5,9 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.home.ldvelh.R;
+import com.home.ldvelh.commons.GameObservable;
 import com.home.ldvelh.commons.Utils;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.value.IntValueHolder;
+
+import static com.home.ldvelh.model.combat.CCCondition.DEAD;
 
 public class CCCharacterFighter extends Fighter {
     private static final long serialVersionUID = 6119836001865605344L;
@@ -22,22 +25,17 @@ public class CCCharacterFighter extends Fighter {
     }
 
     @Override
-    public void setName(String name) {}
-
-    @Override
-    public IntValueHolder getSkill() {
-        return Property.STRENGTH.get();
+    public GameObservable getLifeObservable() {
+        return Property.CONDITION.get();
     }
 
     @Override
-    public IntValueHolder getStamina() {
-        return Property.PROTECTION.get();
+    public boolean isDead() {
+        return Property.CONDITION.get().getValue() == DEAD;
     }
 
     @Override
-    public IntValueHolder getBonus() {
-        return null;
-    }
+    public void kill() {}
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup root) {
@@ -46,6 +44,11 @@ public class CCCharacterFighter extends Fighter {
         return newView;
     }
 
-    @Override
-    public void kill() {}
+    public IntValueHolder getStrength() {
+        return Property.STRENGTH.get();
+    }
+
+    public IntValueHolder getProtection() {
+        return Property.PROTECTION.get();
+    }
 }

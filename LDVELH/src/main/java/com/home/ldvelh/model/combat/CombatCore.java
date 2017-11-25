@@ -12,17 +12,17 @@ import java.util.List;
 
 public class CombatCore {
 
-    public static List<Fighter> getAllRightFighters() {
-        List<Fighter> fighters = new ArrayList<>();
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    public static <T extends Fighter> List<T> getAllRightFighters() {
+        List<T> fighters = new ArrayList<>();
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             fighters.addAll(row.getTeamRight());
         }
         return fighters;
     }
 
-    public static Fighter findFighterByName(String name) {
-        Fighter fighter = null;
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    public static <T extends Fighter> T findFighterByName(String name) {
+        T fighter = null;
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             fighter = row.findFighterByName(name);
             if (fighter != null) {
                 break;
@@ -31,14 +31,14 @@ public class CombatCore {
         return fighter;
     }
 
-    public static void kill(Fighter fighter) {
+    public static <T extends Fighter> void kill(T fighter) {
         fighter.kill();
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             Team team = row.kill(fighter);
             if (team != null) {
                 if (!row.hasMembers(team) && row.hasOpponents(team)) {
-                    List<Fighter> newFighters = getNextOpponentlessTeam(team);
-                    for (Fighter newFighter : newFighters) {
+                    List<T> newFighters = getNextOpponentlessTeam(team);
+                    for (T newFighter : newFighters) {
                         row.add(newFighter, team);
                     }
                 }
@@ -98,14 +98,14 @@ public class CombatCore {
         updateAllObservers(true);
     }
 
-    static void addNewFighter(Fighter fighter, Team team) {
-        CombatRow combatRow = getNewCombatRow(team);
+    static <T extends Fighter> void addNewFighter(T fighter, Team team) {
+        CombatRow<T> combatRow = getNewCombatRow(team);
         FighterObserver.add(fighter);
         combatRow.add(fighter, team);
         touch();
     }
 
-    static void moveFighter(Fighter fighter, CombatRow dstRow, Team dstTeam) {
+    static <T extends Fighter> void moveFighter(T fighter, CombatRow<T> dstRow, Team dstTeam) {
         findRow(fighter).remove(fighter);
         dstRow.add(fighter, dstTeam);
         touch();
@@ -116,9 +116,9 @@ public class CombatCore {
         Property.FIGHTER_GRID.get().touch();
     }
 
-    private static CombatRow findRow(Fighter fighter) {
-        CombatRow foundRow = null;
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    private static <T extends Fighter> CombatRow<T> findRow(T fighter) {
+        CombatRow<T> foundRow = null;
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             if (row.hasFighter(fighter)) {
                 foundRow = row;
             }
@@ -126,15 +126,16 @@ public class CombatCore {
         return foundRow;
     }
 
-    private static CombatRow getNewCombatRow(Team team) {
-        CombatRow combatRow = null;
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    private static <T extends Fighter> CombatRow<T> getNewCombatRow(Team team) {
+        CombatRow<T> combatRow = null;
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             if (!row.hasMembers(team)) {
                 combatRow = row;
                 break;
             }
         }
         if (combatRow == null) {
+            //noinspection unchecked
             combatRow = Property.FIGHTER_GRID.get().add(new ItemAndQuantity(StringUtils.EMPTY, 1));
         }
         return combatRow;
@@ -156,9 +157,9 @@ public class CombatCore {
         }
     }
 
-    private static List<Fighter> getNextOpponentlessTeam(Team team) {
-        List<Fighter> fighters = new ArrayList<>();
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    private static <T extends Fighter> List<T> getNextOpponentlessTeam(Team team) {
+        List<T> fighters = new ArrayList<>();
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             if (row.hasMembers(team) && !row.hasOpponents(team)) {
                 fighters.addAll(row.getFighters(team));
                 row.clear();

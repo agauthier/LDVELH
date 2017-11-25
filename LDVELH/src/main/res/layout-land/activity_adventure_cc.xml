@@ -35,14 +35,14 @@
                 android:orientation="vertical">
 
                 <com.home.ldvelh.ui.widget.CCAttribute
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     custom:attributeName="@string/cc_strength"
                     custom:propertyName="STRENGTH"
                     custom:withPicker="false" />
 
                 <com.home.ldvelh.ui.widget.CCAttribute
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     custom:attributeName="@string/cc_protection"
                     custom:propertyName="PROTECTION"
@@ -58,13 +58,13 @@
                 android:orientation="vertical">
 
                 <com.home.ldvelh.ui.widget.CCAttribute
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     custom:attributeName="@string/cc_honor"
                     custom:propertyName="HONOR" />
 
                 <com.home.ldvelh.ui.widget.CCAttribute
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     custom:attributeName="@string/cc_shame"
                     custom:propertyName="SHAME" />
@@ -79,13 +79,13 @@
                 android:orientation="vertical">
 
                 <com.home.ldvelh.ui.widget.CCAttribute
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     custom:attributeName="@string/cc_endurance"
                     custom:propertyName="ENDURANCE" />
 
                 <com.home.ldvelh.ui.widget.CCAttribute
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     custom:attributeName="@string/cc_intelligence"
                     custom:propertyName="INTELLIGENCE" />

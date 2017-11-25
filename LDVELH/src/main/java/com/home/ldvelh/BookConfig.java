@@ -372,6 +372,7 @@ public abstract class BookConfig {
 
     private static List<PageTag> getCCCombatTags() {
         List<PageTag> combatButtons = new ArrayList<>();
+        combatButtons.add(PageTag.COMBAT_BUTTON_CC_HELP);
         combatButtons.add(PageTag.COMBAT_BUTTON_CC_KILL);
         combatButtons.add(PageTag.COMBAT_BUTTON_CC_SURRENDER);
         combatButtons.add(PageTag.COMBAT_BUTTON_ESCAPE);

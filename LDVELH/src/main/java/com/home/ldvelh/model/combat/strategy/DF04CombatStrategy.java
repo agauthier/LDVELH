@@ -1,21 +1,22 @@
 package com.home.ldvelh.model.combat.strategy;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
 import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.model.Die;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.character.DF04Character;
 import com.home.ldvelh.model.combat.CombatCore;
 import com.home.ldvelh.model.combat.CombatRow;
-import com.home.ldvelh.model.combat.Fighter;
+import com.home.ldvelh.model.combat.DFFighter;
 
-public enum DF04CombatStrategy implements CombatStrategy {
-    INSTANCE;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+public class DF04CombatStrategy<T extends DFFighter> implements CombatStrategy {
+
+    public static final DF04CombatStrategy INSTANCE = new DF04CombatStrategy();
 
     private static final int REGULAR_WOUND = -2;
     private static final int GREAT_WOUND = -4;
@@ -23,12 +24,14 @@ public enum DF04CombatStrategy implements CombatStrategy {
     private static final int TWO_DICE_MAX_ROLL = 12;
     private static final Random random = new Random();
 
+    private DF04CombatStrategy() {}
+
     @Override
     public void escape() {}
 
     @Override
     public void assault() {
-        Map<Fighter, Integer> fighterDamage = new HashMap<>();
+        Map<T, Integer> fighterDamage = new HashMap<>();
         if (((DF04Character) Property.CHARACTER.get()).isInSpaceFight()) {
             spaceFight(fighterDamage);
         } else {
@@ -47,26 +50,26 @@ public enum DF04CombatStrategy implements CombatStrategy {
         applyDamage(fighterDamage);
     }
 
-    private void spaceFight(Map<Fighter, Integer> fighterDamage) {
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    private void spaceFight(Map<T, Integer> fighterDamage) {
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
                 rowAssaultInSpace(row, fighterDamage);
             }
         }
     }
 
-    private void rowAssaultInSpace(CombatRow row, Map<Fighter, Integer> fighterDamage) {
-        Fighter leftShip = row.getTeamLeft().get(0);
+    private void rowAssaultInSpace(CombatRow<T> row, Map<T, Integer> fighterDamage) {
+        T leftShip = row.getTeamLeft().get(0);
         shipFires(row, fighterDamage, leftShip);
-        Fighter rightShip = row.getTeamRight().get(0);
+        T rightShip = row.getTeamRight().get(0);
         if (isAlive(rightShip, fighterDamage)) {
             shipFires(row, fighterDamage, rightShip);
         }
     }
 
-    private void shipFires(CombatRow row, Map<Fighter, Integer> fighterDamage, Fighter attackingShip) {
+    private void shipFires(CombatRow<T> row, Map<T, Integer> fighterDamage, T attackingShip) {
         if (Die.SIX_FACES.roll(2) < attackingShip.getSkill().getValue() + attackingShip.getBonus().getValue()) {
-            Fighter facingShip = row.getFighters(row.getTeam(attackingShip).facingTeam()).get(0);
+            T facingShip = row.getFighters(row.getTeam(attackingShip).facingTeam()).get(0);
             int damageRoll = Die.SIX_FACES.roll(2);
             if (damageRoll == TWO_DICE_MAX_ROLL) {
                 addFighterDamage(fighterDamage, facingShip, WORST_WOUND);
@@ -78,20 +81,20 @@ public enum DF04CombatStrategy implements CombatStrategy {
         }
     }
 
-    private void combatNoPhaser(Map<Fighter, Integer> fighterDamage) {
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    private void combatNoPhaser(Map<T, Integer> fighterDamage) {
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
                 rowAssaultNoPhaser(row, fighterDamage);
             }
         }
     }
 
-    private void rowAssaultNoPhaser(CombatRow row, Map<Fighter, Integer> fighterDamage) {
+    private void rowAssaultNoPhaser(CombatRow<T> row, Map<T, Integer> fighterDamage) {
         boolean firstLeftFighter = true;
-        for (Fighter leftFighter : row.getTeamLeft()) {
+        for (T leftFighter : row.getTeamLeft()) {
             int leftFighterAttackForce = leftFighter.getSkill().getValue() + Die.SIX_FACES.roll(2) + leftFighter.getBonus().getValue();
             boolean firstRightFighter = true;
-            for (Fighter rightFighter : row.getTeamRight()) {
+            for (T rightFighter : row.getTeamRight()) {
                 int rightFighterAttackForce = rightFighter.getSkill().getValue() + Die.SIX_FACES.roll(2) + rightFighter.getBonus().getValue();
                 if (firstRightFighter && leftFighterAttackForce > rightFighterAttackForce) {
                     addFighterDamage(fighterDamage, rightFighter, REGULAR_WOUND);
@@ -104,8 +107,8 @@ public enum DF04CombatStrategy implements CombatStrategy {
         }
     }
 
-    private void combatWithPhaser(Map<Fighter, Integer> fighterDamage) {
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    private void combatWithPhaser(Map<T, Integer> fighterDamage) {
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
                 leftTeamAssault(row, fighterDamage);
             }
@@ -113,9 +116,9 @@ public enum DF04CombatStrategy implements CombatStrategy {
         rightTeamAssault(fighterDamage);
     }
 
-    private void leftTeamAssault(CombatRow row, Map<Fighter, Integer> fighterDamage) {
-        for (Fighter leftFighter : row.getTeamLeft()) {
-            Fighter rightFighter = row.getTeamRight().get(0);
+    private void leftTeamAssault(CombatRow<T> row, Map<T, Integer> fighterDamage) {
+        for (T leftFighter : row.getTeamLeft()) {
+            T rightFighter = row.getTeamRight().get(0);
             if (isAlive(rightFighter, fighterDamage)) {
                 int roll = Die.SIX_FACES.roll(2);
                 if (roll < leftFighter.getSkill().getValue() + leftFighter.getBonus().getValue()) {
@@ -125,12 +128,12 @@ public enum DF04CombatStrategy implements CombatStrategy {
         }
     }
 
-    private void rightTeamAssault(Map<Fighter, Integer> fighterDamage) {
-        for (Fighter rightFighter : CombatCore.getAllRightFighters()) {
+    private void rightTeamAssault(Map<T, Integer> fighterDamage) {
+        for (T rightFighter : CombatCore.<T>getAllRightFighters()) {
             if (isAlive(rightFighter, fighterDamage)) {
-                List<Fighter> attackableLeftFighters = getAttackableLeftFighters(fighterDamage);
+                List<T> attackableLeftFighters = getAttackableLeftFighters(fighterDamage);
                 if (!attackableLeftFighters.isEmpty()) {
-                    Fighter randomLeftFighter = attackableLeftFighters.get(random.nextInt(attackableLeftFighters.size()));
+                    T randomLeftFighter = attackableLeftFighters.get(random.nextInt(attackableLeftFighters.size()));
                     int roll = Die.SIX_FACES.roll(2);
                     if (roll < rightFighter.getSkill().getValue() + rightFighter.getBonus().getValue()) {
                         addFighterDamage(fighterDamage, randomLeftFighter, Constants.BIG_NEGATIVE);
@@ -140,12 +143,12 @@ public enum DF04CombatStrategy implements CombatStrategy {
         }
     }
 
-    private int getFighterDamage(Map<Fighter, Integer> fighterDamage, Fighter fighter) {
+    private int getFighterDamage(Map<T, Integer> fighterDamage, T fighter) {
         Integer damage = fighterDamage.get(fighter);
         return (damage == null) ? 0 : damage;
     }
 
-    private void addFighterDamage(Map<Fighter, Integer> fighterDamage, Fighter fighter, int damage) {
+    private void addFighterDamage(Map<T, Integer> fighterDamage, T fighter, int damage) {
         Integer totalDamage = fighterDamage.get(fighter);
         if (totalDamage == null) {
             fighterDamage.put(fighter, damage);
@@ -154,15 +157,15 @@ public enum DF04CombatStrategy implements CombatStrategy {
         }
     }
 
-    private boolean isAlive(Fighter fighter, Map<Fighter, Integer> fighterDamage) {
+    private boolean isAlive(T fighter, Map<T, Integer> fighterDamage) {
         return fighter.getStamina().getValue() + getFighterDamage(fighterDamage, fighter) > 0;
     }
 
-    private List<Fighter> getAttackableLeftFighters(Map<Fighter, Integer> fighterDamage) {
-        List<Fighter> leftFighters = new ArrayList<>();
-        for (CombatRow row : Property.FIGHTER_GRID.get()) {
+    private List<T> getAttackableLeftFighters(Map<T, Integer> fighterDamage) {
+        List<T> leftFighters = new ArrayList<>();
+        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
-                for (Fighter leftFighter : row.getTeamLeft()) {
+                for (T leftFighter : row.getTeamLeft()) {
                     if (isAlive(leftFighter, fighterDamage)) {
                         leftFighters.add(leftFighter);
                     }
@@ -172,8 +175,8 @@ public enum DF04CombatStrategy implements CombatStrategy {
         return leftFighters;
     }
 
-    private void applyDamage(Map<Fighter, Integer> fighterDamage) {
-        for (Fighter fighter : fighterDamage.keySet()) {
+    private void applyDamage(Map<T, Integer> fighterDamage) {
+        for (T fighter : fighterDamage.keySet()) {
             fighter.getStamina().addWithFeedback(fighterDamage.get(fighter));
         }
     }

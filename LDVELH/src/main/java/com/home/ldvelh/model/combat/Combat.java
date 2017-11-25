@@ -4,45 +4,25 @@ import android.widget.ImageButton;
 
 import com.home.ldvelh.model.combat.CombatRow.Team;
 
-public class Combat {
+public interface Combat {
 
-    public void init() {
-        CombatCore.init();
-    }
+    void init();
 
-    public void reset() {
-        CombatCore.reset();
-    }
+    void reset();
 
-    public void addNewFighter(Fighter fighter, Team team) {
-        CombatCore.addNewFighter(fighter, team);
-    }
+    <T extends EditableFighter> T createEditableFighter();
 
-    @SuppressWarnings("unused")
-    public boolean canAssault() {
-        return CombatCore.canAssault();
-    }
+    void addNewFighter(Fighter fighter, Team team);
 
-    @SuppressWarnings("unused")
-    public void assault(ImageButton button) {
-        CombatCore.assault();
-    }
+    boolean canAssault();
 
-    @SuppressWarnings("unused")
-    public boolean canEscape() {
-        return CombatCore.canEscape();
-    }
+    void assault(ImageButton button);
 
-    @SuppressWarnings("unused")
-    public void escape(ImageButton button) {
-        CombatCore.escape();
-    }
+    boolean canEscape();
 
-    public void addAllObservers() {
-        CombatCore.addAllObservers();
-    }
+    void escape(ImageButton button);
 
-    public void removeAllObservers() {
-        CombatCore.removeAllObservers();
-    }
+    void addAllObservers();
+
+    void removeAllObservers();
 }

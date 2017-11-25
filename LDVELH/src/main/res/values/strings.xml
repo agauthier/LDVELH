@@ -43,7 +43,7 @@
     <string name="tab_title_map">Carte</string>
     <string name="tab_title_spells">Formules magiques</string>
     <string name="tab_title_utilities">Outils</string>
-    <string name="fighter_name">Nom du combattant</string>
+    <string name="fighter_name">Nom</string>
     <string name="add_new_item">Nouvel Item</string>
     <string name="add_new_consumable_item">Nouvel Item Consommable</string>
     <string name="add_new_note">Nouvelle Note</string>
@@ -125,7 +125,8 @@
     <string name="cc_shame">Honte</string>
     <string name="cc_endurance">Endurance</string>
     <string name="cc_intelligence">Intelligence</string>
-    <string name="cc_value_bonus_total">%1$s + %2$s = %3$s</string>
+    <string name="cc_value">%1$s</string>
+    <string name="cc_value_bonus">%1$s + %2$s</string>
     <string name="cc_wounds">Blessures</string>
     <string name="cc_unscathed">Indemne</string>
     <string name="cc_wounded">Blessé</string>
