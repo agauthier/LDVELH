@@ -31,11 +31,6 @@ class DF04ShipFighter extends DFFighter implements EditableFighter {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public View createView(LayoutInflater inflater, ViewGroup root) {
         View newView = inflater.inflate(R.layout.list_item_combat_df04_ship_fighter, root, false);
         initView(newView, false);
@@ -62,7 +57,12 @@ class DF04ShipFighter extends DFFighter implements EditableFighter {
     }
 
     @Override
-    public void setEditableName(String name) {
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
         this.name = name;
     }
 

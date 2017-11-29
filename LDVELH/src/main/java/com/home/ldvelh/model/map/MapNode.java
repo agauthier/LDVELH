@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.home.ldvelh.ui.dialog.Namable;
 import com.home.ldvelh.ui.widget.map.MapContext;
 
 import android.graphics.Canvas;
@@ -16,7 +17,7 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-class MapNode implements Serializable {
+public class MapNode implements Namable, Serializable {
     private static final long serialVersionUID = -4717119492007126382L;
 
     private enum AnchorType {
@@ -41,7 +42,7 @@ class MapNode implements Serializable {
             return controlPoint;
         }
 
-        public void set(float x, float y) {
+        void set(float x, float y) {
             point.set(x, y);
             switch (this.type) {
                 case LEFT:
@@ -79,7 +80,7 @@ class MapNode implements Serializable {
         private Anchor anchor1;
         private Anchor anchor2;
 
-        public AnchorPair set(Anchor anchor1, Anchor anchor2) {
+        AnchorPair set(Anchor anchor1, Anchor anchor2) {
             this.anchor1 = anchor1;
             this.anchor2 = anchor2;
             return this;
@@ -111,12 +112,14 @@ class MapNode implements Serializable {
         this.centerY = center.y;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
-    void rename(String newName) {
-        name = newName.trim();
+    @Override
+    public void setName(String name) {
+        this.name = name.trim();
         rectValid = false;
     }
 

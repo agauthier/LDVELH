@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -43,7 +45,7 @@ public class CCEquipmentEditor extends Store<CCEquipment> {
 
     @Override
     public void dismiss() {
-        Utils.hideKeyboard(findViewById(R.id.itemName));
+        Utils.hideKeyboard(findViewById(R.id.name));
         super.dismiss();
     }
 
@@ -64,7 +66,7 @@ public class CCEquipmentEditor extends Store<CCEquipment> {
 
     public void initView() {
         super.initView();
-        ((TextView) findViewById(R.id.itemName)).setHint(R.string.cc_equipment_name_caption);
+        ((TextView) findViewById(R.id.name)).setHint(R.string.cc_equipment_name_caption);
         ((TextView) findViewById(R.id.value1Name)).setText(R.string.cc_strength);
         ((TextView) findViewById(R.id.value2Name)).setText(R.string.cc_protection);
         ((CustomNumberPicker) findViewById(R.id.numberPickerValue1)).init(strength, WatchType.VALUE);
@@ -72,7 +74,22 @@ public class CCEquipmentEditor extends Store<CCEquipment> {
     }
 
     private void initEquipmentNameTextEdit() {
-        EditText nameEditText = findViewById(R.id.itemName);
+        EditText nameEditText = findViewById(R.id.name);
+        nameEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    switch (keyCode) {
+                        case KeyEvent.KEYCODE_ENTER:
+                            completeAcquisition();
+                            return true;
+                        default:
+                            break;
+                    }
+                }
+                return false;
+            }
+        });
         nameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {}

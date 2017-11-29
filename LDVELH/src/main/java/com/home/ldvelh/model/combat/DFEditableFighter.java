@@ -33,11 +33,6 @@ public class DFEditableFighter extends DFFighter implements EditableFighter {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public View createView(LayoutInflater inflater, ViewGroup root) {
         View newView = inflater.inflate(R.layout.list_item_combat_fighter, root, false);
         initView(newView, false);
@@ -64,7 +59,12 @@ public class DFEditableFighter extends DFFighter implements EditableFighter {
     }
 
     @Override
-    public void setEditableName(String name) {
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
         this.name = name;
     }
 

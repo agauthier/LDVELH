@@ -49,7 +49,7 @@ public class MapContext {
 
 	private MapContext() {}
 
-	public static void reset() {
+	static void reset() {
 		offsetX = 0f;
 		offsetY = 0f;
 		scale = 1f;

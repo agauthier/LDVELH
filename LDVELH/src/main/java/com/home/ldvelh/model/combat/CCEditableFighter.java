@@ -41,11 +41,6 @@ public class CCEditableFighter extends Fighter implements EditableFighter {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public GameObservable getLifeObservable() {
         return condition;
     }
@@ -85,7 +80,12 @@ public class CCEditableFighter extends Fighter implements EditableFighter {
     }
 
     @Override
-    public void setEditableName(String name) {
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
         this.name = name;
     }
 

@@ -53,13 +53,6 @@ public class Utils {
         fos.close();
     }
 
-    public static void show(View view) {
-        keyboardShowing = true;
-        InputMethodManager imm = (InputMethodManager) AbstractGameActivity.getCurrentActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        //noinspection ConstantConditions
-        imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
-    }
-
     public static void hideKeyboard(View attachedView) {
         InputMethodManager inputMethodManager = (InputMethodManager) AbstractGameActivity.getCurrentActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (inputMethodManager != null) {

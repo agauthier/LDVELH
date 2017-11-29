@@ -31,7 +31,7 @@ public abstract class AdventureDialog extends Dialog {
 
     @Override
     public void onBackPressed() {
-        cancelCurrentDialog();
+        dismiss();
     }
 
     public boolean isFulfilled() {
@@ -59,7 +59,7 @@ public abstract class AdventureDialog extends Dialog {
             cancelButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    cancelCurrentDialog();
+                    dismiss();
                 }
             });
         }

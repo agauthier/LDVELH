@@ -1,12 +1,12 @@
 package com.home.ldvelh.ui.widget.map;
 
-import com.home.ldvelh.model.Property;
-import com.home.ldvelh.model.map.AdventureMap;
-import com.home.ldvelh.ui.widget.map.MapView.TouchState;
-
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.view.View;
+
+import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.map.AdventureMap;
+import com.home.ldvelh.ui.widget.map.MapView.TouchState;
 
 public abstract class MapOps {
 
@@ -21,18 +21,20 @@ public abstract class MapOps {
         AdventureMap map = Property.MAP.get().getValue();
         switch (state) {
             case NO_TOUCH:
-                break;
             case TOUCHED_NO_NODE:
-                break;
             case TOUCHED_NODE:
+            case START_ZOOMING:
                 break;
-            case PANNING:
+            case START_DRAGGING:
+            case SET_SELECTION:
+                map.setEipNode(newP1);
+                mapView.invalidate();
+                break;
+            case PAN:
                 MapContext.offset(newP1);
                 mapView.invalidate();
                 break;
-            case START_ZOOMING:
-                break;
-            case ZOOMING:
+            case ZOOM:
                 if (PointF.length(newP2.x - newP1.x, newP2.y - newP1.y) >= MapContext.MIN_PINCH_DISTANCE) {
                     MapContext.zoom(newP1, newP2);
                     mapView.invalidate();
@@ -41,36 +43,22 @@ public abstract class MapOps {
             case NEW_NODE:
                 map.createNode(newP1);
                 mapView.invalidate();
-                mapView.showKeyboard();
+                mapView.getNodeName(map.getEipNode());
                 break;
-            case START_DRAGGING:
-                map.setEipNode(newP1);
-                mapView.invalidate();
-                break;
-            case DRAGGING:
+            case DRAG:
                 map.dragNode(newP1);
                 mapView.invalidate();
                 break;
-            case TOGGLING_SELECTION:
-                map.toggleEipNode(newP1);
-                mapView.invalidate();
-                break;
-            case CONNECTING:
+            case CONNECT:
                 map.connectToEipNode(newP1);
                 mapView.invalidate();
+                break;
+            case EDIT_NAME:
+                mapView.getNodeName(map.findNode(newP1));
                 break;
         }
         lastP1.set(newP1);
         lastP2.set(newP2);
-    }
-
-    static void renameEipNode(View view, String newName) {
-        Property.MAP.get().getValue().renameEipNode(newName);
-        view.invalidate();
-    }
-
-    static void clearInvalidNodes() {
-        Property.MAP.get().getValue().clearInvalidNodes();
     }
 
     public static boolean canFitMapToCanvas() {
@@ -100,7 +88,7 @@ public abstract class MapOps {
         return lastP1;
     }
 
-    public static PointF getCanvasLastP2() {
+    static PointF getCanvasLastP2() {
         return lastP2;
     }
 }

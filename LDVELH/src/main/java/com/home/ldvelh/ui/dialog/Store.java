@@ -55,11 +55,7 @@ public abstract class Store<T extends ListItem> extends AdventureDialog implemen
 		okButton.setEnabled(okButtonEnabled(currency));
 		okButton.setOnClickListener(new View.OnClickListener() {
 			@Override public void onClick(View v) {
-				srcCurrency.addWithFeedback(currency.getValue() - srcCurrency.getValue());
-				acquireItems();
-				configurePickerObservers(DisplayMode.HIDE);
-				fulfill();
-				dismiss();
+				completeAcquisition();
 			}
 		});
 	}
@@ -91,6 +87,14 @@ public abstract class Store<T extends ListItem> extends AdventureDialog implemen
 
 	boolean okButtonEnabled(IntValueHolder currency) {
 		return true;
+	}
+
+	void completeAcquisition() {
+		srcCurrency.addWithFeedback(currency.getValue() - srcCurrency.getValue());
+		acquireItems();
+		configurePickerObservers(DisplayMode.HIDE);
+		fulfill();
+		dismiss();
 	}
 
 	private void initPickers(int remainingCurrency) {
