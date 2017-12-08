@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/pencil_border"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="0dp"
@@ -51,13 +51,25 @@
         android:background="@drawable/divider_brown_opaque"
         android:orientation="horizontal" />
 
-    <com.home.ldvelh.ui.widget.list.CCEquipmentList
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        custom:listPropertyName="CC_EQUIPMENT_LIST"
-        custom:newConsumableItemVisible="false"
-        custom:newItemVisible="false"
-        custom:rowLayout="list_item_cc_equipment"
-        custom:storeClass="com.home.ldvelh.ui.dialog.CCEquipmentEditor" />
+        android:layout_height="match_parent">
 
+        <com.home.ldvelh.ui.widget.list.CCEquipmentList
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            custom:listPropertyName="CC_EQUIPMENT_LIST"
+            custom:newConsumableItemVisible="false"
+            custom:newItemVisible="false"
+            custom:rowLayout="list_item_cc_equipment" />
+
+        <ImageButton
+            android:id="@+id/addEquipment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:background="@drawable/small_button_selector"
+            android:contentDescription="@string/lorem_ipsum"
+            android:src="@drawable/btn_plus_medium" />
+    </RelativeLayout>
 </LinearLayout>

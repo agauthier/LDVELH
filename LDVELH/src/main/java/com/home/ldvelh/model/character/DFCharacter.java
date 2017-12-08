@@ -9,7 +9,6 @@ import com.home.ldvelh.model.combat.strategy.CombatStrategy;
 import com.home.ldvelh.model.combat.strategy.DFCombatStrategy;
 import com.home.ldvelh.model.item.Effect;
 import com.home.ldvelh.model.item.EffectTarget;
-import com.home.ldvelh.model.item.ItemAndQuantity;
 import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.ui.activity.AdventureActivity;
 
@@ -27,7 +26,7 @@ public class DFCharacter extends Character {
     private final IntValueHolder attackBonus;
     private final IntValueHolder luckPenalty;
 
-    public DFCharacter() {
+    DFCharacter() {
         int maxSkill = 6 + Die.SIX_FACES.roll();
         skill = new IntValueHolder(0, maxSkill, maxSkill);
         int maxStamina = 12 + Die.SIX_FACES.roll(2);
@@ -74,8 +73,9 @@ public class DFCharacter extends Character {
     }
 
     @SuppressWarnings("unused") public void addConsumableFood(String name, Integer quantity) {
-        ItemAndQuantity itemAndQty = new ItemAndQuantity(name, quantity);
-        Property.ITEM_LIST.get().add(itemAndQty, Collections.singletonList(new Effect(EffectTarget.STAMINA, 4)));
+        for (int i = 0; i < quantity; i++) {
+            Property.ITEM_LIST.get().addNewItem(name, Collections.singletonList(new Effect(EffectTarget.STAMINA, 4)));
+        }
     }
 
     @Override public void initCharacterValues() {

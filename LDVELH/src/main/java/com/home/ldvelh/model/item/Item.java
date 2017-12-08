@@ -1,93 +1,84 @@
 package com.home.ldvelh.model.item;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.home.ldvelh.model.Namable;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.home.ldvelh.R;
-import com.home.ldvelh.model.value.ListValueHolder;
+import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import android.view.View;
-import android.widget.TextView;
+public abstract class Item implements Namable, Serializable {
+    private static final long serialVersionUID = -2053819554209745912L;
 
-public abstract class Item implements ListItem {
-	private static final long serialVersionUID = -7145542173208649480L;
+    private String name;
+    private final List<Effect> effects = new ArrayList<>();
+    private Object data;
 
-	private final String name;
-	private int quantity;
-	private final List<Effect> effects = new ArrayList<>();
-	private final Object data;
-	private final ListValueHolder<? extends ListItem> list;
+    protected Item() {}
 
-	protected Item() {
-		this.name = StringUtils.EMPTY;
-		this.quantity = 0;
-		this.data = null;
-		this.list = null;
-	}
+    protected Item(String name, List<Effect> effects, Object data) {
+        this.name = name;
+        this.effects.addAll(effects);
+        this.data = data;
+    }
 
-	protected <T extends ListItem> Item(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<T> list) {
-		this.name = itemAndQty.getName();
-		this.quantity = itemAndQty.getQuantity();
-		this.effects.addAll(effects);
-		this.data = data;
-		this.list = list;
-	}
+    public static <T extends Item> T create(Class<T> itemClass) {
+        return create(itemClass, StringUtils.EMPTY, Collections.<Effect>emptyList(), null);
+    }
 
-	@Override public String getName() {
-		return name;
-	}
+    public static <T extends Item> T create(Class<T> itemClass, String name, List<Effect> effects, Object data) {
+        try {
+            Constructor<T> constructor = itemClass.getDeclaredConstructor(String.class, List.class, Object.class);
+            constructor.setAccessible(true);
+            return constructor.newInstance(name, effects, data);
+        } catch (Exception e) {
+            throw new IllegalStateException();
+        }
+    }
 
-	@Override public String getNameWithQty() {
-		String fullName = name;
-		if (quantity > 1) {
-			fullName += ItemAndQuantity.QTY_SEPARATOR + " " + quantity;
-		}
-		return fullName;
-	}
+    public abstract <T extends Item> T copy();
 
-	@Override public int getQuantity() {
-		return quantity;
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override public List<Effect> getEffects() {
-		return effects;
-	}
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	@Override public Object getData() {
-		return data;
-	}
+    @Override
+    public boolean hasName(String name) {
+        return this.name.equals(name);
+    }
 
-	@Override public <T extends ListItem> ListValueHolder<T> getList() {
-		@SuppressWarnings("unchecked") ListValueHolder<T> castedList = (ListValueHolder<T>) list;
-		return castedList;
-	}
+    public boolean hasEffects() {
+        return effects.size() > 0;
+    }
 
-	@Override public void increment() {
-		quantity += 1;
-	}
+    public void applyEffects() {
+        for (Effect effect : effects) {
+            effect.apply();
+        }
+    }
 
-	@Override public void decrement() {
-		quantity -= 1;
-		quantity = (quantity < 0) ? 0 : quantity;
-	}
+    public void applyEffectsTwice() {
+        for (Effect effect : effects) {
+            effect.applyTwice();
+        }
+    }
 
-	@Override public void add(int amount) {
-		quantity += amount;
-	}
+    public Object getData() {
+        return data;
+    }
 
-	@Override public void subtract(int amount) {
-		quantity -= amount;
-		quantity = (quantity < 0) ? 0 : quantity;
-	}
-
-	@Override public boolean hasName(String name) {
-		return this.name.equals(name);
-	}
-
-	@Override public void initView(View row) {
-		TextView textView = row.findViewById(R.id.itemName);
-		textView.setText(getNameWithQty());
-	}
+    protected void populate(Item item) {
+        item.name = name;
+        item.effects.addAll(effects);
+        item.data = data;
+    }
 }

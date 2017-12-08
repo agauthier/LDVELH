@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
+import com.home.ldvelh.model.Namable;
 
 public class NameEditor<T extends Namable> extends AdventureDialog {
 
@@ -43,6 +44,10 @@ public class NameEditor<T extends Namable> extends AdventureDialog {
         super.dismiss();
     }
 
+    public T getNamable() {
+        return namable;
+    }
+
     @Override
     void initView() {
         super.initView();
@@ -55,8 +60,10 @@ public class NameEditor<T extends Namable> extends AdventureDialog {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_ENTER:
-                            finishEditing(nameEditText);
-                            return true;
+                            if (isOkButtonEnabled(nameEditText.getText().toString())) {
+                                finishEditing(nameEditText);
+                                return true;
+                            }
                         default:
                             break;
                     }
@@ -85,10 +92,6 @@ public class NameEditor<T extends Namable> extends AdventureDialog {
                 finishEditing(nameEditText);
             }
         });
-    }
-
-    T getNamable() {
-        return namable;
     }
 
     boolean isOkButtonEnabled(String name) {

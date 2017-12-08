@@ -1,18 +1,17 @@
 package com.home.ldvelh.ui.dialog;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import android.content.Context;
+import android.util.Pair;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.item.Effect;
 import com.home.ldvelh.model.item.EffectTarget;
-import com.home.ldvelh.model.item.ItemAndQuantity;
 
-import android.content.Context;
-import android.util.Pair;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class PotionPicker extends MultipleChoiceDialog {
 
@@ -56,7 +55,8 @@ public class PotionPicker extends MultipleChoiceDialog {
 
     private void acquireItem(int potionResId, List<Effect> effects) {
         int doses = (getData() == null) ? 1 : (Integer) getData();
-        ItemAndQuantity itemAndQty = new ItemAndQuantity(Utils.getString(potionResId), doses);
-        Property.ITEM_LIST.get().add(itemAndQty, effects);
+        for (int i = 0; i < doses; i++) {
+            Property.ITEM_LIST.get().addNewItem(Utils.getString(potionResId), effects);
+        }
     }
 }

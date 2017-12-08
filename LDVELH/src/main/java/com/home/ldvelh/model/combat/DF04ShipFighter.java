@@ -67,6 +67,11 @@ class DF04ShipFighter extends DFFighter implements EditableFighter {
     }
 
     @Override
+    public boolean hasName(String name) {
+        return this.name.equals(name);
+    }
+
+    @Override
     public int getEditableValue1NameResId() {
         return R.string.df04_shipAttackForce;
     }

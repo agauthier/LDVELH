@@ -9,15 +9,12 @@ import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.model.item.Effect;
 import com.home.ldvelh.model.item.Item;
-import com.home.ldvelh.model.item.ItemAndQuantity;
-import com.home.ldvelh.model.item.ListItem;
-import com.home.ldvelh.model.value.ListValueHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CombatRow<T extends Fighter> extends Item {
-    private static final long serialVersionUID = 2553340940340277284L;
+    private static final long serialVersionUID = -775458784598086913L;
 
     public enum Team {
         LEFT {
@@ -40,34 +37,19 @@ public class CombatRow<T extends Fighter> extends Item {
     private final List<T> teamLeft = new ArrayList<>();
     private final List<T> teamRight = new ArrayList<>();
 
+    private CombatRow() { super(); }
+
     @SuppressWarnings("unused")
-    private CombatRow() {}
-
-    private <U extends ListItem> CombatRow(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<U> list) {
-        super(itemAndQty, effects, data, list);
+    private CombatRow(String name, List<Effect> effects, Object data) {
+        super(name, effects, data);
     }
 
     @Override
-    public <U extends ListItem> U create(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<U> list) {
-        @SuppressWarnings("unchecked") U newItem = (U) new CombatRow(itemAndQty, effects, data, list);
-        return newItem;
-    }
-
-    @Override
-    public void increment() {}
-
-    @Override
-    public void decrement() {}
-
-    @Override
-    public void add(int quantity) {}
-
-    @Override
-    public void subtract(int amount) {}
-
-    @Override
-    public boolean hasName(String name) {
-        return false;
+    public <U extends Item> U copy() {
+        CombatRow combatRow = new CombatRow();
+        populate(combatRow);
+        //noinspection unchecked
+        return (U) combatRow;
     }
 
     @Override
@@ -167,6 +149,14 @@ public class CombatRow<T extends Fighter> extends Item {
             }
         }
         return null;
+    }
+
+    @Override
+    protected void populate(Item item) {
+        @SuppressWarnings("unchecked") CombatRow<T> combatRow = (CombatRow<T>) item;
+        super.populate(combatRow);
+        teamLeft.addAll(combatRow.teamLeft);
+        teamRight.addAll(combatRow.teamRight);
     }
 
     private void populateView(View row, final Team team) {

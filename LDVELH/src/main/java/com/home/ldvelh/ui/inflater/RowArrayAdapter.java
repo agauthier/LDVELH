@@ -7,11 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-import com.home.ldvelh.model.item.ListItem;
+import com.home.ldvelh.model.item.Item;
+import com.home.ldvelh.ui.widget.list.CustomListItem;
 
 import java.util.List;
 
-public class RowArrayAdapter<T extends ListItem> extends ArrayAdapter<T> {
+public class RowArrayAdapter<T extends CustomListItem<? extends Item>> extends ArrayAdapter<T> {
 
     private final int layoutResId;
 

@@ -72,7 +72,7 @@ public class ShopPickerItem extends LinearLayout {
         value.addToMax(maxValue - value.getMax());
     }
 
-    private void setQuantity(int quantity) {
+    public void setQuantity(int quantity) {
         value.add(quantity - value.getValue());
     }
 }

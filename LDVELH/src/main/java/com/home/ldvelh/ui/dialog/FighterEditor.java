@@ -28,8 +28,4 @@ public class FighterEditor extends NameEditor<EditableFighter> {
     protected boolean isOkButtonEnabled(String name) {
         return !name.isEmpty() && CombatCore.findFighterByName(name) == null;
     }
-
-    public EditableFighter getFighter() {
-        return getNamable();
-    }
 }

@@ -17,7 +17,7 @@ public class Effect implements Serializable {
 
 		private final int amount;
 
-		public EffectAmount(int amount) {
+		EffectAmount(int amount) {
 			this.amount = amount;
 		}
 
@@ -72,11 +72,11 @@ public class Effect implements Serializable {
 		return Utils.getString(target.getResId()) + ": " + amount;
 	}
 
-	public void apply() {
+	void apply() {
 		amount.apply(target, false);
 	}
 
-	public void applyTwice() {
+	void applyTwice() {
 		amount.apply(target, true);
 	}
 }

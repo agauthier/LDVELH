@@ -2,63 +2,59 @@ package com.home.ldvelh.model.item;
 
 import java.util.List;
 
-import com.home.ldvelh.R;
-import com.home.ldvelh.model.value.ListValueHolder;
-
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageButton;
+import static com.home.ldvelh.commons.Constants.QTY_SEPARATOR;
 
 public class Spell extends Item {
-	private static final long serialVersionUID = 7470328920788639342L;
+    private static final long serialVersionUID = 2839669026799276167L;
 
-	private boolean canCastTwice = false;
+    private int nbCharges = 0;
+    private boolean doubleCastAllowed = false;
 
-	private Spell() {}
+    private Spell() { super(); }
 
-	private <T extends ListItem> Spell(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<T> list) {
-		super(itemAndQty, effects, data, list);
-	}
+    @SuppressWarnings("unused")
+    private Spell(String name, List<Effect> effects, Object data) {
+        super(name, effects, data);
+    }
 
-	@Override public <T extends ListItem> T create(ItemAndQuantity itemAndQty, List<Effect> effects, Object data, ListValueHolder<T> list) {
-		@SuppressWarnings("unchecked") T newItem = (T) new Spell(itemAndQty, effects, data, list);
-		return newItem;
-	}
+    @Override
+    public <T extends Item> T copy() {
+        Spell spell = new Spell();
+        populate(spell);
+        //noinspection unchecked
+        return (T) spell;
+    }
 
-	@Override public void initView(View row) {
-		super.initView(row);
-		ImageButton castSpellTwiceButton = row.findViewById(R.id.castSpellTwice);
-		if (canCastTwice && getQuantity() > 1) {
-			castSpellTwiceButton.setVisibility(View.VISIBLE);
-			setButtonOnClickListener(castSpellTwiceButton, true);
-		} else {
-			castSpellTwiceButton.setVisibility(View.INVISIBLE);
-		}
-		setButtonOnClickListener((ImageButton) row.findViewById(R.id.castSpell), false);
-	}
+    @Override
+    public String getName() {
+        return super.getName() + QTY_SEPARATOR + nbCharges;
+    }
 
-	public void canCastTwice() {
-		this.canCastTwice = true;
-	}
+    public void addCharges(int nbCharges) {
+        this.nbCharges += nbCharges;
+    }
 
-	private void setButtonOnClickListener(ImageButton button, final boolean castTwice) {
-		final Spell currentItem = this;
-		button.setOnClickListener(new OnClickListener() {
-			@Override public void onClick(View view) {
-				subtract(castTwice ? 2 : 1);
-				for (Effect effect : getEffects()) {
-					if (castTwice) {
-						effect.applyTwice();
-					} else {
-						effect.apply();
-					}
-				}
-				if (getQuantity() <= 0) {
-					getList().remove(currentItem);
-				} else {
-					getList().touch();
-				}
-			}
-		});
-	}
+    public void removeCharges(int nbCharges) {
+        this.nbCharges -= nbCharges;
+    }
+
+    public boolean hasNoChargesLeft() {
+        return nbCharges <= 0;
+    }
+
+    public void allowDoubleCast() {
+        this.doubleCastAllowed = true;
+    }
+
+    public boolean canCastTwice() {
+        return doubleCastAllowed && nbCharges >= 2;
+    }
+
+    @Override
+    protected void populate(Item item) {
+        Spell spell = (Spell) item;
+        super.populate(spell);
+        spell.nbCharges = nbCharges;
+        spell.doubleCastAllowed = doubleCastAllowed;
+    }
 }

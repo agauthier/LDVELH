@@ -4,8 +4,6 @@ import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.combat.CombatRow;
 import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.model.combat.strategy.CombatStrategy;
-import com.home.ldvelh.model.item.ItemAndQuantity;
-import com.home.ldvelh.model.item.Note;
 import com.home.ldvelh.model.item.SimpleItem;
 import com.home.ldvelh.model.value.ListValueHolder;
 import com.home.ldvelh.model.value.StringValueHolder;
@@ -19,18 +17,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Character extends ValueHolder<Character> {
-    private static final long serialVersionUID = -5749941905515892951L;
 
     private final List<Class<? extends AdventureDialog>> fulfilledDialogs = new ArrayList<>();
     private final ListValueHolder<SimpleItem> items;
-    private final ListValueHolder<Note> notes;
+    private final ListValueHolder<SimpleItem> notes;
     private final ListValueHolder<CombatRow> fighterGrid;
     private final StringValueHolder lastParagraph;
 
     Character() {
         super(null);
         items = new ListValueHolder<>(SimpleItem.class);
-        notes = new ListValueHolder<>(Note.class);
+        notes = new ListValueHolder<>(SimpleItem.class);
         fighterGrid = new ListValueHolder<>(CombatRow.class);
         lastParagraph = new StringValueHolder();
     }
@@ -50,7 +47,7 @@ public abstract class Character extends ValueHolder<Character> {
 
     @SuppressWarnings("unused")
     public void addNote(String name) {
-        Property.NOTE_LIST.get().add(new ItemAndQuantity(name));
+        Property.NOTE_LIST.get().addNewItem(name);
     }
 
     public void initCharacterValues() {

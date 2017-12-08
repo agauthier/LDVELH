@@ -123,8 +123,8 @@ public abstract class CombatPage extends Fragment implements Observer {
                 editor.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface) {
-                        if (!editor.getFighter().getName().isEmpty()) {
-                            combat.addNewFighter((Fighter) editor.getFighter(), team);
+                        if (!editor.getNamable().getName().isEmpty()) {
+                            combat.addNewFighter((Fighter) editor.getNamable(), team);
                         }
                     }
                 });

@@ -2,7 +2,6 @@ package com.home.ldvelh.model.combat;
 
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.combat.CombatRow.Team;
-import com.home.ldvelh.model.item.ItemAndQuantity;
 import com.home.ldvelh.model.value.ListValueHolder;
 
 import org.apache.commons.lang3.StringUtils;
@@ -127,18 +126,18 @@ public class CombatCore {
     }
 
     private static <T extends Fighter> CombatRow<T> getNewCombatRow(Team team) {
-        CombatRow<T> combatRow = null;
-        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
+        CombatRow<? extends Fighter> combatRow = null;
+        for (CombatRow<? extends Fighter> row : Property.FIGHTER_GRID.get()) {
             if (!row.hasMembers(team)) {
                 combatRow = row;
                 break;
             }
         }
         if (combatRow == null) {
-            //noinspection unchecked
-            combatRow = Property.FIGHTER_GRID.get().add(new ItemAndQuantity(StringUtils.EMPTY, 1));
+            combatRow = Property.FIGHTER_GRID.get().addNewItem(StringUtils.EMPTY);
         }
-        return combatRow;
+        //noinspection unchecked
+        return (CombatRow<T>) combatRow;
     }
 
     private static void updateAllObservers(boolean delete) {

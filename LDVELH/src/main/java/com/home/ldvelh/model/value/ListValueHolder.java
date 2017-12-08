@@ -2,32 +2,22 @@ package com.home.ldvelh.model.value;
 
 import android.support.annotation.NonNull;
 
-import java.lang.reflect.Constructor;
+import com.home.ldvelh.model.item.Effect;
+import com.home.ldvelh.model.item.Item;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import com.home.ldvelh.model.item.Effect;
-import com.home.ldvelh.model.item.ItemAndQuantity;
-import com.home.ldvelh.model.item.ListItem;
+public class ListValueHolder<T extends Item> extends ValueHolder<List<T>> implements Iterable<T> {
+    private static final long serialVersionUID = -2086105548382419243L;
 
-public class ListValueHolder<T extends ListItem> extends ValueHolder<List<T>> implements Iterable<T> {
-    private static final long serialVersionUID = -1378211383389336094L;
-
-    private final T dummyItem;
+    private final Class<T> itemClass;
 
     public ListValueHolder(Class<T> itemClass) {
         super(new ArrayList<T>());
-        T dummyItem;
-        try {
-            @SuppressWarnings("unchecked") Constructor<T> constructor = (Constructor<T>) itemClass.getDeclaredConstructors()[0];
-            constructor.setAccessible(true);
-            dummyItem = constructor.newInstance();
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
-        this.dummyItem = dummyItem;
+        this.itemClass = itemClass;
     }
 
     @NonNull
@@ -49,16 +39,15 @@ public class ListValueHolder<T extends ListItem> extends ValueHolder<List<T>> im
         super.getValue().clear();
     }
 
-    public T find(String name) {
+    public int countByName(String name) {
+        int count = 0;
         for (T item : super.getValue()) {
-            if (item.hasName(name)) {
-                return item;
-            }
+            count += item.hasName(name) ? 1 : 0;
         }
-        return null;
+        return count;
     }
 
-    public T find(Object data) {
+    public T findByData(Object data) {
         for (T item : super.getValue()) {
             if (item.getData() == data) {
                 return item;
@@ -67,56 +56,26 @@ public class ListValueHolder<T extends ListItem> extends ValueHolder<List<T>> im
         return null;
     }
 
-    public T add(String itemName) {
-        return add(new ItemAndQuantity(itemName));
+    public T addNewItem(T sampleItem) {
+        return add(sampleItem.<T>copy());
     }
 
-    @SuppressWarnings("UnusedReturnValue")
-    public T add(String itemName, Object data) {
-        return add(new ItemAndQuantity(itemName), data);
+    public T addNewItem(String name) {
+        return add(Item.create(itemClass, name, Collections.<Effect>emptyList(), null));
     }
 
-    public T add(ItemAndQuantity itemAndQty) {
-        return add(itemAndQty, Collections.<Effect>emptyList(), null);
+    public T addNewItem(String name, List<Effect> effects) {
+        return add(Item.create(itemClass, name, effects, null));
     }
 
-    @SuppressWarnings("WeakerAccess")
-    public T add(ItemAndQuantity itemAndQty, Object data) {
-        return add(itemAndQty, Collections.<Effect>emptyList(), data);
+    public T addNewItem(String name, Object data) {
+        return add(Item.create(itemClass, name, Collections.<Effect>emptyList(), data));
     }
 
-    public T add(ItemAndQuantity itemAndQty, List<Effect> effects) {
-        return add(itemAndQty, effects, null);
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    public T add(ItemAndQuantity itemAndQty, List<Effect> effects, Object data) {
-        T newItem = dummyItem.create(itemAndQty, effects, data, this);
-        return add(newItem);
-    }
-
-    private T add(T item) {
-        T addedItem = null;
-        if (item.getQuantity() != 0) {
-            T existingItem = find(item.getName());
-            if (existingItem != null) {
-                existingItem.add(item.getQuantity());
-                if (existingItem.getQuantity() > 0) {
-                    addedItem = existingItem;
-                } else if (existingItem.getQuantity() == 0) {
-                    super.getValue().remove(existingItem);
-                } else if (existingItem.getQuantity() < 0) {
-                    throw new IllegalArgumentException();
-                }
-            } else if (item.getQuantity() > 0) {
-                super.getValue().add(item);
-                addedItem = item;
-            } else {
-                throw new IllegalArgumentException();
-            }
-            notifyObservers();
-        }
-        return addedItem;
+    public T add(T item) {
+        super.getValue().add(item);
+        notifyObservers();
+        return item;
     }
 
     public void remove(T item) {
