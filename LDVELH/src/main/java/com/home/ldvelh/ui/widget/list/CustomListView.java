@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
@@ -26,11 +27,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-public abstract class CustomList<T extends Item> extends ObservableLinearLayout implements Observer {
+public abstract class CustomListView<T extends Item> extends ObservableLinearLayout implements Observer {
 
     private final String listPropertyName;
     private final String rowLayout;
@@ -39,35 +39,34 @@ public abstract class CustomList<T extends Item> extends ObservableLinearLayout 
     private final String newItemCaption;
     private final String newConsumableItemCaption;
     private final Class<? extends Store<T>> storeClass;
-    private final List<CustomListItem<T>> customList = new ArrayList<>();
 
-    private ListValueHolder<T> modelList;
-    private RowArrayAdapter<CustomListItem<T>> arrayAdapter;
+    private ListValueHolder<T> list;
+    private RowArrayAdapter<CustomListViewItem<T>> arrayAdapter;
 
-    public CustomList(Context context, AttributeSet attrs) {
+    public CustomListView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomList, 0, 0);
-        this.listPropertyName = array.getString(R.styleable.CustomList_listPropertyName);
-        this.rowLayout = array.getString(R.styleable.CustomList_rowLayout);
-        this.newItemVisible = Boolean.valueOf(array.getString(R.styleable.CustomList_newItemVisible));
-        this.newConsumableItemVisible = Boolean.valueOf(array.getString(R.styleable.CustomList_newConsumableItemVisible));
-        this.newItemCaption = array.getString(R.styleable.CustomList_newItemCaption);
-        this.newConsumableItemCaption = array.getString(R.styleable.CustomList_newConsumableItemCaption);
-        this.storeClass = Utils.getClass(array.getString(R.styleable.CustomList_storeClass));
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomListView, 0, 0);
+        this.listPropertyName = array.getString(R.styleable.CustomListView_listPropertyName);
+        this.rowLayout = array.getString(R.styleable.CustomListView_rowLayout);
+        this.newItemVisible = Boolean.valueOf(array.getString(R.styleable.CustomListView_newItemVisible));
+        this.newConsumableItemVisible = Boolean.valueOf(array.getString(R.styleable.CustomListView_newConsumableItemVisible));
+        this.newItemCaption = array.getString(R.styleable.CustomListView_newItemCaption);
+        this.newConsumableItemCaption = array.getString(R.styleable.CustomListView_newConsumableItemCaption);
+        this.storeClass = Utils.getClass(array.getString(R.styleable.CustomListView_storeClass));
         array.recycle();
         LayoutInflater.from(context).inflate(R.layout.widget_list_custom_list, this, true);
     }
 
-    public abstract void initRowView(View row, CustomListItem<T> customListItem);
-    public abstract CustomListItem<T> createListItem(T item);
+    public abstract void initRowView(View row, CustomListViewItem<T> customListViewItem);
+    protected abstract T createItem(String name);
+    protected abstract CustomListViewItem<T> createCustomListViewItem(T item);
 
     @SuppressWarnings({"unchecked", "ConstantConditions"})
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        ListValueHolder<T> listValueHolder = (ListValueHolder<T>) Property.getPropertyByName(listPropertyName).get();
         int rowLayoutResId = getResources().getIdentifier(rowLayout, "layout", getContext().getPackageName());
-        initListAndAdapter(listValueHolder, rowLayoutResId);
+        initListAndAdapter(rowLayoutResId);
         initStoreButton(getContext());
         initSimpleItemEditText();
         initConsumableItemEditText();
@@ -76,21 +75,18 @@ public abstract class CustomList<T extends Item> extends ObservableLinearLayout 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        modelList.addObserver(this);
+        list.addObserver(this);
     }
 
     @Override
     protected void onDetachedFromWindow() {
+        list.deleteObserver(this);
         super.onDetachedFromWindow();
-        modelList.deleteObserver(this);
     }
 
     @Override
     public void update(Observable observable, Object data) {
-        arrayAdapter.clear();
-        populateCustomList();
-        arrayAdapter.addAll(customList);
-        arrayAdapter.notifyDataSetChanged();
+        refreshListView();
         View currentFocus = ((Activity) getContext()).getCurrentFocus();
         if (currentFocus != null) {
             currentFocus.clearFocus();
@@ -98,22 +94,28 @@ public abstract class CustomList<T extends Item> extends ObservableLinearLayout 
         notifyObservers(data);
     }
 
-    public void add(T sampleItem) {
-        modelList.addNewItem(sampleItem);
+    void increment(T item) {
+        list.increment(item);
     }
 
-    public void remove(T item) {
-        modelList.remove(item);
+    void decrement(T item) {
+        list.decrement(item);
     }
 
-    protected void touch() {
-        modelList.touch();
+    void touch() {
+        list.touch();
     }
 
-    private void initListAndAdapter(ListValueHolder<T> list, int rowLayoutResId) {
-        modelList = list;
-        populateCustomList();
-        arrayAdapter = new RowArrayAdapter<>(getContext(), rowLayoutResId, customList);
+    void setItemName(View view, String text) {
+        TextView textView = view.findViewById(R.id.itemName);
+        textView.setText(text);
+    }
+
+    private void initListAndAdapter(int rowLayoutResId) {
+        //noinspection unchecked,ConstantConditions
+        list = (ListValueHolder<T>) Property.getPropertyByName(listPropertyName).get();
+        arrayAdapter = new RowArrayAdapter<>(getContext(), rowLayoutResId, new ArrayList<CustomListViewItem<T>>());
+        refreshListView();
         ListView listView = findViewById(R.id.list);
         listView.setAdapter(arrayAdapter);
     }
@@ -162,7 +164,7 @@ public abstract class CustomList<T extends Item> extends ObservableLinearLayout 
                                     String itemName = editText.getText().toString();
                                     if (!itemName.isEmpty()) {
                                         editText.setText("");
-                                        modelList.addNewItem(itemName);
+                                        list.add(createItem(itemName));
                                     }
                                     Utils.hideKeyboard(editText);
                                     return true;
@@ -215,23 +217,11 @@ public abstract class CustomList<T extends Item> extends ObservableLinearLayout 
         consumableEditor.show();
     }
 
-    private void populateCustomList() {
-        customList.clear();
-        for (T item : modelList) {
-            addToCustomList(item);
+    private void refreshListView() {
+        arrayAdapter.clear();
+        for (T item : list) {
+            arrayAdapter.add(createCustomListViewItem(item));
         }
-    }
-
-    private void addToCustomList(T item) {
-        boolean itemAlreadyExists = false;
-        for (CustomListItem<T> customListItem : customList) {
-            if (customListItem.add(item)) {
-                itemAlreadyExists = true;
-                break;
-            }
-        }
-        if (!itemAlreadyExists) {
-            customList.add(createListItem(item));
-        }
+        arrayAdapter.notifyDataSetChanged();
     }
 }

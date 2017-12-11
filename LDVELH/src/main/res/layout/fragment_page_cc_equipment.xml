@@ -8,17 +8,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
+        <Space
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="3" />
 
         <TextView
             style="@style/ldvelhSmall"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/cc_strength" />
@@ -26,7 +27,7 @@
         <TextView
             style="@style/ldvelhSmall"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/cc_protection" />
@@ -34,42 +35,32 @@
         <TextView
             style="@style/ldvelhSmall"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/cc_equipped" />
 
-        <TextView
+        <Space
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1" />
     </LinearLayout>
 
-    <LinearLayout
+    <com.home.ldvelh.ui.widget.list.CCEquipmentListView
         android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        custom:listPropertyName="CC_EQUIPMENT_LIST"
+        custom:newConsumableItemVisible="false"
+        custom:newItemVisible="false"
+        custom:rowLayout="list_item_cc_equipment" />
+
+    <ImageButton
+        android:id="@+id/addEquipment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/divider_brown_opaque"
-        android:orientation="horizontal" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.home.ldvelh.ui.widget.list.CCEquipmentList
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            custom:listPropertyName="CC_EQUIPMENT_LIST"
-            custom:newConsumableItemVisible="false"
-            custom:newItemVisible="false"
-            custom:rowLayout="list_item_cc_equipment" />
-
-        <ImageButton
-            android:id="@+id/addEquipment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:background="@drawable/small_button_selector"
-            android:contentDescription="@string/lorem_ipsum"
-            android:src="@drawable/btn_plus_medium" />
-    </RelativeLayout>
+        android:layout_gravity="bottom|right"
+        android:background="@drawable/small_button_selector"
+        android:contentDescription="@string/lorem_ipsum"
+        android:src="@drawable/btn_plus_medium" />
 </LinearLayout>

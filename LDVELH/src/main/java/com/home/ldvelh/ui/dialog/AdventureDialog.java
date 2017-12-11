@@ -34,6 +34,10 @@ public abstract class AdventureDialog extends Dialog {
         dismiss();
     }
 
+    public void cancelButtonPressed() {
+        dismiss();
+    }
+
     public boolean isFulfilled() {
         return fulfilled;
     }
@@ -59,7 +63,7 @@ public abstract class AdventureDialog extends Dialog {
             cancelButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    dismiss();
+                    cancelButtonPressed();
                 }
             });
         }

@@ -4,6 +4,8 @@ import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.item.SimpleItem;
 import com.home.ldvelh.model.value.ListValueHolder;
 
+import static com.home.ldvelh.model.value.ListValueHolder.ItemMergeType.MERGE;
+
 public class DF03Character extends DFCharacter {
 	private static final long serialVersionUID = -1335020175012413136L;
 
@@ -11,7 +13,7 @@ public class DF03Character extends DFCharacter {
 
 	public DF03Character() {
 		super();
-		magicItems = new ListValueHolder<>(SimpleItem.class);
+		magicItems = new ListValueHolder<>(MERGE);
 	}
 
 	@Override public void initCharacterValues() {

@@ -14,7 +14,10 @@ import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
 import com.home.ldvelh.model.Namable;
 
-public class NameEditor<T extends Namable> extends AdventureDialog {
+import java.util.Observable;
+import java.util.Observer;
+
+public class NameEditor<T extends Namable> extends AdventureDialog implements Observer {
 
     private final T namable;
     private final int layoutResId;
@@ -60,8 +63,8 @@ public class NameEditor<T extends Namable> extends AdventureDialog {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     switch (keyCode) {
                         case KeyEvent.KEYCODE_ENTER:
-                            if (isOkButtonEnabled(nameEditText.getText().toString())) {
-                                finishEditing(nameEditText);
+                            if (isItemSavable()) {
+                                dismiss();
                                 return true;
                             }
                         default:
@@ -80,7 +83,8 @@ public class NameEditor<T extends Namable> extends AdventureDialog {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                findViewById(R.id.okButton).setEnabled(isOkButtonEnabled(editable.toString()));
+                namable.setName(nameEditText.getText().toString());
+                updateOkButton();
             }
         });
         ((TextView) findViewById(R.id.name)).setHint(hintResId);
@@ -89,17 +93,21 @@ public class NameEditor<T extends Namable> extends AdventureDialog {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finishEditing(nameEditText);
+                dismiss();
             }
         });
     }
 
-    boolean isOkButtonEnabled(String name) {
-        return !name.isEmpty();
+    @Override
+    public void update(Observable observable, Object o) {
+        updateOkButton();
     }
 
-    private void finishEditing(EditText nameEditText) {
-        namable.setName(nameEditText.getText().toString());
-        dismiss();
+    boolean isItemSavable() {
+        return !namable.getName().isEmpty();
+    }
+
+    private void updateOkButton() {
+        findViewById(R.id.okButton).setEnabled(isItemSavable());
     }
 }

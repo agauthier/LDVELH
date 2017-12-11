@@ -7,6 +7,7 @@ import com.home.ldvelh.model.character.DF04Character;
 import com.home.ldvelh.model.combat.CombatCore;
 import com.home.ldvelh.model.combat.CombatRow;
 import com.home.ldvelh.model.combat.DFFighter;
+import com.home.ldvelh.model.combat.Fighter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,25 +52,25 @@ public class DF04CombatStrategy<T extends DFFighter> implements CombatStrategy {
     }
 
     private void spaceFight(Map<T, Integer> fighterDamage) {
-        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
+        for (CombatRow row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
                 rowAssaultInSpace(row, fighterDamage);
             }
         }
     }
 
-    private void rowAssaultInSpace(CombatRow<T> row, Map<T, Integer> fighterDamage) {
-        T leftShip = row.getTeamLeft().get(0);
+    private void rowAssaultInSpace(CombatRow row, Map<T, Integer> fighterDamage) {
+        @SuppressWarnings("unchecked") T leftShip = (T) row.getTeamLeft().get(0);
         shipFires(row, fighterDamage, leftShip);
-        T rightShip = row.getTeamRight().get(0);
+        @SuppressWarnings("unchecked") T rightShip = (T) row.getTeamRight().get(0);
         if (isAlive(rightShip, fighterDamage)) {
             shipFires(row, fighterDamage, rightShip);
         }
     }
 
-    private void shipFires(CombatRow<T> row, Map<T, Integer> fighterDamage, T attackingShip) {
+    private void shipFires(CombatRow row, Map<T, Integer> fighterDamage, T attackingShip) {
         if (Die.SIX_FACES.roll(2) < attackingShip.getSkill().getValue() + attackingShip.getBonus().getValue()) {
-            T facingShip = row.getFighters(row.getTeam(attackingShip).facingTeam()).get(0);
+            @SuppressWarnings("unchecked") T facingShip = (T) row.getFighters(row.getTeam(attackingShip).facingTeam()).get(0);
             int damageRoll = Die.SIX_FACES.roll(2);
             if (damageRoll == TWO_DICE_MAX_ROLL) {
                 addFighterDamage(fighterDamage, facingShip, WORST_WOUND);
@@ -82,19 +83,21 @@ public class DF04CombatStrategy<T extends DFFighter> implements CombatStrategy {
     }
 
     private void combatNoPhaser(Map<T, Integer> fighterDamage) {
-        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
+        for (CombatRow row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
                 rowAssaultNoPhaser(row, fighterDamage);
             }
         }
     }
 
-    private void rowAssaultNoPhaser(CombatRow<T> row, Map<T, Integer> fighterDamage) {
+    private void rowAssaultNoPhaser(CombatRow row, Map<T, Integer> fighterDamage) {
         boolean firstLeftFighter = true;
-        for (T leftFighter : row.getTeamLeft()) {
+        for (Fighter teamLeftFighter : row.getTeamLeft()) {
+            @SuppressWarnings("unchecked") T leftFighter = (T) teamLeftFighter;
             int leftFighterAttackForce = leftFighter.getSkill().getValue() + Die.SIX_FACES.roll(2) + leftFighter.getBonus().getValue();
             boolean firstRightFighter = true;
-            for (T rightFighter : row.getTeamRight()) {
+            for (Fighter teamRightFighter : row.getTeamRight()) {
+                @SuppressWarnings("unchecked") T rightFighter = (T) teamRightFighter;
                 int rightFighterAttackForce = rightFighter.getSkill().getValue() + Die.SIX_FACES.roll(2) + rightFighter.getBonus().getValue();
                 if (firstRightFighter && leftFighterAttackForce > rightFighterAttackForce) {
                     addFighterDamage(fighterDamage, rightFighter, REGULAR_WOUND);
@@ -108,7 +111,7 @@ public class DF04CombatStrategy<T extends DFFighter> implements CombatStrategy {
     }
 
     private void combatWithPhaser(Map<T, Integer> fighterDamage) {
-        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
+        for (CombatRow row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
                 leftTeamAssault(row, fighterDamage);
             }
@@ -116,9 +119,10 @@ public class DF04CombatStrategy<T extends DFFighter> implements CombatStrategy {
         rightTeamAssault(fighterDamage);
     }
 
-    private void leftTeamAssault(CombatRow<T> row, Map<T, Integer> fighterDamage) {
-        for (T leftFighter : row.getTeamLeft()) {
-            T rightFighter = row.getTeamRight().get(0);
+    private void leftTeamAssault(CombatRow row, Map<T, Integer> fighterDamage) {
+        for (Fighter teamLeftFighter : row.getTeamLeft()) {
+            @SuppressWarnings("unchecked") T leftFighter = (T) teamLeftFighter;
+            @SuppressWarnings("unchecked") T rightFighter = (T) row.getTeamRight().get(0);
             if (isAlive(rightFighter, fighterDamage)) {
                 int roll = Die.SIX_FACES.roll(2);
                 if (roll < leftFighter.getSkill().getValue() + leftFighter.getBonus().getValue()) {
@@ -163,9 +167,10 @@ public class DF04CombatStrategy<T extends DFFighter> implements CombatStrategy {
 
     private List<T> getAttackableLeftFighters(Map<T, Integer> fighterDamage) {
         List<T> leftFighters = new ArrayList<>();
-        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
+        for (@SuppressWarnings("unchecked") CombatRow row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
-                for (T leftFighter : row.getTeamLeft()) {
+                for (Fighter teamLeftFighter : row.getTeamLeft()) {
+                    @SuppressWarnings("unchecked") T leftFighter = (T) teamLeftFighter;
                     if (isAlive(leftFighter, fighterDamage)) {
                         leftFighters.add(leftFighter);
                     }

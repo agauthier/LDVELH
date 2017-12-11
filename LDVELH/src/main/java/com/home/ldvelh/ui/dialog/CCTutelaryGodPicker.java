@@ -32,7 +32,7 @@ public class CCTutelaryGodPicker extends MultipleChoiceDialog {
                 @SuppressWarnings("ConstantConditions")
                 @Override
                 public void run() {
-                    Property.CC_GOD_LIST.get().remove(Property.CC_GOD_LIST.get().find(god));
+                    Property.CC_GOD_LIST.get().remove(Property.CC_GOD_LIST.get().findByData(god));
                     Property.TUTELARY_GOD.get().setValue(god);
                     ((TextView) getOwnerActivity().findViewById(R.id.tutelaryGod)).setText(Property.TUTELARY_GOD.get().getValue().getNameResId());
                 }

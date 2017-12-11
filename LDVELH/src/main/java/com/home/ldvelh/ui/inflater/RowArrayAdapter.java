@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.home.ldvelh.model.item.Item;
-import com.home.ldvelh.ui.widget.list.CustomListItem;
+import com.home.ldvelh.ui.widget.list.CustomListViewItem;
 
 import java.util.List;
 
-public class RowArrayAdapter<T extends CustomListItem<? extends Item>> extends ArrayAdapter<T> {
+public class RowArrayAdapter<T extends CustomListViewItem<? extends Item>> extends ArrayAdapter<T> {
 
     private final int layoutResId;
 
@@ -29,8 +29,10 @@ public class RowArrayAdapter<T extends CustomListItem<? extends Item>> extends A
             //noinspection ConstantConditions
             row = inflater.inflate(layoutResId, parent, false);
         }
-        //noinspection ConstantConditions
-        getItem(position).initView(row);
+        T item = getItem(position);
+        if (item != null) {
+             item.initView(row);
+        }
         return row;
     }
 }

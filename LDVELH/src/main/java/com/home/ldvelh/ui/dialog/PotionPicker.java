@@ -7,6 +7,7 @@ import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.item.Effect;
+import com.home.ldvelh.model.item.EffectItem;
 import com.home.ldvelh.model.item.EffectTarget;
 
 import java.util.ArrayList;
@@ -55,8 +56,6 @@ public class PotionPicker extends MultipleChoiceDialog {
 
     private void acquireItem(int potionResId, List<Effect> effects) {
         int doses = (getData() == null) ? 1 : (Integer) getData();
-        for (int i = 0; i < doses; i++) {
-            Property.ITEM_LIST.get().addNewItem(Utils.getString(potionResId), effects);
-        }
+        Property.ITEM_LIST.get().add(new EffectItem(Utils.getString(potionResId), doses, effects));
     }
 }

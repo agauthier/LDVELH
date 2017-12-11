@@ -23,6 +23,7 @@ import java.util.Observable;
 
 import static com.home.ldvelh.model.combat.CCCondition.DEAD;
 import static com.home.ldvelh.model.combat.CCCondition.UNSCATHED;
+import static com.home.ldvelh.model.value.ListValueHolder.ItemMergeType.DONT_MERGE;
 
 public class CCCharacter extends Character {
     private static final long serialVersionUID = -8802801187643769352L;
@@ -125,8 +126,8 @@ public class CCCharacter extends Character {
         endurance = new IntValueHolder(0, Constants.BIG_POSITIVE, 0);
         intelligence = new IntValueHolder(0, Constants.BIG_POSITIVE, 0);
         condition = new EnumValueHolder<>(UNSCATHED);
-        equipment = new ListValueHolder<>(CCEquipment.class);
-        gods = new ListValueHolder<>(CCGod.class);
+        equipment = new ListValueHolder<>(DONT_MERGE);
+        gods = new ListValueHolder<>(DONT_MERGE);
         tutelaryGod = new EnumValueHolder<>(God.NO_GOD);
         God.populateList(gods);
     }
@@ -214,10 +215,11 @@ public class CCCharacter extends Character {
 
     @SuppressWarnings("unused")
     public void addEquipment(String name, Integer strength, Integer protection) {
-        CCEquipment newEquipment = Property.CC_EQUIPMENT_LIST.get().addNewItem(name);
-        newEquipment.setStrength(strength);
-        newEquipment.setProtection(protection);
+        CCEquipment newEquipment = new CCEquipment(name);
+        newEquipment.getStrength().setValue(strength);
+        newEquipment.getProtection().setValue(protection);
         newEquipment.setEquipped(true);
+        Property.CC_EQUIPMENT_LIST.get().add(newEquipment);
     }
 
     public boolean isZeusInvoked() {
@@ -229,7 +231,7 @@ public class CCCharacter extends Character {
             int bonus = 0;
             for (CCEquipment item : equipment) {
                 if (item.isEquipped()) {
-                    bonus += item.getStrength();
+                    bonus += item.getStrength().getValue();
                 }
             }
             return bonus;
@@ -237,7 +239,7 @@ public class CCCharacter extends Character {
             int bonus = 0;
             for (CCEquipment item : equipment) {
                 if (item.isEquipped()) {
-                    bonus += item.getProtection();
+                    bonus += item.getProtection().getValue();
                 }
             }
             return bonus;

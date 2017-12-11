@@ -9,7 +9,7 @@
         <attr name="scaleFactor" format="float" />
         <attr name="allowLongPress" format="boolean" />
     </declare-styleable>
-    <declare-styleable name="CustomList">
+    <declare-styleable name="CustomListView">
         <attr name="listPropertyName" format="string" />
         <attr name="rowLayout" format="string" />
         <attr name="newItemVisible" format="boolean" />

@@ -68,6 +68,23 @@ public class Effect implements Serializable {
 		this.amount = new EffectAmount(amount);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (!(o instanceof Effect))
+			return false;
+		Effect effect = (Effect) o;
+		return target == effect.target && amount.amount == effect.amount.amount;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = target.hashCode();
+		result = 31 * result + amount.amount;
+		return result;
+	}
+
 	@Override public String toString() {
 		return Utils.getString(target.getResId()) + ": " + amount;
 	}

@@ -8,6 +8,7 @@ import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.model.combat.strategy.CombatStrategy;
 import com.home.ldvelh.model.combat.strategy.DFCombatStrategy;
 import com.home.ldvelh.model.item.Effect;
+import com.home.ldvelh.model.item.EffectItem;
 import com.home.ldvelh.model.item.EffectTarget;
 import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.ui.activity.AdventureActivity;
@@ -38,26 +39,31 @@ public class DFCharacter extends Character {
         luckPenalty = new IntValueHolder(Constants.BIG_NEGATIVE, Constants.BIG_POSITIVE, -1);
     }
 
-    @Override public void addLifeObserver(AdventureActivity activity) {
+    @Override
+    public void addLifeObserver(AdventureActivity activity) {
         stamina.addObserver(this);
         addObserver(activity);
     }
 
-    @Override public void deleteLifeObserver(AdventureActivity activity) {
+    @Override
+    public void deleteLifeObserver(AdventureActivity activity) {
         deleteObserver(activity);
         stamina.deleteObserver(this);
     }
 
-    @Override public void killWithoutUpdate() {
+    @Override
+    public void killWithoutUpdate() {
         stamina.deleteObservers();
         stamina.add(Constants.BIG_NEGATIVE);
     }
 
-    @Override public boolean isDead() {
+    @Override
+    public boolean isDead() {
         return stamina.getValue() <= 0;
     }
 
-    @Override public CombatStrategy getCombatStrategy() {
+    @Override
+    public CombatStrategy getCombatStrategy() {
         return DFCombatStrategy.INSTANCE;
     }
 
@@ -68,17 +74,18 @@ public class DFCharacter extends Character {
         return fighters;
     }
 
-    @SuppressWarnings("unused") public void setGold(Integer gold) {
+    @SuppressWarnings("unused")
+    public void setGold(Integer gold) {
         this.gold.add(gold - this.gold.getValue());
     }
 
-    @SuppressWarnings("unused") public void addConsumableFood(String name, Integer quantity) {
-        for (int i = 0; i < quantity; i++) {
-            Property.ITEM_LIST.get().addNewItem(name, Collections.singletonList(new Effect(EffectTarget.STAMINA, 4)));
-        }
+    @SuppressWarnings("unused")
+    public void addConsumableFood(String name, Integer quantity) {
+        Property.ITEM_LIST.get().add(new EffectItem(name, quantity, Collections.singletonList(new Effect(EffectTarget.STAMINA, 4))));
     }
 
-    @Override public void initCharacterValues() {
+    @Override
+    public void initCharacterValues() {
         super.initCharacterValues();
         CharacterValues.put(Property.SKILL, skill);
         CharacterValues.put(Property.STAMINA, stamina);

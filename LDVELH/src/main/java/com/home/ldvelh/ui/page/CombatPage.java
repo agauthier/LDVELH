@@ -21,7 +21,7 @@ import com.home.ldvelh.model.combat.CombatRow.Team;
 import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.ui.dialog.FighterEditor;
 import com.home.ldvelh.ui.widget.PageTag;
-import com.home.ldvelh.ui.widget.list.CombatRowList;
+import com.home.ldvelh.ui.widget.list.CombatRowListView;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -52,7 +52,7 @@ public abstract class CombatPage extends Fragment implements Observer {
         super.onResume();
         combat.addAllObservers();
         //noinspection ConstantConditions
-        ((CombatRowList) getActivity().findViewById(R.id.combatList)).addObserver(this);
+        ((CombatRowListView) getActivity().findViewById(R.id.combatList)).addObserver(this);
     }
 
     @Override
@@ -60,7 +60,7 @@ public abstract class CombatPage extends Fragment implements Observer {
         super.onPause();
         combat.removeAllObservers();
         //noinspection ConstantConditions
-        ((CombatRowList) getActivity().findViewById(R.id.combatList)).deleteObserver(this);
+        ((CombatRowListView) getActivity().findViewById(R.id.combatList)).deleteObserver(this);
     }
 
     @Override

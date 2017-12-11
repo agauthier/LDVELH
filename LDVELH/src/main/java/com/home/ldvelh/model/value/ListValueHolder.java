@@ -2,22 +2,24 @@ package com.home.ldvelh.model.value;
 
 import android.support.annotation.NonNull;
 
-import com.home.ldvelh.model.item.Effect;
 import com.home.ldvelh.model.item.Item;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.home.ldvelh.model.value.ListValueHolder.ItemMergeType.MERGE;
+
 public class ListValueHolder<T extends Item> extends ValueHolder<List<T>> implements Iterable<T> {
-    private static final long serialVersionUID = -2086105548382419243L;
+    private static final long serialVersionUID = -7685844299342180845L;
 
-    private final Class<T> itemClass;
+    public enum ItemMergeType {MERGE, DONT_MERGE}
 
-    public ListValueHolder(Class<T> itemClass) {
+    private final ItemMergeType itemMergeType;
+
+    public ListValueHolder(ItemMergeType itemMergeType) {
         super(new ArrayList<T>());
-        this.itemClass = itemClass;
+        this.itemMergeType = itemMergeType;
     }
 
     @NonNull
@@ -39,12 +41,18 @@ public class ListValueHolder<T extends Item> extends ValueHolder<List<T>> implem
         super.getValue().clear();
     }
 
-    public int countByName(String name) {
-        int count = 0;
+    public int getQuantityForName(String name) {
+        T item = findByName(name);
+        return (item == null) ? 0 : item.getQuantity();
+    }
+
+    public T findByName(String name) {
         for (T item : super.getValue()) {
-            count += item.hasName(name) ? 1 : 0;
+            if (item.getName().equals(name)) {
+                return item;
+            }
         }
-        return count;
+        return null;
     }
 
     public T findByData(Object data) {
@@ -56,26 +64,14 @@ public class ListValueHolder<T extends Item> extends ValueHolder<List<T>> implem
         return null;
     }
 
-    public T addNewItem(T sampleItem) {
-        return add(sampleItem.<T>copy());
-    }
-
-    public T addNewItem(String name) {
-        return add(Item.create(itemClass, name, Collections.<Effect>emptyList(), null));
-    }
-
-    public T addNewItem(String name, List<Effect> effects) {
-        return add(Item.create(itemClass, name, effects, null));
-    }
-
-    public T addNewItem(String name, Object data) {
-        return add(Item.create(itemClass, name, Collections.<Effect>emptyList(), data));
-    }
-
-    public T add(T item) {
-        super.getValue().add(item);
+    public void add(T item) {
+        T identicalItem = findIdenticalItem(item);
+        if (itemMergeType == MERGE && identicalItem != null) {
+            identicalItem.addQuantity(item.getQuantity());
+        } else {
+            super.getValue().add(item);
+        }
         notifyObservers();
-        return item;
     }
 
     public void remove(T item) {
@@ -84,11 +80,33 @@ public class ListValueHolder<T extends Item> extends ValueHolder<List<T>> implem
         }
     }
 
+    public void increment(T item) {
+        item.addQuantity(1);
+        notifyObservers();
+    }
+
+    public void decrement(T item) {
+        item.addQuantity(-1);
+        if (item.getQuantity() <= 0) {
+            super.getValue().remove(item);
+        }
+        notifyObservers();
+    }
+
     public T get(int location) {
         return super.getValue().get(location);
     }
 
     public void touch() {
         notifyObservers();
+    }
+
+    private T findIdenticalItem(T item) {
+        for (T existingItem : super.getValue()) {
+            if (existingItem.isIdentical(item)) {
+                return existingItem;
+            }
+        }
+        return null;
     }
 }

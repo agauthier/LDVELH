@@ -4,12 +4,12 @@ import com.home.ldvelh.model.character.Character;
 import com.home.ldvelh.model.character.CharacterValues;
 import com.home.ldvelh.model.combat.CCCondition;
 import com.home.ldvelh.model.combat.CombatRow;
-import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.model.item.CCEquipment;
 import com.home.ldvelh.model.item.CCGod;
 import com.home.ldvelh.model.item.CCGod.God;
+import com.home.ldvelh.model.item.EffectItem;
 import com.home.ldvelh.model.item.SimpleItem;
-import com.home.ldvelh.model.item.Spell;
+import com.home.ldvelh.model.item.DF02Spell;
 import com.home.ldvelh.model.value.DF04AssetValueHolder;
 import com.home.ldvelh.model.value.EnumValueHolder;
 import com.home.ldvelh.model.value.IntValueHolder;
@@ -28,13 +28,13 @@ public abstract class Property<T extends ValueHolder<?>> {
     public static final Property<MapValueHolder> MAP = new Property<MapValueHolder>("MAP") {};
 
     // Lists
-    public static final Property<ListValueHolder<SimpleItem>> ITEM_LIST = new Property<ListValueHolder<SimpleItem>>("ITEM_LIST") {};
+    public static final Property<ListValueHolder<EffectItem>> ITEM_LIST = new Property<ListValueHolder<EffectItem>>("ITEM_LIST") {};
     public static final Property<ListValueHolder<SimpleItem>> MAGIC_ITEM_LIST = new Property<ListValueHolder<SimpleItem>>("MAGIC_ITEM_LIST") {};
-    public static final Property<ListValueHolder<SimpleItem>> STONE_LIST = new Property<ListValueHolder<SimpleItem>>("STONE_LIST") {};
+    public static final Property<ListValueHolder<EffectItem>> STONE_LIST = new Property<ListValueHolder<EffectItem>>("STONE_LIST") {};
     public static final Property<ListValueHolder<SimpleItem>> INGREDIENT_LIST = new Property<ListValueHolder<SimpleItem>>("INGREDIENT_LIST") {};
     public static final Property<ListValueHolder<SimpleItem>> NOTE_LIST = new Property<ListValueHolder<SimpleItem>>("NOTE_LIST") {};
-    public static final Property<ListValueHolder<Spell>> SPELL_LIST = new Property<ListValueHolder<Spell>>("SPELL_LIST") {};
-    public static final Property<ListValueHolder<CombatRow<? extends Fighter>>> FIGHTER_GRID = new Property<ListValueHolder<CombatRow<? extends Fighter>>>("FIGHTER_GRID") {};
+    public static final Property<ListValueHolder<DF02Spell>> SPELL_LIST = new Property<ListValueHolder<DF02Spell>>("SPELL_LIST") {};
+    public static final Property<ListValueHolder<CombatRow>> FIGHTER_GRID = new Property<ListValueHolder<CombatRow>>("FIGHTER_GRID") {};
     public static final Property<ListValueHolder<CCEquipment>> CC_EQUIPMENT_LIST = new Property<ListValueHolder<CCEquipment>>("CC_EQUIPMENT_LIST") {};
     public static final Property<ListValueHolder<CCGod>> CC_GOD_LIST = new Property<ListValueHolder<CCGod>>("CC_GOD_LIST") {};
 

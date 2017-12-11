@@ -1,19 +1,13 @@
 package com.home.ldvelh.model.combat;
 
-import android.app.Activity;
-import android.view.DragEvent;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.home.ldvelh.R;
-import com.home.ldvelh.commons.Constants;
-import com.home.ldvelh.model.item.Effect;
 import com.home.ldvelh.model.item.Item;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CombatRow<T extends Fighter> extends Item {
+public class CombatRow extends Item {
     private static final long serialVersionUID = -775458784598086913L;
 
     public enum Team {
@@ -32,41 +26,22 @@ public class CombatRow<T extends Fighter> extends Item {
         public abstract Team facingTeam();
     }
 
-    private enum TeamState {INVISIBLE, VISIBLE, ACTIVATED}
+    private final List<Fighter> teamLeft = new ArrayList<>();
+    private final List<Fighter> teamRight = new ArrayList<>();
 
-    private final List<T> teamLeft = new ArrayList<>();
-    private final List<T> teamRight = new ArrayList<>();
-
-    private CombatRow() { super(); }
-
-    @SuppressWarnings("unused")
-    private CombatRow(String name, List<Effect> effects, Object data) {
-        super(name, effects, data);
-    }
-
-    @Override
-    public <U extends Item> U copy() {
-        CombatRow combatRow = new CombatRow();
-        populate(combatRow);
-        //noinspection unchecked
-        return (U) combatRow;
-    }
-
-    @Override
-    public void initView(View row) {
-        populateView(row, Team.LEFT);
-        populateView(row, Team.RIGHT);
+    public CombatRow() {
+        super(StringUtils.EMPTY, null);
     }
 
     public boolean isEmpty() {
         return (teamLeft.size() == 0 && teamRight.size() == 0);
     }
 
-    public List<T> getTeamLeft() {
+    public List<Fighter> getTeamLeft() {
         return teamLeft;
     }
 
-    public List<T> getTeamRight() {
+    public List<Fighter> getTeamRight() {
         return teamRight;
     }
 
@@ -74,7 +49,7 @@ public class CombatRow<T extends Fighter> extends Item {
         return hasMembers(Team.LEFT) && hasMembers(Team.RIGHT) && (hasExactlyOneMember(Team.LEFT) || hasExactlyOneMember(Team.RIGHT));
     }
 
-    public List<T> getFighters(Team team) {
+    public List<Fighter> getFighters(Team team) {
         if (team == Team.LEFT) {
             return teamLeft;
         } else {
@@ -82,7 +57,7 @@ public class CombatRow<T extends Fighter> extends Item {
         }
     }
 
-    public Team getTeam(T fighter) {
+    public Team getTeam(Fighter fighter) {
         return getFighters(Team.LEFT).contains(fighter) ? Team.LEFT : getFighters(Team.RIGHT).contains(fighter) ? Team.RIGHT : null;
     }
 
@@ -91,14 +66,14 @@ public class CombatRow<T extends Fighter> extends Item {
         teamRight.clear();
     }
 
-    void add(T fighter, Team team) {
-        List<T> fighters = getFighters(team);
+    void add(Fighter fighter, Team team) {
+        List<Fighter> fighters = getFighters(team);
         if (!fighters.contains(fighter)) {
             fighters.add(fighter);
         }
     }
 
-    void remove(T fighter) {
+    void remove(Fighter fighter) {
         teamLeft.remove(fighter);
         teamRight.remove(fighter);
     }
@@ -115,7 +90,7 @@ public class CombatRow<T extends Fighter> extends Item {
         return !getFighters(team.facingTeam()).isEmpty();
     }
 
-    boolean hasFighter(T fighter) {
+    boolean hasFighter(Fighter fighter) {
         return teamLeft.contains(fighter) || teamRight.contains(fighter);
     }
 
@@ -128,7 +103,7 @@ public class CombatRow<T extends Fighter> extends Item {
         }
     }
 
-    Team kill(T fighter) {
+    Team kill(Fighter fighter) {
         if (teamLeft.remove(fighter)) {
             return Team.LEFT;
         } else if (teamRight.remove(fighter)) {
@@ -137,92 +112,17 @@ public class CombatRow<T extends Fighter> extends Item {
         return null;
     }
 
-    T findFighterByName(String name) {
-        for (T fighter : teamLeft) {
+    Fighter findFighterByName(String name) {
+        for (Fighter fighter : teamLeft) {
             if (fighter.getName().equals(name)) {
                 return fighter;
             }
         }
-        for (T fighter : teamRight) {
+        for (Fighter fighter : teamRight) {
             if (fighter.getName().equals(name)) {
                 return fighter;
             }
         }
         return null;
-    }
-
-    @Override
-    protected void populate(Item item) {
-        @SuppressWarnings("unchecked") CombatRow<T> combatRow = (CombatRow<T>) item;
-        super.populate(combatRow);
-        teamLeft.addAll(combatRow.teamLeft);
-        teamRight.addAll(combatRow.teamRight);
-    }
-
-    private void populateView(View row, final Team team) {
-        ViewGroup teamViewGroup = row.findViewById(team == Team.LEFT ? R.id.teamLeftView : R.id.teamRightView);
-        teamViewGroup.removeAllViews();
-        final List<T> fighters = team == Team.LEFT ? teamLeft : teamRight;
-        for (T fighter : fighters) {
-            teamViewGroup.addView(fighter.createView(((Activity) row.getContext()).getLayoutInflater(), teamViewGroup));
-        }
-        setTeamViewBorder(teamViewGroup, fighters.isEmpty() ? TeamState.INVISIBLE : TeamState.VISIBLE);
-        teamViewGroup.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                if (dropAreaAccepts(event)) {
-                    switch (event.getAction()) {
-                        case DragEvent.ACTION_DRAG_STARTED:
-                            return true;
-                        case DragEvent.ACTION_DROP:
-                            T fighter = CombatCore.findFighterByName(event.getClipData().getItemAt(0).getText().toString());
-                            CombatCore.moveFighter(fighter, getThis(), team);
-                            setTeamViewBorder(v, TeamState.VISIBLE);
-                            return true;
-                        case DragEvent.ACTION_DRAG_ENTERED:
-                            setTeamViewBorder(v, TeamState.ACTIVATED);
-                            return true;
-                        case DragEvent.ACTION_DRAG_EXITED:
-                            setTeamViewBorder(v, fighters.isEmpty() ? TeamState.INVISIBLE : TeamState.VISIBLE);
-                            return true;
-                        case DragEvent.ACTION_DRAG_LOCATION:
-                        case DragEvent.ACTION_DRAG_ENDED:
-                            return true;
-                        default:
-                            return false;
-                    }
-                } else {
-                    return false;
-                }
-            }
-        });
-    }
-
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    private boolean dropAreaAccepts(DragEvent event) {
-        if (event.getClipDescription() != null) {
-            String mimeType = event.getClipDescription().getMimeType(0);
-            return Constants.MIMETYPE_FIGHTER.equals(mimeType) || Constants.MIMETYPE_CHARACTER_FIGHTER.equals(mimeType);
-        } else {
-            return false;
-        }
-    }
-
-    private void setTeamViewBorder(View view, TeamState teamState) {
-        switch (teamState) {
-            case INVISIBLE:
-                view.setBackground(null);
-                break;
-            case VISIBLE:
-                view.setBackground(view.getResources().getDrawable(R.drawable.border_brown, null));
-                break;
-            case ACTIVATED:
-                view.setBackground(view.getResources().getDrawable(R.drawable.border_green, null));
-                break;
-        }
-    }
-
-    private CombatRow getThis() {
-        return this;
     }
 }

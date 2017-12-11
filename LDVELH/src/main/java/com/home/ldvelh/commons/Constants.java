@@ -13,8 +13,6 @@ public class Constants {
     public static final String MIMETYPE_FIGHTER = "mimetype_fighter";
     public static final String MIMETYPE_DF04CREWMEMBER = "mimetype_df04crewmember";
 
-    public static final String METHOD_CREATE = "create";
-    public static final String METHOD_CLONE = "clone";
     public static final String METHOD_SET_GOLD = "setGold";
     public static final String METHOD_ADD_EQUIPMENT = "addEquipment";
     public static final String METHOD_ADD_CONSUMABLE_FOOD = "addConsumableFood";

@@ -1,16 +1,5 @@
 package com.home.ldvelh.ui.dialog;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.home.ldvelh.R;
-import com.home.ldvelh.commons.Utils;
-import com.home.ldvelh.model.Property;
-import com.home.ldvelh.model.item.Effect;
-import com.home.ldvelh.model.item.EffectTarget;
-import com.home.ldvelh.model.item.ItemAndQuantity;
-import com.home.ldvelh.ui.widget.VerticalSeekBar;
-
 import android.content.Context;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -20,6 +9,17 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+
+import com.home.ldvelh.R;
+import com.home.ldvelh.commons.Utils;
+import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.item.Effect;
+import com.home.ldvelh.model.item.EffectItem;
+import com.home.ldvelh.model.item.EffectTarget;
+import com.home.ldvelh.ui.widget.VerticalSeekBar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConsumableEditor extends AdventureDialog {
 
@@ -137,7 +137,7 @@ public class ConsumableEditor extends AdventureDialog {
 		okButton.setOnClickListener(new View.OnClickListener() {
 			@Override public void onClick(View v) {
 				if (!effects.isEmpty()) {
-					Property.ITEM_LIST.get().add(new ItemAndQuantity(itemName), effects);
+					Property.ITEM_LIST.get().add(new EffectItem(itemName, effects));
 				}
 				fulfill();
 				dismiss();

@@ -4,6 +4,7 @@ import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.combat.CombatRow;
 import com.home.ldvelh.model.combat.Fighter;
 import com.home.ldvelh.model.combat.strategy.CombatStrategy;
+import com.home.ldvelh.model.item.EffectItem;
 import com.home.ldvelh.model.item.SimpleItem;
 import com.home.ldvelh.model.value.ListValueHolder;
 import com.home.ldvelh.model.value.StringValueHolder;
@@ -16,19 +17,23 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.home.ldvelh.model.value.ListValueHolder.ItemMergeType.DONT_MERGE;
+import static com.home.ldvelh.model.value.ListValueHolder.ItemMergeType.MERGE;
+
 public abstract class Character extends ValueHolder<Character> {
+    private static final long serialVersionUID = -8483218579038871251L;
 
     private final List<Class<? extends AdventureDialog>> fulfilledDialogs = new ArrayList<>();
-    private final ListValueHolder<SimpleItem> items;
+    private final ListValueHolder<EffectItem> items;
     private final ListValueHolder<SimpleItem> notes;
     private final ListValueHolder<CombatRow> fighterGrid;
     private final StringValueHolder lastParagraph;
 
     Character() {
         super(null);
-        items = new ListValueHolder<>(SimpleItem.class);
-        notes = new ListValueHolder<>(SimpleItem.class);
-        fighterGrid = new ListValueHolder<>(CombatRow.class);
+        items = new ListValueHolder<>(MERGE);
+        notes = new ListValueHolder<>(DONT_MERGE);
+        fighterGrid = new ListValueHolder<>(DONT_MERGE);
         lastParagraph = new StringValueHolder();
     }
 
@@ -47,7 +52,7 @@ public abstract class Character extends ValueHolder<Character> {
 
     @SuppressWarnings("unused")
     public void addNote(String name) {
-        Property.NOTE_LIST.get().addNewItem(name);
+        Property.NOTE_LIST.get().add(new SimpleItem(name));
     }
 
     public void initCharacterValues() {

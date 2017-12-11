@@ -26,19 +26,19 @@ public abstract class Store<T extends Item> extends AdventureDialog implements O
     private final IntValueHolder srcCurrency;
     private final IntValueHolder currency;
     private final List<ShopPickerItem> shopItems = new ArrayList<>();
-    private final boolean initCountsWithList;
-    final ListValueHolder<T> list;
+    private final boolean initQuantitiesWithList;
+    private final ListValueHolder<T> list;
 
     Store(Context context, Object data, int layoutResId, IntValueHolder srcCurrency, ListValueHolder<T> list) {
         this(context, data, layoutResId, srcCurrency, list, false);
     }
 
-    Store(Context context, Object data, int layoutResId, IntValueHolder srcCurrency, ListValueHolder<T> list, boolean initCountsWithList) {
+    Store(Context context, Object data, int layoutResId, IntValueHolder srcCurrency, ListValueHolder<T> list, boolean initQuantitiesWithList) {
         super(context, data);
         this.layoutResId = layoutResId;
         this.srcCurrency = srcCurrency;
         this.currency = new IntValueHolder(srcCurrency);
-        this.initCountsWithList = initCountsWithList;
+        this.initQuantitiesWithList = initQuantitiesWithList;
         this.list = list;
     }
 
@@ -73,30 +73,13 @@ public abstract class Store<T extends Item> extends AdventureDialog implements O
         findViewById(R.id.okButton).setEnabled(okButtonEnabled(currency));
     }
 
-    void acquireItems() {
-        for (ShopPickerItem shopItem : getAllShopItems()) {
-            if (initCountsWithList) {
-                shopItem.setQuantity(shopItem.getQuantity() - list.countByName(shopItem.getName()));
-            }
-            addToList(shopItem, list);
-        }
-    }
-
     boolean okButtonEnabled(IntValueHolder currency) {
         return true;
     }
 
-    void completeAcquisition() {
-        srcCurrency.addWithFeedback(currency.getValue() - srcCurrency.getValue());
-        acquireItems();
-        configurePickerObservers(DisplayMode.HIDE);
-        fulfill();
-        dismiss();
-    }
-
     private void initPickers(int remainingCurrency) {
         for (ShopPickerItem shopItem : getAllShopItems()) {
-            int initValue = initCountsWithList ? list.countByName(shopItem.getName()) : 0;
+            int initValue = initQuantitiesWithList ? list.getQuantityForName(shopItem.getName()) : 0;
             shopItem.initialize(initValue, initValue + (remainingCurrency / shopItem.getPrice()));
         }
     }
@@ -152,5 +135,23 @@ public abstract class Store<T extends Item> extends AdventureDialog implements O
             }
         }
         throw new IllegalStateException();
+    }
+
+    private void completeAcquisition() {
+        srcCurrency.addWithFeedback(currency.getValue() - srcCurrency.getValue());
+        acquireItems();
+        configurePickerObservers(DisplayMode.HIDE);
+        fulfill();
+        dismiss();
+    }
+
+    private void acquireItems() {
+        for (ShopPickerItem shopItem : getAllShopItems()) {
+            if (initQuantitiesWithList) {
+                shopItem.setQuantity(shopItem.getQuantity() - list.getQuantityForName(shopItem.getName()));
+            }
+            addToList(shopItem, list);
+        }
+        list.touch();
     }
 }

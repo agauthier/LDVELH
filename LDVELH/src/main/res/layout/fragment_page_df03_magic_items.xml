@@ -5,12 +5,12 @@
     android:background="@drawable/pencil_border"
     android:orientation="vertical" >
 
-    <com.home.ldvelh.ui.widget.list.SimpleItemList
+    <com.home.ldvelh.ui.widget.list.NoIncrementItemListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         custom:listPropertyName="MAGIC_ITEM_LIST"
         custom:newConsumableItemVisible="false"
         custom:newItemVisible="false"
-        custom:rowLayout="list_item_default" />
+        custom:rowLayout="list_no_increment_item" />
 
 </LinearLayout>

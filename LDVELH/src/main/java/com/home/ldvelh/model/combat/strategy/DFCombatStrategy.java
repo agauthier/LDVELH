@@ -21,7 +21,7 @@ public class DFCombatStrategy<T extends DFFighter> implements CombatStrategy {
 
     @Override public void assault() {
         Map<T, Integer> fighterDamage = new HashMap<>();
-        for (@SuppressWarnings("unchecked") CombatRow<T> row : Property.FIGHTER_GRID.get()) {
+        for (CombatRow row : Property.FIGHTER_GRID.get()) {
             if (row.canAssault()) {
                 rowAssault(row, fighterDamage);
             }
@@ -29,11 +29,11 @@ public class DFCombatStrategy<T extends DFFighter> implements CombatStrategy {
         applyDamage(fighterDamage);
     }
 
-    private void rowAssault(CombatRow<T> row, Map<T, Integer> fighterDamage) {
+    private void rowAssault(CombatRow row, Map<T, Integer> fighterDamage) {
         for (int i = 0; i < row.getTeamLeft().size(); i++) {
             for (int j = 0; j < row.getTeamRight().size(); j++) {
-                T leftFighter = row.getTeamLeft().get(i);
-                T rightFighter = row.getTeamRight().get(j);
+                @SuppressWarnings("unchecked") T leftFighter = (T) row.getTeamLeft().get(i);
+                @SuppressWarnings("unchecked") T rightFighter = (T) row.getTeamRight().get(j);
                 int leftFighterAttackForce = leftFighter.getSkill().getValue() + Die.SIX_FACES.roll(2) + leftFighter.getBonus().getValue();
                 int rightFighterAttackForce = rightFighter.getSkill().getValue() + Die.SIX_FACES.roll(2) + rightFighter.getBonus().getValue();
                 if (leftFighterAttackForce > rightFighterAttackForce && j == 0) {

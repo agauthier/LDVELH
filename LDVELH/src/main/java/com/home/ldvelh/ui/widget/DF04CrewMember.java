@@ -60,10 +60,10 @@ public class DF04CrewMember extends LinearLayout implements Observer {
     }
 
     @Override protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
         crewMember.get().deleteLocationObserver(this);
         crewMember.get().updateStaminaObserver();
         DF04AdventureActivity.getCurrentActivity().deleteObserver(this);
+        super.onDetachedFromWindow();
     }
 
     @Override public void update(Observable observable, Object data) {

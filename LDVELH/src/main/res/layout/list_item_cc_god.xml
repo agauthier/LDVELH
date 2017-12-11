@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
-    tools:ignore="UnusedResources">
+    tools:keep="@layout/list_item_cc_god">
 
     <TextView
         android:id="@+id/itemName"
@@ -13,26 +14,45 @@
         android:layout_weight="1" />
 
     <RadioGroup
-        android:id="@+id/buttonGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"
         android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/favorable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
 
-        <RadioButton
-            android:id="@+id/neutral"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <RadioButton
+                android:id="@+id/favorable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        <RadioButton
-            android:id="@+id/unfavorable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/neutral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/unfavorable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </RadioGroup>
-
 </LinearLayout>

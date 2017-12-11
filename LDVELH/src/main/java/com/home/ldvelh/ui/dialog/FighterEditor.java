@@ -25,7 +25,7 @@ public class FighterEditor extends NameEditor<EditableFighter> {
     }
 
     @Override
-    protected boolean isOkButtonEnabled(String name) {
-        return !name.isEmpty() && CombatCore.findFighterByName(name) == null;
+    protected boolean isItemSavable() {
+        return super.isItemSavable() && CombatCore.findFighterByName(getNamable().getName()) == null;
     }
 }

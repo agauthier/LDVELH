@@ -1,43 +1,36 @@
 package com.home.ldvelh.model.item;
 
-import java.util.List;
+import com.home.ldvelh.commons.Constants;
+import com.home.ldvelh.model.value.IntValueHolder;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class CCEquipment extends Item {
-    private static final long serialVersionUID = -1563773358827185825L;
+    private static final long serialVersionUID = 8460193493459850797L;
 
-    private int strength = 0;
-    private int protection = 0;
+    private final IntValueHolder strength = new IntValueHolder(Constants.BIG_NEGATIVE, Constants.BIG_POSITIVE, 0);
+    private final IntValueHolder protection = new IntValueHolder(Constants.BIG_NEGATIVE, Constants.BIG_POSITIVE, 0);
     private boolean equipped = false;
 
-    private CCEquipment() { super(); }
+    public CCEquipment() {
+        this(StringUtils.EMPTY);
+    }
 
-    @SuppressWarnings("unused")
-    private CCEquipment(String name, List<Effect> effects, Object data) {
-        super(name, effects, data);
+    public CCEquipment(String name) {
+        super(name, null);
     }
 
     @Override
-    public <T extends Item> T copy() {
-        CCEquipment equipment = new CCEquipment();
-        populate(equipment);
-        //noinspection unchecked
-        return (T) equipment;
+    public boolean isIdentical(Item item) {
+        return super.isIdentical(item) && strength.getValue() == ((CCEquipment) item).strength.getValue() && protection.getValue() == ((CCEquipment) item).protection.getValue();
     }
 
-    public int getStrength() {
+    public IntValueHolder getStrength() {
         return strength;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public int getProtection() {
+    public IntValueHolder getProtection() {
         return protection;
-    }
-
-    public void setProtection(int protection) {
-        this.protection = protection;
     }
 
     public boolean isEquipped() {
@@ -46,13 +39,5 @@ public class CCEquipment extends Item {
 
     public void setEquipped(boolean equipped) {
         this.equipped = equipped;
-    }
-
-    @Override
-    protected void populate(Item item) {
-        CCEquipment equipment = (CCEquipment) item;
-        super.populate(equipment);
-        equipment.strength = strength;
-        equipment.protection = protection;
     }
 }

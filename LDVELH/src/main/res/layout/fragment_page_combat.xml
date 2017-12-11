@@ -64,7 +64,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.home.ldvelh.ui.widget.list.CombatRowList
+    <com.home.ldvelh.ui.widget.list.CombatRowListView
         android:id="@+id/combatList"
         android:layout_width="match_parent"
         android:layout_height="0dp"

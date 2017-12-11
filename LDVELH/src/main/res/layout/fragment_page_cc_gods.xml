@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/pencil_border"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <Space
             android:layout_width="0dp"
@@ -15,7 +15,7 @@
             android:layout_weight="1" />
 
         <TextView
-            style="@style/ldvelhSmallTitles"
+            style="@style/ldvelhSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -23,7 +23,7 @@
             android:text="@string/cc_favorable" />
 
         <TextView
-            style="@style/ldvelhSmallTitles"
+            style="@style/ldvelhSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -31,7 +31,7 @@
             android:text="@string/cc_neutral" />
 
         <TextView
-            style="@style/ldvelhSmallTitles"
+            style="@style/ldvelhSmall"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,13 +39,7 @@
             android:text="@string/cc_unfavorable" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/divider_brown_opaque"
-        android:orientation="horizontal" />
-
-    <com.home.ldvelh.ui.widget.list.CCGodList
+    <com.home.ldvelh.ui.widget.list.CCGodListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         custom:listPropertyName="CC_GOD_LIST"

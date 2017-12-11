@@ -14,7 +14,12 @@ import java.util.Observable;
 public class SOIngredientPicker extends Store<SimpleItem> {
 
     public SOIngredientPicker(Context context) {
-        super(context, null, R.layout.dialog_so_ingredient_picker, new IntValueHolder(0, Constants.BIG_POSITIVE, Constants.BIG_POSITIVE), Property.INGREDIENT_LIST.get(), true);
+        this(context, null);
+    }
+
+    @SuppressWarnings({"WeakerAccess", "SameParameterValue"})
+    public SOIngredientPicker(Context context, Object data) {
+        super(context, data, R.layout.dialog_so_ingredient_picker, new IntValueHolder(0, Constants.BIG_POSITIVE, Constants.BIG_POSITIVE), Property.INGREDIENT_LIST.get(), true);
     }
 
     @Override
@@ -22,8 +27,8 @@ public class SOIngredientPicker extends Store<SimpleItem> {
 
     @Override
     protected void addToList(ShopPickerItem shopItem, ListValueHolder<SimpleItem> list) {
-        for (int i = 0; i < shopItem.getQuantity(); i++) {
-            list.addNewItem(shopItem.getName(), shopItem.getQuantity());
+        if (shopItem.getQuantity() > 0) {
+            list.add(new SimpleItem(shopItem.getName(), shopItem.getQuantity()));
         }
     }
 }

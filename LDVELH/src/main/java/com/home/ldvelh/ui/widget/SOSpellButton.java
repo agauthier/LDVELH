@@ -1,15 +1,5 @@
 package com.home.ldvelh.ui.widget;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.home.ldvelh.R;
-import com.home.ldvelh.commons.Constants;
-import com.home.ldvelh.commons.Utils;
-import com.home.ldvelh.model.Property;
-import com.home.ldvelh.model.item.ItemAndQuantity;
-import com.home.ldvelh.model.item.SimpleItem;
-import com.home.ldvelh.model.value.IntValueHolder;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -19,6 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.home.ldvelh.R;
+import com.home.ldvelh.commons.Constants;
+import com.home.ldvelh.commons.Utils;
+import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.item.SimpleItem;
+import com.home.ldvelh.model.value.IntValueHolder;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class SOSpellButton extends LinearLayout {
 
@@ -50,14 +49,14 @@ public class SOSpellButton extends LinearLayout {
 			@Override public void onClick(View v) {
 				Property.STAMINA.get().addWithFeedback(-cost);
 				IntValueHolder gold = Property.GOLD.get();
-				SimpleItem ingredientItem = Property.INGREDIENT_LIST.get().find(ingredient);
+				SimpleItem ingredientItem = Property.INGREDIENT_LIST.get().findByName(ingredient);
 				if (StringUtils.isEmpty(ingredient)) {
 					displayButtonFeedback(button, SpellResult.SUCCESS);
 				} else if (ingredient.equals(Utils.getString(R.string.so_ingredient_21)) && gold.getValue() > 0) {
 					gold.addWithFeedback(-1);
 					displayButtonFeedback(button, SpellResult.SUCCESS);
 				} else if (ingredientItem != null) {
-					Property.INGREDIENT_LIST.get().add(new ItemAndQuantity(ingredientItem.getName(), -1));
+					Property.INGREDIENT_LIST.get().decrement(ingredientItem);
 					displayButtonFeedback(button, SpellResult.SUCCESS);
 				} else {
 					displayButtonFeedback(button, SpellResult.FAILURE);

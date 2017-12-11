@@ -9,9 +9,8 @@ import com.home.ldvelh.model.value.ListValueHolder;
 
 public class DF03MagicItemPicker extends Store<SimpleItem> {
 
-    @SuppressWarnings("unused")
-    public DF03MagicItemPicker(Context context) {
-        super(context, null, R.layout.dialog_df03_magic_item_picker, Property.GOLD.get(), Property.MAGIC_ITEM_LIST.get());
+    public DF03MagicItemPicker(Context context, Object data) {
+        super(context, data, R.layout.dialog_df03_magic_item_picker, Property.GOLD.get(), Property.MAGIC_ITEM_LIST.get());
     }
 
     @Override
@@ -19,8 +18,8 @@ public class DF03MagicItemPicker extends Store<SimpleItem> {
 
     @Override
     protected void addToList(ShopPickerItem shopItem, ListValueHolder<SimpleItem> list) {
-        for (int i = 0; i < shopItem.getQuantity(); i++) {
-            list.addNewItem(shopItem.getName());
+        if (shopItem.getQuantity() > 0) {
+            list.add(new SimpleItem(shopItem.getName(), shopItem.getQuantity()));
         }
     }
 }

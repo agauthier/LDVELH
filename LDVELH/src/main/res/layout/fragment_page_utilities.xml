@@ -32,14 +32,14 @@
             android:background="@drawable/divider_brown_opaque"
             android:orientation="horizontal"/>
 
-        <com.home.ldvelh.ui.widget.list.NoteList
+        <com.home.ldvelh.ui.widget.list.NoIncrementItemListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             custom:listPropertyName="NOTE_LIST"
             custom:newConsumableItemVisible="false"
             custom:newItemCaption="@string/add_new_note"
             custom:newItemVisible="true"
-            custom:rowLayout="list_item_note"/>
+            custom:rowLayout="list_no_increment_item"/>
     </LinearLayout>
 
 </LinearLayout>

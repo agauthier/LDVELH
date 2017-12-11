@@ -7,6 +7,8 @@ import com.home.ldvelh.model.value.BooleanValueHolder;
 import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.model.value.ListValueHolder;
 
+import static com.home.ldvelh.model.value.ListValueHolder.ItemMergeType.MERGE;
+
 public class SOCharacter extends DFCharacter {
     private static final long serialVersionUID = 2522839728342382576L;
 
@@ -19,7 +21,7 @@ public class SOCharacter extends DFCharacter {
         super();
         meals = new IntValueHolder(0, Constants.BIG_POSITIVE, 2);
         firstMealOfTheDay.set();
-        ingredients = new ListValueHolder<>(SimpleItem.class);
+        ingredients = new ListValueHolder<>(MERGE);
     }
 
     @Override

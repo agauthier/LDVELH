@@ -2,8 +2,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:clipChildren="false"
-    android:clipToPadding="false"
-    android:orientation="horizontal">
+    android:clipToPadding="false">
 
     <TextView
         android:id="@+id/animatedNumberValue"
