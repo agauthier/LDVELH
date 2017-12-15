@@ -37,7 +37,7 @@ public class CombatRowListView extends CustomListView<CombatRow> {
 
     @Override
     protected CustomListViewItem<CombatRow> createCustomListViewItem(CombatRow item) {
-        return null;
+        return new CustomListViewItem<>(this, item);
     }
 
     private void populateView(View row, final CombatRow combatRow, final Team team) {
