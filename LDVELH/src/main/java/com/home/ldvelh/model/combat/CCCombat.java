@@ -2,12 +2,57 @@ package com.home.ldvelh.model.combat;
 
 import android.widget.ImageButton;
 
-public class CCCombat extends DFCombat {
+public class CCCombat implements Combat {
+
+    @Override
+    public void init() {
+        CombatCore.init();
+    }
+
+    @Override
+    public void reset() {
+        CombatCore.reset();
+    }
 
     @Override
     public <T extends EditableFighter> T createEditableFighter() {
         //noinspection unchecked
         return (T) new CCEditableFighter();
+    }
+
+    @Override
+    public void addNewFighter(Fighter fighter, CombatRow.Team team) {
+        CombatCore.addNewFighter(fighter, team);
+    }
+
+    @Override
+    public boolean canAssault() {
+        return CombatCore.canAssault();
+    }
+
+    @Override
+    public void assault(ImageButton button) {
+
+    }
+
+    @Override
+    public boolean canEscape() {
+        return false;
+    }
+
+    @Override
+    public void escape(ImageButton button) {
+
+    }
+
+    @Override
+    public void addAllObservers() {
+
+    }
+
+    @Override
+    public void removeAllObservers() {
+
     }
 
     @SuppressWarnings("unused")
