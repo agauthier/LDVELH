@@ -24,9 +24,7 @@ public class DF04Combat extends DFCombat {
         if (((DF04Character) Property.CHARACTER.get()).isInSpaceFight()) {
             if (Property.FIGHTER_GRID.get().size() == 1) {
                 CombatRow row = Property.FIGHTER_GRID.get().get(0);
-                if (row.hasExactlyOneMember(Team.LEFT) && row.hasExactlyOneMember(Team.RIGHT)) {
-                    return true;
-                }
+                return row.hasExactlyOneMember(Team.LEFT) && row.hasExactlyOneMember(Team.RIGHT);
             }
             return false;
         } else {

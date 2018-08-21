@@ -20,6 +20,6 @@ android {
 
 dependencies {
     api 'org.apache.commons:commons-lang3:3.6'
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support:design:27.0.2'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
 }
