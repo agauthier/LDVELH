@@ -20,6 +20,7 @@
     <string name="restart_adventure">Recommencer l\'aventure</string>
     <string name="play_other_book">Jouer un autre livre</string>
     <string name="quit">Quitter</string>
+    <string name="test">Test</string>
 
     <!-- Character -->
     <string name="skill">Habileté</string>
