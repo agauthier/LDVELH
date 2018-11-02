@@ -47,12 +47,12 @@ public class CCCombat implements Combat {
 
     @Override
     public void addAllObservers() {
-
+        CombatCore.addAllObservers();
     }
 
     @Override
     public void removeAllObservers() {
-
+        CombatCore.removeAllObservers();
     }
 
     @SuppressWarnings("unused")

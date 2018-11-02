@@ -1,6 +1,7 @@
 package com.home.ldvelh.model.combat;
 
 import com.home.ldvelh.model.Property;
+import com.home.ldvelh.model.combat.CombatRow.ObserverOp;
 import com.home.ldvelh.model.combat.CombatRow.Team;
 import com.home.ldvelh.model.value.ListValueHolder;
 
@@ -99,11 +100,11 @@ public class CombatCore {
     }
 
     static void addAllObservers() {
-        updateAllObservers(false);
+        updateAllObservers(ObserverOp.ADD);
     }
 
     static void removeAllObservers() {
-        updateAllObservers(true);
+        updateAllObservers(ObserverOp.REMOVE);
     }
 
     static <T extends Fighter> void addNewFighter(T fighter, Team team) {
@@ -143,9 +144,9 @@ public class CombatCore {
         return combatRow;
     }
 
-    private static void updateAllObservers(boolean delete) {
+    private static void updateAllObservers(ObserverOp op) {
         for (CombatRow row : FIGHTER_GRID.get()) {
-            row.updateAllObservers(delete);
+            row.updateAllObservers(op);
         }
     }
 

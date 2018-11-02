@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.home.ldvelh.model.combat.CombatRow.ObserverOp.REMOVE;
+
 public class CombatRow extends Item {
     private static final long serialVersionUID = -775458784598086913L;
 
@@ -25,6 +27,8 @@ public class CombatRow extends Item {
 
         public abstract Team facingTeam();
     }
+
+    public enum ObserverOp { ADD, REMOVE }
 
     private final List<Fighter> teamLeft = new ArrayList<>();
     private final List<Fighter> teamRight = new ArrayList<>();
@@ -94,8 +98,8 @@ public class CombatRow extends Item {
         return teamLeft.contains(fighter) || teamRight.contains(fighter);
     }
 
-    void updateAllObservers(boolean delete) {
-        if (delete) {
+    void updateAllObservers(ObserverOp op) {
+        if (op == REMOVE) {
             FighterObserver.removeAll();
         } else {
             FighterObserver.addAll(teamLeft);

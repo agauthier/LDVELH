@@ -120,7 +120,6 @@ public class AdventureConfig implements Serializable {
         insertPage(END_OF_LIST, pageTitleResId, pageClass, tags);
     }
 
-    @SuppressWarnings("SameParameterValue")
     <T extends Fragment> void insertPage(int nextPageTitleResId, int pageTitleResId, Class<T> pageClass) {
         insertPage(nextPageTitleResId, pageTitleResId, pageClass, Collections.<PageTag>emptySet());
     }
