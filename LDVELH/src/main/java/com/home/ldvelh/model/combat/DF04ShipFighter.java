@@ -20,7 +20,7 @@ class DF04ShipFighter extends DFFighter implements EditableFighter {
     private final IntValueHolder attackForce;
     private final IntValueHolder shields;
     private final IntValueHolder bonus;
-    private String name = StringUtils.EMPTY;
+    private String name;
 
     DF04ShipFighter() {
         super();

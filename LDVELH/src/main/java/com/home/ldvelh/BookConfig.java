@@ -133,7 +133,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df01) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_01, R.string.df_01_title, DFAdventureActivity.class, DFCharacter.class);
+                AdventureConfig config = commonDFConfig(R.string.df_01, R.string.df_01_title, DFCharacter.class);
                 config.addCustomCharacterValues(METHOD_SET_GOLD, 1);
                 config.addCustomCharacterValues(METHOD_ADD_CONSUMABLE_FOOD, Utils.getString(R.string.food), 10);
                 config.addDialog(PotionPicker.class, 2);
@@ -143,7 +143,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df02) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_02, R.string.df_02_title, DFAdventureActivity.class, DF02Character.class);
+                AdventureConfig config = commonDFConfig(R.string.df_02, R.string.df_02_title, DF02Character.class);
                 config.addDialog(DF02SpellPicker.class);
                 config.insertPage(R.string.tab_title_map, R.string.tab_title_spells, DF02SpellsPage.class);
                 config.setFreeAreaInflater(FreeAreaInflaterDF02.INSTANCE);
@@ -153,7 +153,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df03) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_03, R.string.df_03_title, DFAdventureActivity.class, DF03Character.class);
+                AdventureConfig config = commonDFConfig(R.string.df_03, R.string.df_03_title, DF03Character.class);
                 config.addCustomCharacterValues(METHOD_SET_GOLD, 30);
                 config.addCustomCharacterValues(METHOD_ADD_CONSUMABLE_FOOD, Utils.getString(R.string.food), 10);
                 config.addDialog(PotionPicker.class, 2);
@@ -184,7 +184,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df05) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_05, R.string.df_05_title, DFAdventureActivity.class, DFCharacter.class);
+                AdventureConfig config = commonDFConfig(R.string.df_05, R.string.df_05_title, DFCharacter.class);
                 config.addCustomCharacterValues(METHOD_SET_GOLD, 30);
                 config.addCustomCharacterValues(METHOD_ADD_CONSUMABLE_FOOD, Utils.getString(R.string.food), 10);
                 config.addDialog(PotionPicker.class, 2);
@@ -194,7 +194,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df06) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_06, R.string.df_06_title, DFAdventureActivity.class, DFCharacter.class);
+                AdventureConfig config = commonDFConfig(R.string.df_06, R.string.df_06_title, DFCharacter.class);
                 config.addCustomCharacterValues(METHOD_ADD_CONSUMABLE_FOOD, Utils.getString(R.string.food), 10);
                 config.addDialog(PotionPicker.class, 1);
                 return config;
@@ -203,7 +203,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df07) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_07, R.string.df_07_title, DFAdventureActivity.class, DFCharacter.class);
+                AdventureConfig config = commonDFConfig(R.string.df_07, R.string.df_07_title, DFCharacter.class);
                 config.addCustomCharacterValues(METHOD_ADD_CONSUMABLE_FOOD, Utils.getString(R.string.food), 10);
                 config.addDialog(PotionPicker.class, 1);
                 return config;
@@ -212,7 +212,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df08) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_08, R.string.df_08_title, DFAdventureActivity.class, DF08Character.class);
+                AdventureConfig config = commonDFConfig(R.string.df_08, R.string.df_08_title, DF08Character.class);
                 config.insertPage(R.string.tab_title_map, R.string.tab_title_magic_stones, DF08MagicStonesPage.class);
                 return config;
             }
@@ -220,7 +220,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df09) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_09, R.string.df_09_title, DFAdventureActivity.class, DFCharacter.class);
+                AdventureConfig config = commonDFConfig(R.string.df_09, R.string.df_09_title, DFCharacter.class);
                 config.addCustomCharacterValues(METHOD_ADD_CONSUMABLE_FOOD, Utils.getString(R.string.food), 10);
                 config.addDialog(PotionPicker.class, 1);
                 return config;
@@ -229,7 +229,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df10) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_10, R.string.df_10_title, DFAdventureActivity.class, DF10Character.class);
+                AdventureConfig config = commonDFConfig(R.string.df_10, R.string.df_10_title, DF10Character.class);
                 config.setFreeAreaInflater(FreeAreaInflaterDF10.INSTANCE);
                 return config;
             }
@@ -237,7 +237,7 @@ public abstract class BookConfig {
         configs.get(Series.DF).add(new BookConfig(R.drawable.tn_df11) {
             @Override
             public AdventureConfig createAdventureConfig() {
-                AdventureConfig config = commonDFConfig(R.string.df_11, R.string.df_11_title, DFAdventureActivity.class, DFCharacter.class);
+                AdventureConfig config = commonDFConfig(R.string.df_11, R.string.df_11_title, DFCharacter.class);
                 config.addCustomCharacterValues(METHOD_ADD_CONSUMABLE_FOOD, Utils.getString(R.string.food), 10);
                 config.addDialog(PotionPicker.class, 1);
                 return config;
@@ -323,8 +323,8 @@ public abstract class BookConfig {
         });
     }
 
-    private static <T extends AdventureActivity, U extends Character> AdventureConfig commonDFConfig(int bookResId, int titleResId, Class<T> adventureClass, Class<U> characterClass) {
-        AdventureConfig config = new AdventureConfig(bookResId, titleResId, adventureClass, characterClass, R.layout.activity_adventure);
+    private static <T extends AdventureActivity, U extends Character> AdventureConfig commonDFConfig(int bookResId, int titleResId, Class<U> characterClass) {
+        AdventureConfig config = new AdventureConfig(bookResId, titleResId, DFAdventureActivity.class, characterClass, R.layout.activity_adventure);
         config.addPage(R.string.tab_title_utilities, UtilitiesPage.class, getDFUtilitiesConfig());
         config.addPage(R.string.tab_title_combat, DFCombatPage.class, getDFCombatButtons());
         config.addPage(R.string.tab_title_items, ItemsPage.class);

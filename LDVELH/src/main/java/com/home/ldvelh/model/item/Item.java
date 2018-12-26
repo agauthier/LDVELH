@@ -9,13 +9,13 @@ public abstract class Item implements Namable, Serializable {
 
     private String name;
     private int quantity;
-    private Object data;
+    private final Object data;
 
     protected Item(String name, Object data) {
         this(name, 1, data);
     }
 
-    protected Item(String name, int quantity, Object data) {
+    Item(String name, int quantity, Object data) {
         this.name = name;
         this.quantity = quantity;
         this.data = data;

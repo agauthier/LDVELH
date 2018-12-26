@@ -77,7 +77,7 @@ public class MapView extends View {
 
         private static TouchState state = NO_TOUCH;
 
-        public static TouchState nextState(Motion action) {
+        static TouchState nextState(Motion action) {
             TouchState newState = m.get(Pair.create(state, action));
             state = (newState != null) ? newState : NO_TOUCH;
             return state;

@@ -15,7 +15,7 @@ public abstract class GameSaver {
 
 		private final AdventureConfig config;
 
-		public GameSaverRunnable(AdventureConfig config) {
+		GameSaverRunnable(AdventureConfig config) {
 			this.config = config;
 		}
 

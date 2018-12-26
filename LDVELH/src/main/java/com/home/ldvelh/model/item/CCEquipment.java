@@ -22,7 +22,7 @@ public class CCEquipment extends Item {
 
     @Override
     public boolean isIdentical(Item item) {
-        return super.isIdentical(item) && strength.getValue() == ((CCEquipment) item).strength.getValue() && protection.getValue() == ((CCEquipment) item).protection.getValue();
+        return super.isIdentical(item) && strength.getValue().equals(((CCEquipment) item).strength.getValue()) && protection.getValue().equals(((CCEquipment) item).protection.getValue());
     }
 
     public IntValueHolder getStrength() {

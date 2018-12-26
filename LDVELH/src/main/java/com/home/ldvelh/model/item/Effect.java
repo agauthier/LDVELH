@@ -12,7 +12,7 @@ public class Effect implements Serializable {
 	public final static int HALF_OF_MAX_ROUNDED_UP = Constants.BIG_NEGATIVE - 1000;
 	public final static int HALF_OF_MAX_ROUNDED_DOWN = Constants.BIG_NEGATIVE - 1001;
 
-	public static class EffectAmount implements Serializable {
+	static class EffectAmount implements Serializable {
 		private static final long serialVersionUID = -2377501984499607461L;
 
 		private final int amount;

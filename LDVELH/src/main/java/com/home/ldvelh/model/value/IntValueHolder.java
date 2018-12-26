@@ -14,13 +14,13 @@ public class IntValueHolder extends ValueHolder<Integer> {
 	private int valueDiff;
 
 	public IntValueHolder(int min, int max, int value) {
-		super(0);
+		super(value);
 		this.min = min;
 		this.max = max;
-		setValue(value);
 		validate();
 	}
 
+	@SuppressWarnings("CopyConstructorMissesField")
 	public IntValueHolder(IntValueHolder otherInt) {
 		this(otherInt.getMin(), otherInt.getMax(), otherInt.getValue());
 	}

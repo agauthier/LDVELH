@@ -96,7 +96,7 @@ public class CCCharacter extends Character {
 
         public abstract boolean canPerform(CCCharacter character);
 
-        public abstract boolean perform(CCCharacter character);
+        protected abstract boolean perform(CCCharacter character);
 
         void recoverFromZeroHonor(CCCharacter character) {
             character.honor.deleteObserver(character);

@@ -34,10 +34,6 @@ public abstract class AdventureDialog extends Dialog {
         dismiss();
     }
 
-    public void cancelButtonPressed() {
-        dismiss();
-    }
-
     public boolean isFulfilled() {
         return fulfilled;
     }
@@ -49,12 +45,12 @@ public abstract class AdventureDialog extends Dialog {
         }
     }
 
-    void fulfill() {
-        fulfilled = true;
-    }
-
     Object getData() {
         return data;
+    }
+
+    void fulfill() {
+        fulfilled = true;
     }
 
     void initView() {
@@ -82,5 +78,9 @@ public abstract class AdventureDialog extends Dialog {
             textView.setText(text);
         }
         return textView;
+    }
+
+    void cancelButtonPressed() {
+        dismiss();
     }
 }
