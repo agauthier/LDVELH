@@ -1,7 +1,7 @@
 package com.home.ldvelh.model.combat.strategy;
 
 import com.home.ldvelh.commons.Constants;
-import com.home.ldvelh.model.Die;
+import com.home.ldvelh.commons.Die;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.character.DF04Character;
 import com.home.ldvelh.model.combat.CombatCore;

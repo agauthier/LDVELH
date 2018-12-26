@@ -1,4 +1,4 @@
-package com.home.ldvelh.model;
+package com.home.ldvelh.commons;
 
 public interface Namable {
     String getName();

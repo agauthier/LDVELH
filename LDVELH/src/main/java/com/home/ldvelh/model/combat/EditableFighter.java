@@ -1,7 +1,7 @@
 package com.home.ldvelh.model.combat;
 
 import com.home.ldvelh.model.value.IntValueHolder;
-import com.home.ldvelh.model.Namable;
+import com.home.ldvelh.commons.Namable;
 
 public interface EditableFighter extends Namable {
 

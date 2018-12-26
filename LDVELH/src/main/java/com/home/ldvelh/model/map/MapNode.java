@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.home.ldvelh.model.Namable;
+import com.home.ldvelh.commons.Namable;
 import com.home.ldvelh.ui.widget.map.MapContext;
 
 import android.graphics.Canvas;

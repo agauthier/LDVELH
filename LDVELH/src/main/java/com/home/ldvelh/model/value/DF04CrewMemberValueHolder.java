@@ -3,7 +3,7 @@ package com.home.ldvelh.model.value;
 import java.util.Observable;
 
 import com.home.ldvelh.commons.Constants;
-import com.home.ldvelh.model.Die;
+import com.home.ldvelh.commons.Die;
 
 public class DF04CrewMemberValueHolder extends DF04AssetValueHolder {
 	private static final long serialVersionUID = -7012397204752714695L;

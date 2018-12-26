@@ -3,7 +3,7 @@ package com.home.ldvelh.model.character;
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Constants;
 import com.home.ldvelh.commons.Utils;
-import com.home.ldvelh.model.Die;
+import com.home.ldvelh.commons.Die;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.combat.DF04CrewMemberFighter;
 import com.home.ldvelh.model.combat.Fighter;

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Utils;
-import com.home.ldvelh.model.Namable;
+import com.home.ldvelh.commons.Namable;
 
 import java.util.Observable;
 import java.util.Observer;

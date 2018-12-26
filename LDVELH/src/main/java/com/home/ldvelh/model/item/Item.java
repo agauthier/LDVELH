@@ -1,6 +1,6 @@
 package com.home.ldvelh.model.item;
 
-import com.home.ldvelh.model.Namable;
+import com.home.ldvelh.commons.Namable;
 
 import java.io.Serializable;
 
@@ -22,7 +22,7 @@ public abstract class Item implements Namable, Serializable {
     }
 
     public boolean isIdentical(Item item) {
-        return name.equals(item.name) && (data == null || (data != null && data.equals(item.data)));
+        return name.equals(item.name) && (data == null ? item.data == null : data.equals(item.data));
     }
 
     @Override

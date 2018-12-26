@@ -1,6 +1,6 @@
 package com.home.ldvelh.model.combat.strategy;
 
-import com.home.ldvelh.model.Die;
+import com.home.ldvelh.commons.Die;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.combat.CombatRow;
 import com.home.ldvelh.model.combat.DFFighter;

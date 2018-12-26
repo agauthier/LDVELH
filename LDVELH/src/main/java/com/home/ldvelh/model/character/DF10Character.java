@@ -1,6 +1,6 @@
 package com.home.ldvelh.model.character;
 
-import com.home.ldvelh.model.Die;
+import com.home.ldvelh.commons.Die;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.value.IntValueHolder;
 import com.home.ldvelh.ui.activity.AdventureActivity;

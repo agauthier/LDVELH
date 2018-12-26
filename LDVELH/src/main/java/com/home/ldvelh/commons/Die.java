@@ -1,4 +1,4 @@
-package com.home.ldvelh.model;
+package com.home.ldvelh.commons;
 
 import java.util.Random;
 
@@ -12,7 +12,7 @@ public enum Die {
 
     private static final Random random = new Random();
 
-    @SuppressWarnings("WeakerAccess") public abstract int roll();
+    public abstract int roll();
 
     public int roll(int nbTimes) {
         int result = 0;

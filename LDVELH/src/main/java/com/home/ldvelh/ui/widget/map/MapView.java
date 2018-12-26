@@ -14,7 +14,7 @@ import android.view.ViewConfiguration;
 import com.home.ldvelh.model.Property;
 import com.home.ldvelh.model.map.AdventureMap;
 import com.home.ldvelh.model.map.MapNode;
-import com.home.ldvelh.model.Namable;
+import com.home.ldvelh.commons.Namable;
 import com.home.ldvelh.ui.dialog.NameEditor;
 
 import java.util.HashMap;

@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 import com.home.ldvelh.R;
 import com.home.ldvelh.commons.Constants;
-import com.home.ldvelh.model.Die;
+import com.home.ldvelh.commons.Die;
 import com.home.ldvelh.model.Property;
 
 public class LuckCheck extends UtilityView {
